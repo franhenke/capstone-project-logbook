@@ -1,5 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import styled from 'styled-components'
 import Datepicker from './Datepicker'
 
 export default function JournalForm() {
@@ -8,34 +9,40 @@ export default function JournalForm() {
   console.log(errors)
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <JournalFormStyled onSubmit={handleSubmit(onSubmit)}>
       <Datepicker
-        as={Datepicker}
-        type="month"
-        placeholder="Date"
         name="Day"
+        aria-invalid={errors.Day ? 'true' : 'false'}
         ref={register({ required: true, maxLength: 80 })}
       />
       {errors.day && 'Please select a date'}
       <input
         type="search"
         placeholder="City"
-        name="city"
+        name="City"
+        aria-invalid={errors.City ? 'true' : 'false'}
         ref={register({ required: true, min: 3, maxLength: 100 })}
       />
+      {errors.City && 'Please select a city'}
       <input
         type="text"
         placeholder="Caption"
-        name="caption"
+        name="Caption"
+        aria-invalid={errors.Memory ? 'true' : 'false'}
         ref={register({ required: true, min: 5, maxLength: 50 })}
       />
-      {errors.caption && 'Please add a caption'}
+      {errors.Caption && 'Please add a caption'}
       <textarea
-        name="memory"
+        name="Memory"
+        aria-invalid={errors.Memory ? 'true' : 'false'}
         ref={register({ required: true, min: 10, maxLength: 500 })}
       />
+      {errors.Memory && 'Memory field cannot be empty'}
 
       <input type="submit" />
-    </form>
+    </JournalFormStyled>
   )
 }
+
+const JournalFormStyled = styled.form`
+color`

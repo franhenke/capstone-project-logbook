@@ -10,7 +10,6 @@ export default {
 export const JournalFormPreview = () => {
   return (
     <>
-      <Datepicker />
       <JournalForm />
     </>
   )
