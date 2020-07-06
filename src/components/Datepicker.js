@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 export default function Datepicker() {
-  const [date, setDate] = useState(new Date())
+  const [date, setDate] = useState()
   const handleChange = (date) => setDate(date)
   const today = new Date()
   let last7Days = new Date()
@@ -16,7 +16,6 @@ export default function Datepicker() {
       minDate={last7Days}
       maxDate={today}
       dateFormat="d MMMM, yyyy"
-      placeholderText="Click to select a date"
     />
   )
 }
