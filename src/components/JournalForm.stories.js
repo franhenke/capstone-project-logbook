@@ -1,6 +1,14 @@
 import React from 'react'
 import JournalForm from './JournalForm'
-import Datepicker from './Datepicker'
+import GlobalStyles from '../GlobalStyles'
+import { addDecorator } from '@storybook/react'
+
+addDecorator((s) => (
+  <>
+    <GlobalStyles />
+    <div style={{ background: 'white' }}> {s()}</div>
+  </>
+))
 
 export default {
   title: 'JournalForm',
@@ -8,9 +16,5 @@ export default {
 }
 
 export const JournalFormPreview = () => {
-  return (
-    <>
-      <JournalForm />
-    </>
-  )
+  return <JournalForm />
 }

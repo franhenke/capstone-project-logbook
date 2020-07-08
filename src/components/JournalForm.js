@@ -1,55 +1,65 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
-import Datepicker from './Datepicker'
+import Button from './Button/Button'
+import useForm from '../hooks/useForm'
 
-export default function JournalForm() {
-  const { register, handleSubmit, errors } = useForm()
+export default function Form() {
+  const [values, setValues] = useForm('')
 
   return (
-    <JournalFormStyled onSubmit={handleSubmit}>
-      <label>Date</label>
-      <Datepicker
-        name="Day"
-        aria-invalid={errors.Day ? 'true' : 'false'}
-        ref={register({ required: true, maxLength: 80 })}
-      />
-      {errors.day && 'Please select a date'}
-      <label>City</label>
+    <JournalFormStyled>
+      <label htmlFor="date">Date</label>
       <input
-        label="City"
-        type="search"
-        name="City"
-        aria-invalid={errors.City ? 'true' : 'false'}
-        ref={register({ required: true, min: 3, maxLength: 100 })}
+        onChange={(event) => setValues(event)}
+        value={values.date}
+        type="date"
+        name="date"
+        id="date"
+        autoFocus
+        required
       />
-      {errors.City && 'Please select a city'}
-      <label>Caption</label>
+      <label htmlFor="city">City</label>
       <input
+        onChange={(event) => setValues(event)}
+        value={values.city}
         type="text"
-        name="Caption"
-        aria-invalid={errors.Memory ? 'true' : 'false'}
-        ref={register({ required: true, min: 5, maxLength: 50 })}
+        name="city"
+        id="city"
+        required
       />
-      {errors.Caption && 'Please add a caption'}
-      <label>Memory</label>
-      <textarea
-        name="Memory"
-        aria-invalid={errors.Memory ? 'true' : 'false'}
-        ref={register({ required: true, min: 10, maxLength: 500 })}
-      />
-      {errors.Memory && 'Memory field cannot be empty'}
 
-      <input type="submit" />
+      <label htmlFor="caption">Caption</label>
+      <input
+        onChange={(event) => setValues(event)}
+        value={values.caption}
+        name="caption"
+        type="text"
+        id="caption"
+        required
+        autoFocus
+      />
+      <label htmlFor="memory">Memory</label>
+      <textarea
+        onChange={(event) => setValues(event)}
+        value={values.memory}
+        type="text"
+        name="memory"
+        min="10"
+        id="month"
+        required
+      />
+      <Button text="Save" />
     </JournalFormStyled>
   )
 }
 
 const JournalFormStyled = styled.form`
+  background: var(--background);
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
-  align-content: space-evenly;
-  height: 238px;
+  align-content: space-between;
+  height: 280px;
   width: 285px;
   font-size: 14px;
   font-family: Roboto;
@@ -67,7 +77,6 @@ const JournalFormStyled = styled.form`
 
   input,
   textarea {
-    background: var(--background);
     color: var(--text);
     border: none;
     border-bottom-style: solid;
@@ -75,5 +84,13 @@ const JournalFormStyled = styled.form`
     border-bottom-width: 1px;
     opacity: 0.5;
     width: 275px;
+  }
+
+  textarea {
+    margin-bottom: 20px;
+  }
+
+  [type='date'] {
+    width: 140px;
   }
 `
