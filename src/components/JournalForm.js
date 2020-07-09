@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import Button from './Button/Button'
 import useForm from '../hooks/useForm'
 
-export default function Form() {
+export default function Form({ onFormSubmit }) {
   const [values, setValues] = useForm('')
 
   return (
-    <JournalFormStyled>
+    <JournalFormStyled onSubmit={handleSubmit}>
       <label htmlFor="date">Date</label>
       <input
         onChange={(event) => setValues(event)}
@@ -51,6 +51,12 @@ export default function Form() {
       <Button text="Save" />
     </JournalFormStyled>
   )
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    const entry = { values }
+    onFormSubmit(entry)
+  }
 }
 
 const JournalFormStyled = styled.form`
