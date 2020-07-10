@@ -1,6 +1,6 @@
 import React from 'react'
 import JournalForm from './JournalForm'
-import GlobalStyles from '../GlobalStyles'
+import GlobalStyles from '../../GlobalStyles'
 import { addDecorator } from '@storybook/react'
 
 addDecorator((s) => (

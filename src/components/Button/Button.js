@@ -7,22 +7,20 @@ export default function Button({ text, disabled }) {
 
 const StyledButton = styled.button`
   color: var(--background);
+  align-self: center;
+  letter-spacing: 2.63px;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 500;
   width: 100px;
-  height: 25px;
-  padding: auto;
-  margin-top: 10px;
   border-radius: 16px;
   border: none;
   box-shadow: 6px 6px 12px -4px rgba(77, 180, 219, 0.68),
     inset -6px -5px 13px 0 #147491, inset -6px -6px 15px 0 #4bafd6;
   background-color: #64b2d0;
-  color: #f6f6f6;
-  text-align: center;
-  letter-spacing: 2.63px;
-  font-size: 12px;
-  text-transform: uppercase;
-  font-family: Poppins;
-  font-weight: 400;
+
+  margin-top: 20px;
+  padding: 5px 5px;
 
   &:disabled {
     cursor: not-allowed;

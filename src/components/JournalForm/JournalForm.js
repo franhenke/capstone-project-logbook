@@ -1,75 +1,83 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import Button from './Button/Button'
-import useForm from '../hooks/useForm'
+import Button from '../Button/Button'
+import dayjs from 'dayjs'
 
 export default function Form({ onFormSubmit }) {
-  const [values, handleChange] = useForm({})
+  const [city, setCity] = useState('')
+  const [date, setDate] = useState('')
+  const [caption, setCaption] = useState('')
+  const [memory, setMemory] = useState('')
+
+  const currentDate = dayjs().format('YYYY-MM-DD')
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    if (city && date && caption && memory) {
+      onFormSubmit({ date, city, caption, memory })
+      setCity('')
+      setDate('')
+      setCaption('')
+      setMemory('')
+    }
+  }
 
   return (
     <JournalFormStyled onSubmit={handleSubmit}>
       <label htmlFor="date">Date</label>
       <input
-        onChange={(event) => handleChange(event)}
-        value={values.date || ''}
+        onChange={(event) => setDate(event.target.value)}
+        value={date}
         type="date"
-        name="date"
+        max={currentDate}
         id="date"
         autoFocus
         required
       />
       <label htmlFor="city">City</label>
       <input
-        onChange={(event) => handleChange(event)}
-        value={values.city || ''}
+        onChange={(event) => setCity(event.target.value)}
+        value={city}
         type="text"
-        name="city"
+        min="1"
+        max="15"
         id="city"
         required
       />
 
       <label htmlFor="caption">Caption</label>
       <input
-        onChange={(event) => handleChange(event)}
-        value={values.caption || ''}
-        name="caption"
+        onChange={(event) => setCaption(event.target.value)}
+        value={caption}
         type="text"
+        min="1"
+        max="25"
         id="caption"
-        min="5"
         required
         autoFocus
       />
       <label htmlFor="memory">Memory</label>
       <textarea
-        onChange={(event) => handleChange(event)}
-        value={values.memory || ''}
+        onChange={(event) => setMemory(event.target.value)}
+        value={memory}
         type="text"
-        name="memory"
-        min="10"
+        min="1"
+        max="250"
         id="memory"
         required
       />
       <Button text="Save" />
     </JournalFormStyled>
   )
-
-  function handleSubmit(event) {
-    event.preventDefault()
-    const entry = { values }
-    onFormSubmit(entry)
-  }
 }
 
 const JournalFormStyled = styled.form`
-  margin-top: 30px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  align-content: space-between;
-  height: 340px;
+  height: 390px;
   width: 285px;
-  font-size: 14px;
   font-family: Roboto;
-  font-weight: 400;
 
   label {
     color: #21374f;
@@ -83,20 +91,14 @@ const JournalFormStyled = styled.form`
 
   input,
   textarea {
+    background: var(--background);
     color: var(--text);
     border: none;
     border-bottom-style: solid;
     border-bottom-color: #979797;
     border-bottom-width: 1px;
     opacity: 0.5;
+    height: 200px;
     width: 275px;
-  }
-
-  textarea {
-    margin-bottom: 20px;
-  }
-
-  [type='date'] {
-    width: 140px;
   }
 `

@@ -1,28 +1,38 @@
 import React, { useState, useEffect } from 'react'
-import JournalForm from './components/JournalForm'
+import JournalForm from './components/JournalForm/JournalForm'
 import JournalEntry from './components/JournalEntry/JournalEntry'
+import styled from 'styled-components'
 
 function App() {
-  const [entryList, setEntryList] = useState([])
+  const [journalEntries, setJournalEntries] = useState([])
 
   useEffect(() => {
-    const storage = JSON.parse(localStorage.getItem('JournalListEntry'))
-    storage && setEntryList(storage)
+    const storage = JSON.parse(localStorage.getItem('JournalList'))
+    storage && setJournalEntries(storage)
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('JournalListEntry', JSON.stringify(entryList))
-  }, [entryList])
+    localStorage.setItem('JournalList', JSON.stringify(journalEntries))
+  }, [journalEntries])
 
   return (
     <>
-      <JournalForm onFormSubmit={handleJournalEntry} />
-      <JournalEntry entryList={entryList} />
+      <Wrapper>
+        <JournalForm onFormSubmit={handleJournalEntry} />
+        <JournalEntry journalEntries={journalEntries} />
+      </Wrapper>
     </>
   )
   function handleJournalEntry(newJournalEntry) {
-    setEntryList([newJournalEntry, ...entryList])
+    setJournalEntries([newJournalEntry, ...journalEntries])
   }
 }
 
 export default App
+
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  justify-items: center;
+`

@@ -1,12 +1,12 @@
 import React from 'react'
 // import styled from 'styled-components';
-import JournalEntryList from './JournalEntryList'
+import JournalEntryList from '../JournalEntry/JournalEntryList'
 
-export default function JournalEntry({ entryList }) {
+export default function JournalEntry({ journalEntries }) {
   return (
     <>
-      {entryList.map((entry, index) => (
-        <JournalEntryList key={index} entry={entry} />
+      {journalEntries.map((entry) => (
+        <JournalEntryList key={entry.id} entry={entry} />
       ))}
     </>
   )
