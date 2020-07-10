@@ -46,7 +46,7 @@ export default function Form({ onFormSubmit }) {
         type="text"
         name="memory"
         min="10"
-        id="month"
+        id="memory"
         required
       />
       <Button text="Save" />
