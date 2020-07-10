@@ -4,14 +4,14 @@ import Button from './Button/Button'
 import useForm from '../hooks/useForm'
 
 export default function Form({ onFormSubmit }) {
-  const [values, setValues] = useForm('')
+  const [values, handleChange] = useForm({})
 
   return (
     <JournalFormStyled onSubmit={handleSubmit}>
       <label htmlFor="date">Date</label>
       <input
-        onChange={(event) => setValues(event)}
-        value={values.date}
+        onChange={(event) => handleChange(event)}
+        value={values.date || ''}
         type="date"
         name="date"
         id="date"
@@ -20,8 +20,8 @@ export default function Form({ onFormSubmit }) {
       />
       <label htmlFor="city">City</label>
       <input
-        onChange={(event) => setValues(event)}
-        value={values.city}
+        onChange={(event) => handleChange(event)}
+        value={values.city || ''}
         type="text"
         name="city"
         id="city"
@@ -30,18 +30,19 @@ export default function Form({ onFormSubmit }) {
 
       <label htmlFor="caption">Caption</label>
       <input
-        onChange={(event) => setValues(event)}
-        value={values.caption}
+        onChange={(event) => handleChange(event)}
+        value={values.caption || ''}
         name="caption"
         type="text"
         id="caption"
+        min="5"
         required
         autoFocus
       />
       <label htmlFor="memory">Memory</label>
       <textarea
-        onChange={(event) => setValues(event)}
-        value={values.memory}
+        onChange={(event) => handleChange(event)}
+        value={values.memory || ''}
         type="text"
         name="memory"
         min="10"
@@ -60,12 +61,11 @@ export default function Form({ onFormSubmit }) {
 }
 
 const JournalFormStyled = styled.form`
-  background: var(--background);
   margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-content: space-between;
-  height: 280px;
+  height: 340px;
   width: 285px;
   font-size: 14px;
   font-family: Roboto;

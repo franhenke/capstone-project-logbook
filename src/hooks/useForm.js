@@ -3,7 +3,7 @@ import { useState } from 'react'
 export default function useForm() {
   const [state, setState] = useState({})
 
-  const setValues = (event) => {
+  const handleChange = (event) => {
     event.persist()
     event.target.value &&
       setState((state) => ({
@@ -11,5 +11,5 @@ export default function useForm() {
         [event.target.name]: event.target.value,
       }))
   }
-  return [state, setValues]
+  return [state, handleChange]
 }

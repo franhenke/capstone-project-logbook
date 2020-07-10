@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import JournalForm from './components/JournalForm'
+import JournalEntry from './components/JournalEntry/JournalEntry'
 
 function App() {
+  const [entryList, setEntryList] = useState([])
+
+  useEffect(() => {
+    const storage = JSON.parse(localStorage.getItem('JournalListEntry'))
+    storage && setEntryList(storage)
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('JournalListEntry', JSON.stringify(entryList))
+  }, [entryList])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <JournalForm onFormSubmit={handleJournalEntry} />
+      <JournalEntry entryList={entryList} />
+    </>
+  )
+  function handleJournalEntry(newJournalEntry) {
+    setEntryList([newJournalEntry, ...entryList])
+  }
 }
 
-export default App;
+export default App
