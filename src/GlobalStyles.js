@@ -11,6 +11,10 @@ export default createGlobalStyle`
   }
  * {
     box-sizing: border-box;
+    margin: 0;
+  }
+
+  body {
     font-family: 'Poppins', sans-serif;
 	  background-color: var(--background);
     color: var(--text);
