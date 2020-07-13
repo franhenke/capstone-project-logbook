@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import JournalForm from '../JournalForm/JournalForm'
 import styled from 'styled-components'
 import { animated, useTransition } from 'react-spring'
-import BG-image from '../../images/background.jpg'
+import BG-image from '../../images/backgrounds.jpg'
 export default function Welcome() {
 
 return (<>
