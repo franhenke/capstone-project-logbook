@@ -5,18 +5,20 @@ export default createGlobalStyle`
   :root {
     --background: #F6F6F6;
     --primary: #1E81A0;
-    --secondary: #64B2D0;
+    --secondary: #6D7885;
     --text: #21374F;
-    --hightlight: #FF9B7B;
+    --highlight: #FF9B7B;
   }
  * {
     box-sizing: border-box;
     margin: 0;
+  padding: 0;
   }
 
   body {
     font-family: 'Poppins', sans-serif;
 	  background-color: var(--background);
     color: var(--text);
+  
   }
   `

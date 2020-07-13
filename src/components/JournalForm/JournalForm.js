@@ -75,18 +75,18 @@ const JournalFormStyled = styled.form`
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  height: 390px;
+  height: 400px;
   width: 285px;
   font-family: Roboto;
-
+  margin-bottom: 40px;
   label {
     color: #21374f;
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 3.15px;
     height: 16px;
     opacity: 0.5;
     text-transform: uppercase;
-    margin: 15px 0 10px;
+    margin: 25px 0 5px;
   }
 
   input,
@@ -97,8 +97,14 @@ const JournalFormStyled = styled.form`
     border-bottom-style: solid;
     border-bottom-color: #979797;
     border-bottom-width: 1px;
+    font-size: 16px;
     opacity: 0.5;
     height: 200px;
-    width: 275px;
+    width: 285px;
+  }
+
+  textarea {
+    margin-bottom: 15px;
+    height: 300px;
   }
 `

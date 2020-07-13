@@ -17,10 +17,10 @@ function App() {
 
   return (
     <>
-      <Wrapper>
+      <AppWrapper>
         <JournalForm onFormSubmit={handleJournalEntry} />
         <JournalEntry journalEntries={journalEntries} />
-      </Wrapper>
+      </AppWrapper>
     </>
   )
   function handleJournalEntry(newJournalEntry) {
@@ -30,8 +30,9 @@ function App() {
 
 export default App
 
-const Wrapper = styled.div`
+const AppWrapper = styled.div`
   display: grid;
+  padding: 15px;
   grid-template-columns: auto;
   grid-template-rows: auto;
   justify-items: center;
