@@ -39,6 +39,19 @@ export default function Form({ onFormSubmit }) {
         required
         autoFocus
       />
+      <label htmlFor="category">Category</label>
+      <SelectStyled
+        onChange={(event) => handleChange(event)}
+        value={values.categorie || ''}
+        name="category"
+        id="category"
+        required
+      >
+        <option value="" hidden></option>
+        <option value={values.memory}>Memory</option>
+        <option value={values.review}>Review</option>
+        <option value={values.thoughts}>Thoughts</option>
+      </SelectStyled>
       <label htmlFor="memory">Memory</label>
       <textarea
         onChange={(event) => handleChange(event)}
@@ -103,4 +116,17 @@ const JournalFormStyled = styled.form`
     margin-bottom: 15px;
     height: 300px;
   }
+`
+const SelectStyled = styled.select`
+  background: var(--background);
+  color: var(--text);
+  outline: none;
+  border: none;
+  border-bottom-style: solid;
+  border-bottom-color: #979797;
+  border-bottom-width: 1px;
+  font-size: 16px;
+  opacity: 0.5;
+  height: 200px;
+  width: 285px;
 `
