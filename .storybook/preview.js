@@ -1,19 +1,10 @@
-iimport React from 'react';
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import { addParameters, addDecorator } from '@storybook/react';
-import './storybook.css';
-import GlobalStyles from '../src/GlobalStyles';
+import { addDecorator } from '@storybook/react'
+import React from 'react'
+import GlobalStyles from '../src/GlobalStyles'
 
-addDecorator((s) => (
+addDecorator((storyFn) => (
   <>
     <GlobalStyles />
-    {s()}
+    {storyFn()}
   </>
-));
-
-addParameters({
-  background: { value: '#F6F6F6' },
-  viewport: {
-    viewports: INITIAL_VIEWPORTS,
-  },
-});
+))

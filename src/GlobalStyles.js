@@ -7,7 +7,7 @@ export default createGlobalStyle`
     --primary: #1E81A0;
     --secondary: #6D7885;
     --text: #21374F;
-    --highlight: #FF9B7B;
+    --highlight: #64B2D0;
   }
  * {
     box-sizing: border-box;

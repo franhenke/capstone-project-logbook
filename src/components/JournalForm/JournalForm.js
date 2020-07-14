@@ -48,7 +48,9 @@ export default function Form({ onFormSubmit }) {
         required
       >
         <option value="" disabled hidden></option>
-        <option value="Memory">Memory</option>
+        <option className="memory" value="Memory">
+          Memory
+        </option>
         <option value="Review">Review</option>
         <option value="Thoughts">Thoughts</option>
       </SelectStyled>
@@ -129,4 +131,11 @@ const SelectStyled = styled.select`
   opacity: 0.5;
   height: 200px;
   width: 285px;
+
+  .memory {
+    color: orange;
+    &:checked {
+      color: orange;
+    }
+  }
 `
