@@ -2,15 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 
-export default function JournalEntryList({ entry }) {
-  const parsedDate = dayjs(entry.date)
+export default function JournalEntryList({ values }) {
+  const parsedDate = dayjs(values.date)
   return (
     <EntryStyled>
       <CategorieStyled>Memory</CategorieStyled>
       <DateStyled>{parsedDate.format('DD.MM.YYYY')}</DateStyled>
-      <CityStyled>{entry.city}</CityStyled>
-      <CaptionStyled>{entry.caption}</CaptionStyled>
-      <MemoryStyled>{entry.memory}</MemoryStyled>
+      <CityStyled>{values.city}</CityStyled>
+      <CaptionStyled>{values.caption}</CaptionStyled>
+      <MemoryStyled>{values.memory}</MemoryStyled>
     </EntryStyled>
   )
 }
