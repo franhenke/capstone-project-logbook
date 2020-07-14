@@ -6,7 +6,7 @@ export default function JournalEntry({ values }) {
   const parsedDate = dayjs(values.date)
   return (
     <EntryStyled>
-      <CategorieStyled>Memory</CategorieStyled>
+      <CategorieStyled>{values.category}</CategorieStyled>
       <DateStyled>{parsedDate.format('DD.MM.YYYY')}</DateStyled>
       <CityStyled>{values.city}</CityStyled>
       <CaptionStyled>{values.caption}</CaptionStyled>

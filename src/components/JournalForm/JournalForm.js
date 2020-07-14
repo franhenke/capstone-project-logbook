@@ -42,15 +42,15 @@ export default function Form({ onFormSubmit }) {
       <label htmlFor="category">Category</label>
       <SelectStyled
         onChange={(event) => handleChange(event)}
-        value={values.categorie || ''}
+        value={values.category || ''}
         name="category"
         id="category"
         required
       >
-        <option value="" hidden></option>
-        <option value={values.memory}>Memory</option>
-        <option value={values.review}>Review</option>
-        <option value={values.thoughts}>Thoughts</option>
+        <option value="" disabled hidden></option>
+        <option value="Memory">Memory</option>
+        <option value="Review">Review</option>
+        <option value="Thoughts">Thoughts</option>
       </SelectStyled>
       <label htmlFor="memory">Memory</label>
       <textarea
