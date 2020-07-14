@@ -60,38 +60,47 @@ export default function Form({ onFormSubmit }) {
 }
 
 const JournalFormStyled = styled.form`
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  align-content: space-between;
-  height: 340px;
+  height: 400px;
   width: 285px;
   font-family: Roboto;
-
+  margin-bottom: 40px;
   label {
     color: #21374f;
-    font-size: 20px;
+    font-size: 14px;
     letter-spacing: 3.15px;
+    height: 16px;
     opacity: 0.5;
     text-transform: uppercase;
-    margin: 18px 0 5px;
+    margin: 25px 0 5px;
   }
 
   input,
   textarea {
+    background: var(--background);
     color: var(--text);
+    outline: none;
     border: none;
     border-bottom-style: solid;
     border-bottom-color: #979797;
     border-bottom-width: 1px;
+    font-size: 16px;
     opacity: 0.5;
+    height: 200px;
+    width: 285px;
+
+    &:focus {
+      border: none;
+      border-bottom-style: solid;
+      border-bottom-color: var(--highlight);
+      border-bottom-width: 1px;
+    }
   }
 
   textarea {
-    margin-bottom: 20px;
-  }
-
-  [type='date'] {
-    width: 140px;
+    margin-bottom: 15px;
+    height: 300px;
   }
 `

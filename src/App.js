@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import JournalForm from './components/JournalForm/JournalForm'
-import JournalEntry from './components/JournalEntry/JournalEntry'
+import JournalEntryList from './components/JournalEntry/JournalEntryList'
 import styled from 'styled-components'
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
     <>
       <AppWrapper>
         <JournalForm onFormSubmit={handleJournalEntry} />
-        <JournalEntry journalEntries={journalEntries} />
+        <JournalEntryList journalEntries={journalEntries} />
       </AppWrapper>
     </>
   )
