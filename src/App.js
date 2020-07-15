@@ -16,10 +16,8 @@ function App() {
   return (
     <>
       <AppWrapper>
-        <MainStyled>
-          <JournalForm onFormSubmit={handleJournalEntry} />
-          <JournalEntryList journalEntries={journalEntries} />
-        </MainStyled>
+        <JournalForm onFormSubmit={handleJournalEntry} />
+        <JournalEntryList journalEntries={journalEntries} />
       </AppWrapper>
     </>
   )
@@ -33,12 +31,8 @@ export default App
 
 const AppWrapper = styled.div`
   display: grid;
-  grid-template-rows: 80px auto;
-  height: 100vh;
-  background: var(--background);
-`
-const MainStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  overflow: scroll;
+  padding: 15px;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  justify-items: center;
 `
