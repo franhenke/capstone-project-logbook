@@ -4,6 +4,7 @@ import JournalEntryList from './components/JournalEntry/JournalEntryList'
 import { v4 as uuid } from 'uuid'
 import styled from 'styled-components'
 import TabBar from './components/TabBar/TabBar'
+import { Switch, Route } from 'react-router-dom'
 
 function App() {
   const [journalEntries, setJournalEntries] = useState(
@@ -17,10 +18,20 @@ function App() {
   return (
     <>
       <AppWrapper>
-        <JournalForm onFormSubmit={handleJournalEntry} />
-        <ScrollableWrapper>
-          <JournalEntryList journalEntries={journalEntries} />
-        </ScrollableWrapper>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            component={() => (
+              <JournalEntryList journalEntries={journalEntries} />
+            )}
+          />
+
+          <Route
+            path="/journalform"
+            component={() => <JournalForm onFormSubmit={handleJournalEntry} />}
+          />
+        </Switch>
         <FooterStyled>
           <TabBar />
         </FooterStyled>
@@ -39,16 +50,6 @@ const AppWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
-
-const ScrollableWrapper = styled.main`
-  height: 350px;
-  overflow-y: scroll;
-  &::after {
-    content: '';
-    display: block;
-    height: 40px;
-  }
 `
 
 const FooterStyled = styled.div`
