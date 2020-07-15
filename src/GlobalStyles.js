@@ -4,7 +4,7 @@ export default createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
   :root {
     --background: #F6F6F6;
-    --primary: #1E81A0;
+    --primary: #727C86;
     --secondary: #6D7885;
     --text: #21374F;
     --highlight: #64B2D0;

@@ -3,6 +3,7 @@ import JournalForm from './components/JournalForm/JournalForm'
 import JournalEntryList from './components/JournalEntry/JournalEntryList'
 import { v4 as uuid } from 'uuid'
 import styled from 'styled-components'
+import TabBar from './components/TabBar/TabBar'
 
 function App() {
   const [journalEntries, setJournalEntries] = useState(
@@ -18,6 +19,9 @@ function App() {
       <AppWrapper>
         <JournalForm onFormSubmit={handleJournalEntry} />
         <JournalEntryList journalEntries={journalEntries} />
+        <FooterStyled>
+          <TabBar />
+        </FooterStyled>
       </AppWrapper>
     </>
   )
@@ -30,9 +34,12 @@ function App() {
 export default App
 
 const AppWrapper = styled.div`
-  display: grid;
-  padding: 15px;
-  grid-template-columns: auto;
-  grid-template-rows: auto;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const FooterStyled = styled.div`
+  width: 100%;
+  height: 50px;
 `
