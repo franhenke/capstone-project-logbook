@@ -77,7 +77,7 @@ const JournalFormStyled = styled.form`
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: 450px;
   width: 285px;
   font-family: Roboto;
   margin-bottom: 40px;

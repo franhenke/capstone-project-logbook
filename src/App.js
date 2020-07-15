@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import JournalForm from './components/JournalForm/JournalForm'
 import JournalEntryList from './components/JournalEntry/JournalEntryList'
+import { v4 as uuid } from 'uuid'
 import styled from 'styled-components'
 
 function App() {
-  const [journalEntries, setJournalEntries] = useState([])
+  const [journalEntries, setJournalEntries] = useState(
+    () => JSON.parse(localStorage.getItem('journalEntries')) || []
+  )
 
   useEffect(() => {
-    const storage = JSON.parse(localStorage.getItem('JournalList'))
-    storage && setJournalEntries(storage)
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem('JournalList', JSON.stringify(journalEntries))
+    localStorage.setItem('journalEntries', JSON.stringify(journalEntries))
   }, [journalEntries])
 
   return (
@@ -24,7 +22,8 @@ function App() {
     </>
   )
   function handleJournalEntry(newJournalEntry) {
-    setJournalEntries([newJournalEntry, ...journalEntries])
+    newJournalEntry.id = uuid()
+    setJournalEntries([...journalEntries, newJournalEntry])
   }
 }
 
