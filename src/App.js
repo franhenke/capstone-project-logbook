@@ -18,7 +18,9 @@ function App() {
     <>
       <AppWrapper>
         <JournalForm onFormSubmit={handleJournalEntry} />
-        <JournalEntryList journalEntries={journalEntries} />
+        <ScrollableWrapper>
+          <JournalEntryList journalEntries={journalEntries} />
+        </ScrollableWrapper>
         <FooterStyled>
           <TabBar />
         </FooterStyled>
@@ -37,6 +39,16 @@ const AppWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`
+
+const ScrollableWrapper = styled.main`
+  height: 350px;
+  overflow-y: scroll;
+  &::after {
+    content: '';
+    display: block;
+    height: 40px;
+  }
 `
 
 const FooterStyled = styled.div`

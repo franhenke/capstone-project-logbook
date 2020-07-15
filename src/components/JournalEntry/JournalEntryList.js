@@ -1,5 +1,5 @@
 import React from 'react'
-// import styled from 'styled-components';
+import styled from 'styled-components'
 import JournalEntry from './JournalEntry'
 
 export default function JournalEntryList({ journalEntries }) {

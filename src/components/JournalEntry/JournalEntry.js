@@ -16,7 +16,7 @@ export default function JournalEntry({ values }) {
 }
 
 const EntryStyled = styled.div`
-  height: 280px;
+  height: 180px;
   width: 380px;
 `
 const CategorieStyled = styled.h2`

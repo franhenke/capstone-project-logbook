@@ -83,11 +83,11 @@ const JournalFormStyled = styled.form`
   margin-bottom: 40px;
   label {
     color: #21374f;
-    font-size: 14px;
-    letter-spacing: 3.15px;
+    font-size: 16px;
+    letter-spacing: 2px;
     height: 16px;
     opacity: 0.5;
-    text-transform: uppercase;
+
     margin: 25px 0 5px;
   }
 
