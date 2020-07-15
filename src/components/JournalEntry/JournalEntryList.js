@@ -1,25 +1,13 @@
 import React from 'react'
-import styled from 'styled-components'
-import dayjs from 'dayjs'
+// import styled from 'styled-components';
+import JournalEntry from './JournalEntry'
 
-export default function JournalEntryList({ entry }) {
-  const parsedDate = dayjs(entry.date)
+export default function JournalEntryList({ journalEntries }) {
   return (
-    <EntryStyled>
-      <p>{parsedDate.format('DD.MM.YYYY')}</p>
-      <p>{entry.city}</p>
-      <p>{entry.caption}</p>
-      <p>{entry.memory}</p>
-    </EntryStyled>
+    <>
+      {journalEntries.map((values) => (
+        <JournalEntry key={values.id} values={values} />
+      ))}
+    </>
   )
 }
-
-const EntryStyled = styled.div`
-  height: 150px;
-  width: 300px;
-
-  p {
-    margin: 5px;
-    word-break: break-all;
-  }
-`

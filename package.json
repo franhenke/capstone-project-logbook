@@ -11,7 +11,10 @@
     "react-datepicker": "^3.0.0",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.0.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-spring": "^8.0.27",
+    "react-use-gesture": "^7.0.15",
     "styled-components": "^5.1.1",
     "uuid": "^8.2.0"
   },
@@ -41,7 +44,9 @@
   "devDependencies": {
     "@hookform/devtools": "^2.0.1",
     "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-knobs": "^5.3.19",
     "@storybook/addon-links": "^5.3.19",
+    "@storybook/addon-viewport": "^5.3.19",
     "@storybook/addons": "^5.3.19",
     "@storybook/preset-create-react-app": "^3.1.2",
     "@storybook/react": "^5.3.19"

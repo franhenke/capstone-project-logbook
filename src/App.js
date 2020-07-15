@@ -1,37 +1,37 @@
 import React, { useState, useEffect } from 'react'
 import JournalForm from './components/JournalForm/JournalForm'
-import JournalEntry from './components/JournalEntry/JournalEntry'
+import JournalEntryList from './components/JournalEntry/JournalEntryList'
+import { v4 as uuid } from 'uuid'
 import styled from 'styled-components'
 
 function App() {
-  const [journalEntries, setJournalEntries] = useState([])
+  const [journalEntries, setJournalEntries] = useState(
+    () => JSON.parse(localStorage.getItem('journalEntries')) || []
+  )
 
   useEffect(() => {
-    const storage = JSON.parse(localStorage.getItem('JournalList'))
-    storage && setJournalEntries(storage)
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem('JournalList', JSON.stringify(journalEntries))
+    localStorage.setItem('journalEntries', JSON.stringify(journalEntries))
   }, [journalEntries])
 
   return (
     <>
-      <Wrapper>
+      <AppWrapper>
         <JournalForm onFormSubmit={handleJournalEntry} />
-        <JournalEntry journalEntries={journalEntries} />
-      </Wrapper>
+        <JournalEntryList journalEntries={journalEntries} />
+      </AppWrapper>
     </>
   )
   function handleJournalEntry(newJournalEntry) {
-    setJournalEntries([newJournalEntry, ...journalEntries])
+    newJournalEntry.id = uuid()
+    setJournalEntries([...journalEntries, newJournalEntry])
   }
 }
 
 export default App
 
-const Wrapper = styled.div`
+const AppWrapper = styled.div`
   display: grid;
+  padding: 15px;
   grid-template-columns: auto;
   grid-template-rows: auto;
   justify-items: center;

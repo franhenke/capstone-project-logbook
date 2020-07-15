@@ -1,15 +1,20 @@
 import { useState } from 'react'
 
-export default function useForm() {
-  const [state, setState] = useState({})
+export default function useForm(submitCallback) {
+  const [inputs, setInputs] = useState({})
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    submitCallback(inputs)
+    setInputs('')
+  }
 
   const handleChange = (event) => {
     event.persist()
-    event.target.value &&
-      setState((state) => ({
-        ...state,
-        [event.target.name]: event.target.value,
-      }))
+    setInputs((inputs) => ({
+      ...inputs,
+      [event.target.name]: event.target.value,
+    }))
   }
-  return [state, handleChange]
+  return [inputs, handleChange, handleSubmit]
 }
