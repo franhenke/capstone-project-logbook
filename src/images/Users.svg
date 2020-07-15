@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="30px" viewBox="0 0 26 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Users</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Dashboard" transform="translate(-89.000000, -784.000000)">
+            <g id="Group" transform="translate(87.039292, 784.000000)">
+                <g>
+                    <path d="" id="Path" stroke="#979797"></path>
+                    <circle id="Oval" stroke="#727C86" stroke-width="2" cx="14.9607082" cy="10" r="9"></circle>
+                </g>
+                <path d="M26.9607082,30 C26.9607082,26.3862694 21.5881252,24 14.9607082,24 C8.3332912,24 2.9607082,26.6862915 2.9607082,30" id="Path" stroke="#727C86" stroke-width="2"></path>
+            </g>
+        </g>
+    </g>
+</svg>
