@@ -23,10 +23,12 @@ const values = [
   },
 ]
 
-export const journalEntryListFilled = () => <JournalEntryList values={values} />
+export const journalEntryListFilled = () => (
+  <JournalEntryList journalEntries={values} />
+)
 
 export const journalEntryListEmpty = () => (
   <>
-    <JournalEntryList values={values} />
+    <JournalEntryList journalEntries={[]} />
   </>
 )
