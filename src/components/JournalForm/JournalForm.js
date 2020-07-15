@@ -32,12 +32,11 @@ export default function Form({ onFormSubmit }) {
       <input
         onChange={(event) => handleChange(event)}
         value={values.caption || ''}
-        name="caption"
         type="text"
+        name="caption"
         id="caption"
         min="5"
         required
-        autoFocus
       />
       <label htmlFor="category">Category</label>
       <SelectStyled
@@ -48,7 +47,7 @@ export default function Form({ onFormSubmit }) {
         required
       >
         <option value="" disabled hidden></option>
-        <option className="memory" value="Memory">
+        <option className="memory" value="<3Memory">
           Memory
         </option>
         <option value="Review">Review</option>
@@ -60,8 +59,8 @@ export default function Form({ onFormSubmit }) {
         value={values.memory || ''}
         type="text"
         name="memory"
-        min="10"
         id="memory"
+        min="10"
         required
       />
       <Button text="Save" />
