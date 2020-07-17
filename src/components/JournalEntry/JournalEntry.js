@@ -9,7 +9,7 @@ export default function JournalEntry({ values }) {
   const parsedDate = dayjs(values.date)
 
   return (
-    <EntryContainerLink>
+    <EntryContainerLink to={`/${values.id}`}>
       <JournalEntryStyled>
         <DateStyled>{parsedDate.format('DD MMM YYYY')}</DateStyled>
 
@@ -21,10 +21,9 @@ export default function JournalEntry({ values }) {
           </CityStyled>
           <CaptionStyled>{values.caption}</CaptionStyled>
           <MemoryStyled>
-            <Truncate lines={2} ellipsis={<span>... Read more</span>}>
+            <Truncate lines={2} ellipsis={<span>... see more</span>}>
               {values.memory}
             </Truncate>
-            <Link to={`/${values.id}`}>Show details</Link>
           </MemoryStyled>
         </ContentStyled>
       </JournalEntryStyled>
@@ -37,21 +36,22 @@ export default function JournalEntry({ values }) {
   // }
 }
 
-const EntryContainerLink = styled.a`
+const EntryContainerLink = styled(Link)`
   position: relative;
   display: block;
   text-decoration: none;
-  margin-bottom: 30px;
+
   height: 90px;
-  width: 90%;
+  width: 100%;
 `
 
 const JournalEntryStyled = styled.div`
   color: var(--primary);
   display: grid;
-  grid-template-columns: 20% 80%;
+
+  grid-template-columns: 18% 82%;
   grid-template-rows: 1fr;
-  margin-bottom: 10px;
+  margin: 20px 15px;
 `
 
 const DateStyled = styled.p`
