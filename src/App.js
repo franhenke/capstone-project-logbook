@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid'
 import styled from 'styled-components'
 import TabBar from './components/TabBar/TabBar'
 import { Switch, Route } from 'react-router-dom'
+// import Welcome from './components/Welcome/Welcome'
 
 function App() {
   const [journalEntries, setJournalEntries] = useState(
@@ -47,12 +48,16 @@ function App() {
 export default App
 
 const AppWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 30% 60% 10%;
+  justify-items: center;
+  height: 100vh;
 `
 
 const FooterStyled = styled.div`
   width: 100%;
   height: 50px;
+  grid-row: 3 / 4;
+  align-self: end;
 `

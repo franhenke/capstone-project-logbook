@@ -77,7 +77,7 @@ const JournalFormStyled = styled.form`
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  height: 450px;
+  height: 520px;
   width: 285px;
   font-family: Roboto;
   margin-bottom: 40px;
@@ -87,8 +87,7 @@ const JournalFormStyled = styled.form`
     letter-spacing: 2px;
     height: 16px;
     opacity: 0.5;
-
-    margin: 25px 0 5px;
+    margin: 25px 0 10px;
   }
 
   input,
@@ -102,7 +101,6 @@ const JournalFormStyled = styled.form`
     border-bottom-width: 1px;
     font-size: 16px;
     opacity: 0.5;
-    height: 200px;
     width: 285px;
 
     &:focus {
@@ -115,7 +113,7 @@ const JournalFormStyled = styled.form`
 
   textarea {
     margin-bottom: 15px;
-    height: 300px;
+    height: 60px;
   }
 `
 const SelectStyled = styled.select`
@@ -128,7 +126,6 @@ const SelectStyled = styled.select`
   border-bottom-width: 1px;
   font-size: 16px;
   opacity: 0.5;
-  height: 200px;
   width: 285px;
 
   .memory {

@@ -15,11 +15,12 @@ export default function JournalEntryList({ journalEntries }) {
 }
 
 const ScrollableWrapper = styled.main`
-  height: 350px;
+  height: 400px;
   overflow-y: scroll;
-  &::after {
-    content: '';
-    display: block;
-    height: 40px;
+  grid-row: 2 / 3;
+  scrollbar-width: none;
+
+  ::-webkit-scrollbar {
+    display: none;
   }
 `

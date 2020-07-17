@@ -21,12 +21,15 @@ export default function TabBar() {
   )
 }
 
-const TabBarStyled = styled.nav`
+const TabBarStyled = styled.div`
+  position: relative;
   display: flex;
   justify-content: space-around;
   width: 100vw;
+  height: 50px;
   background: whitesmoke;
-  position: relative;
+
+  align-self: end;
 `
 
 const IconStyled = styled.img`
@@ -36,7 +39,7 @@ const IconStyled = styled.img`
 const WriteIconStyled = styled.img`
   position: absolute;
   bottom: 30px;
-  right: 166px;
+  right: 148px;
 `
 
 /* // const TabBarStyled = styled.nav`
