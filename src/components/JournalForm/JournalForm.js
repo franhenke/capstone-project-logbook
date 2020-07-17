@@ -47,7 +47,7 @@ export default function Form({ onFormSubmit }) {
         required
       >
         <option value="" disabled hidden></option>
-        <option className="memory" value="<3Memory">
+        <option className="memory" value="Memory">
           Memory
         </option>
         <option value="Review">Review</option>

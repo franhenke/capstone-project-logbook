@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import Truncate from 'react-truncate'
@@ -6,6 +7,7 @@ import MarkerIcon from '../../images/Marker.svg'
 
 export default function JournalEntry({ values }) {
   const parsedDate = dayjs(values.date)
+
   return (
     <EntryContainerLink>
       <JournalEntryStyled>
@@ -22,11 +24,17 @@ export default function JournalEntry({ values }) {
             <Truncate lines={2} ellipsis={<span>... Read more</span>}>
               {values.memory}
             </Truncate>
+            <Link to={`/${values.id}`}>Show details</Link>
           </MemoryStyled>
         </ContentStyled>
       </JournalEntryStyled>
     </EntryContainerLink>
   )
+
+  // function routeChange() {
+  //   let path = `/${values.id}`
+  //   history.push(path)
+  // }
 }
 
 const EntryContainerLink = styled.a`
@@ -36,7 +44,6 @@ const EntryContainerLink = styled.a`
   margin-bottom: 30px;
   height: 90px;
   width: 90%;
-  margin-bottom: 10px;
 `
 
 const JournalEntryStyled = styled.div`
@@ -44,6 +51,7 @@ const JournalEntryStyled = styled.div`
   display: grid;
   grid-template-columns: 20% 80%;
   grid-template-rows: 1fr;
+  margin-bottom: 10px;
 `
 
 const DateStyled = styled.p`

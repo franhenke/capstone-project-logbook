@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid'
 import styled from 'styled-components'
 import TabBar from './components/TabBar/TabBar'
 import { Switch, Route } from 'react-router-dom'
+import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
 // import Welcome from './components/Welcome/Welcome'
 
 function App() {
@@ -23,11 +24,13 @@ function App() {
           <Route
             exact
             path="/"
-            component={() => (
-              <JournalEntryList journalEntries={journalEntries} />
-            )}
+            component={() => <JournalEntryList values={journalEntries} />}
           />
 
+          <Route
+            path="/:entryId"
+            component={() => <JournalDetailPage values={journalEntries} />}
+          />
           <Route
             path="/journalform"
             component={() => <JournalForm onFormSubmit={handleJournalEntry} />}

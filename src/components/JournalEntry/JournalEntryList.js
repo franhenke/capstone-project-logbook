@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import JournalEntry from './JournalEntry'
 
-export default function JournalEntryList({ journalEntries }) {
+export default function JournalEntryList({ values }) {
   return (
     <>
       <ScrollableWrapper>
-        {journalEntries.map((values) => (
+        {values.map((values) => (
           <JournalEntry key={values.id} values={values} />
         ))}
       </ScrollableWrapper>
