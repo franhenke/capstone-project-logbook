@@ -1,22 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import HomeIcon from '../../images/Users.svg'
-import MarkerIcon from '../../images/Marker.svg'
-import PencilIcon from '../../images/pencil_fill.svg'
+import HomeIcon from '../../images/list.svg'
+import Pencil from '../../images/book-open.svg'
 
 export default function TabBar() {
   return (
     <TabBarStyled>
-      <Link to="/">
+      <LinkStyled to="/">
         <IconStyled src={HomeIcon} alt="home" />
-      </Link>
-      <Link to="/journalform">
-        <IconStyled src={PencilIcon} alt="marker" />
-      </Link>
-      {/* <Link to="/marker">
-        <IconStyled src={MarkerIcon} alt="marker" />
-      </Link> */}
+      </LinkStyled>
+      <LinkStyled to="/journalform">
+        <IconStyled src={Pencil} alt="pencil" />
+      </LinkStyled>
     </TabBarStyled>
   )
 }
@@ -26,14 +22,18 @@ const TabBarStyled = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100vw;
-  height: 50px;
+  height: 40px;
   background: var(--background);
-
   align-self: end;
 `
-
+const LinkStyled = styled(Link)`
+  height: 40px;
+  :active {
+    color: var(--iconactive);
+  }
+`
 const IconStyled = styled.img`
-  color: var(--priamry);
+  color: var(--primary);
   height: 25px;
 `
 
