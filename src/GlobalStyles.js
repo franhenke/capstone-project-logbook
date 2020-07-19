@@ -3,11 +3,12 @@ import { createGlobalStyle } from 'styled-components'
 export default createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
   :root {
-    --background: #F6F6F6;
+    --background: #F8FBFD;
     --primary: #727C86;
     --secondary: #6D7885;
     --text: #21374F;
     --highlight: #64B2D0;
+    --icons: #ACB6CE;
   }
  * {
     box-sizing: border-box;

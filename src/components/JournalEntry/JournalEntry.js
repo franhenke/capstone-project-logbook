@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import Truncate from 'react-truncate'
@@ -9,7 +10,7 @@ export default function JournalEntry({ values }) {
   const parsedDate = dayjs(values.date)
 
   return (
-    <EntryContainerLink to={`/${values.id}`}>
+    <EntryContainerLink to={`/journalentry/${values.id}`}>
       <JournalEntryStyled>
         <DateStyled>{parsedDate.format('DD MMM YYYY')}</DateStyled>
 

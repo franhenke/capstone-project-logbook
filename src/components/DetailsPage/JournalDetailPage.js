@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 export default function JournalDetailPage({ values }) {
   const { entryId } = useParams()
   const [selectedEntry] = values.filter((values) => entryId === values.id)
-
+  console.log(selectedEntry)
   return (
     <>
       <DetailPageStyled>

@@ -26,15 +26,21 @@ function App() {
             path="/"
             component={() => <JournalEntryList values={journalEntries} />}
           />
-
           <Route
-            path="/:entryId"
-            component={() => <JournalDetailPage values={journalEntries} />}
-          />
-          <Route
+            exact
             path="/journalform"
             component={() => <JournalForm onFormSubmit={handleJournalEntry} />}
           />
+          <Route
+            exact
+            path="/journalentry/:entryId"
+            component={() => <JournalDetailPage values={journalEntries} />}
+          />
+
+          {/* <Route
+            path="/marker"
+            component={() => <JournalForm onFormSubmit={handleJournalEntry} />}
+          /> */}
         </Switch>
         <FooterStyled>
           <TabBar />
