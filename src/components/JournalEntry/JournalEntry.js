@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router-dom'
+
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import Truncate from 'react-truncate'
-import MarkerIcon from '../../images/Marker.svg'
+import MarkerIcon from '../../images/map-pin.svg'
 
 export default function JournalEntry({ values }) {
   const parsedDate = dayjs(values.date)

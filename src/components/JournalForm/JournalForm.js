@@ -2,10 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import Button from '../Button/Button'
 import useForm from '../../hooks/useForm'
+import dayjs from 'dayjs'
 
 export default function Form({ onFormSubmit }) {
   const [values, handleChange, handleSubmit] = useForm(exportEntries)
-
+  const currentDate = dayjs().format('DD/MM/YYYY')
   return (
     <JournalFormStyled onSubmit={handleSubmit}>
       <label htmlFor="date">Date</label>
@@ -16,6 +17,7 @@ export default function Form({ onFormSubmit }) {
         name="date"
         id="date"
         autoFocus
+        max={currentDate}
         required
       />
       <label htmlFor="city">City</label>
@@ -47,9 +49,7 @@ export default function Form({ onFormSubmit }) {
         required
       >
         <option value="" disabled hidden></option>
-        <option className="memory" value="Memory">
-          Memory
-        </option>
+        <option value="Experience">Experience</option>
         <option value="Review">Review</option>
         <option value="Thoughts">Thoughts</option>
       </SelectStyled>
