@@ -3,20 +3,20 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import HomeIcon from '../../images/Users.svg'
 import MarkerIcon from '../../images/Marker.svg'
-import WriteIcon from '../../images/write.svg'
+import PencilIcon from '../../images/pencil_fill.svg'
 
 export default function TabBar() {
   return (
     <TabBarStyled>
-      <Link exact to="/">
+      <Link to="/">
         <IconStyled src={HomeIcon} alt="home" />
       </Link>
       <Link to="/journalform">
-        <WriteIconStyled src={WriteIcon} alt="marker" />
+        <IconStyled src={PencilIcon} alt="marker" />
       </Link>
-      <Link to="/marker">
+      {/* <Link to="/marker">
         <IconStyled src={MarkerIcon} alt="marker" />
-      </Link>
+      </Link> */}
     </TabBarStyled>
   )
 }
@@ -27,19 +27,14 @@ const TabBarStyled = styled.div`
   justify-content: space-around;
   width: 100vw;
   height: 50px;
-  background: whitesmoke;
+  background: var(--background);
 
   align-self: end;
 `
 
 const IconStyled = styled.img`
-  height: 30px;
-`
-
-const WriteIconStyled = styled.img`
-  position: absolute;
-  bottom: 30px;
-  right: 148px;
+  color: var(--priamry);
+  height: 25px;
 `
 
 /* // const TabBarStyled = styled.nav`
