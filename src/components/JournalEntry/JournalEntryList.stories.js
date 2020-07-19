@@ -1,11 +1,9 @@
 import React from 'react'
-import { withKnobs } from '@storybook/addon-knobs/react'
 import JournalEntryList from './JournalEntryList'
 
 export default {
   component: JournalEntryList,
   title: 'JournalEntryList',
-  decorators: [withKnobs],
   excludeStories: /.*Data$/,
 }
 
@@ -30,10 +28,4 @@ const values = [
 
 export const journalEntryListFilled = () => (
   <JournalEntryList journalEntries={values} />
-)
-
-export const journalEntryListEmpty = () => (
-  <>
-    <JournalEntryList journalEntries={[]} />
-  </>
 )

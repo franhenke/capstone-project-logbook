@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 // import { animated, useTransition } from 'react-spring'
 import bgImage from '../../images/bgl.png'
-import chevron from '../../images/chevron-right.svg'
+import chevron from '../../images/chevron-left.svg'
 
 export default function Welcome() {
   let user = 'Franci'

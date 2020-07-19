@@ -59,7 +59,7 @@ const StyledHeaderPic = styled.div`
   background-image: url(${mockphoto});
   background-size: cover;
   background-repeat: no-repeat;
-  height: 280px;
+  height: 250px;
   width: 100%;
   margin-bottom: 20px;
 `

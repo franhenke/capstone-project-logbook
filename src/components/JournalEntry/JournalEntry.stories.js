@@ -4,7 +4,6 @@ import JournalEntry from './JournalEntry'
 export default {
   component: JournalEntry,
   title: 'JournalEntry',
-  // Our exports that end in "Data" are not stories.
   excludeStories: /.*Data$/,
 }
 
