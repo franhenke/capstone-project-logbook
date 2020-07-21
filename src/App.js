@@ -6,7 +6,6 @@ import styled from 'styled-components'
 import TabBar from './components/TabBar/TabBar'
 import { Switch, Route } from 'react-router-dom'
 import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
-// import Welcome from './components/Welcome/Welcome'
 
 function App() {
   const [journalEntries, setJournalEntries] = useState(
@@ -24,7 +23,9 @@ function App() {
           <Route
             exact
             path="/"
-            component={() => <JournalEntryList values={journalEntries} />}
+            component={() => (
+              <JournalEntryList journalEntries={journalEntries} />
+            )}
           />
           <Route
             exact
@@ -36,11 +37,6 @@ function App() {
             path="/journalentry/:entryId"
             component={() => <JournalDetailPage values={journalEntries} />}
           />
-
-          {/* <Route
-            path="/marker"
-            component={() => <JournalForm onFormSubmit={handleJournalEntry} />}
-          /> */}
         </Switch>
         <FooterStyled>
           <TabBar />

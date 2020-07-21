@@ -1,8 +1,7 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import styled from 'styled-components'
 import book from '../../images/book-open.svg'
-import { Link } from 'react-router-dom'
 import mockphoto from '../../images/mock.jpg'
 import chevron from '../../images/chevron-left.svg'
 import MarkerIcon from '../../images/map-pin.svg'
@@ -48,7 +47,6 @@ const DetailPageWrapper = styled.div`
 const BackIconStyled = styled.img`
   color: white;
   height: 25px;
-
   position: absolute;
   top: 20px;
   left: 10px;
@@ -65,7 +63,7 @@ const StyledHeaderPic = styled.div`
 `
 
 const DateStyled = styled.p`
-  font-size: 12px;
+  font-size: 14px;
   color: var(--lighter);
   letter-spacing: 0.5px;
   margin-bottom: 5px;
@@ -81,17 +79,24 @@ const CaptionStyled = styled.h2`
 const IconStyled = styled.img`
   color: var(--highlight);
   height: 20px;
+  margin: 20px 0;
 `
 const MemoryStyled = styled.p`
+  width: 90%;
   font-size: 16px;
-  color: var(--lighter);
+  color: var(--primary);
   text-align: left;
+  padding-left: 20px;
   margin-bottom: 15px;
 `
 
 const CityStyled = styled.p`
+  position: absolute;
+  color: white;
+  top: 230px;
+  right: 20px;
+
   font-size: 12px;
-  color: var(--lighter);
   letter-spacing: 0.5px;
 `
 

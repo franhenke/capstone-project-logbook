@@ -5,7 +5,7 @@ export default createGlobalStyle`
   :root {
     --background: #F8FBFD;
     --primary: #727C86;
-    --lighter: #AAB0B6;
+    --lighter: #A9AAAD;
     --secondary: #6D7885;
     --text: #5B636B
 ;

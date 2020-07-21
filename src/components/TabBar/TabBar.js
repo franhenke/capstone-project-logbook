@@ -1,17 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import HomeIcon from '../../images/list.svg'
-import Pencil from '../../images/book-open.svg'
+import homeIcon from '../../images/list.svg'
+import pencil from '../../images/book-open.svg'
 
 export default function TabBar() {
   return (
     <TabBarStyled>
       <LinkStyled to="/">
-        <IconStyled src={HomeIcon} alt="home" />
+        <IconStyled src={homeIcon} alt="home" />
       </LinkStyled>
       <LinkStyled to="/journalform">
-        <IconStyled src={Pencil} alt="pencil" />
+        <IconStyled src={pencil} alt="pencil" />
       </LinkStyled>
     </TabBarStyled>
   )

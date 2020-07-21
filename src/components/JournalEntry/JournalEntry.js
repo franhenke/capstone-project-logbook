@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import Truncate from 'react-truncate'
-import MarkerIcon from '../../images/map-pin.svg'
+import markerIcon from '../../images/mappin.svg'
 
 export default function JournalEntry({ values }) {
   const parsedDate = dayjs(values.date)
@@ -17,7 +17,7 @@ export default function JournalEntry({ values }) {
         <ContentStyled>
           <CategorieStyled>{values.category}</CategorieStyled>
           <CityStyled>
-            <MarkerIconStyled src={MarkerIcon} />
+            <MarkerIconStyled src={markerIcon} />
             {values.city}
           </CityStyled>
           <CaptionStyled>{values.caption}</CaptionStyled>
@@ -42,23 +42,21 @@ const EntryContainerLink = styled(Link)`
   display: block;
   text-decoration: none;
 
-  height: 90px;
   width: 100%;
 `
 
 const JournalEntryStyled = styled.div`
   color: var(--primary);
   display: grid;
-
   grid-template-columns: 18% 82%;
   grid-template-rows: 1fr;
-  margin: 20px 15px;
+  margin: 10px 15px;
 `
 
 const DateStyled = styled.p`
   text-align: center;
-  font-size: 14px;
-  font-weight: light;
+  font-size: 18px;
+
   align-self: center;
 `
 
@@ -69,19 +67,20 @@ const ContentStyled = styled.div`
 
 const CategorieStyled = styled.h2`
   display: inline-block;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: 1.3px;
+  margin-bottom: 5px;
 `
 const MarkerIconStyled = styled.img`
   color: #8e969e;
-  height: 8.5px;
+  height: 12px;
   vertical-align: baseline;
   padding-right: 5px;
 `
 
 const CityStyled = styled.h3`
-  font-size: 10px;
+  font-size: 16px;
   color: #8e969e;
   font-family: Roboto;
   font-weight: 400;
@@ -91,16 +90,13 @@ const CityStyled = styled.h3`
 const CaptionStyled = styled.h3`
   display: block;
 
-  font-size: 12px;
-  font-family: Roboto;
-  font-weight: 400;
+  font-size: 18px;
+
+  font-weight: 600;
   margin-bottom: 3px;
 `
 const MemoryStyled = styled.p`
-  font-size: 9px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-weight: 400;
+  font-size: 16px;
 
   a {
     text-decoration: none;
