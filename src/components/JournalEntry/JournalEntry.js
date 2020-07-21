@@ -1,50 +1,108 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 import styled from 'styled-components'
 import dayjs from 'dayjs'
+import Truncate from 'react-truncate'
+import markerIcon from '../../images/mappin.svg'
 
 export default function JournalEntry({ values }) {
   const parsedDate = dayjs(values.date)
+
   return (
-    <EntryStyled>
-      <CategorieStyled>{values.category}</CategorieStyled>
-      <DateStyled>{parsedDate.format('DD.MM.YYYY')}</DateStyled>
-      <CityStyled>{values.city}</CityStyled>
-      <CaptionStyled>{values.caption}</CaptionStyled>
-      <MemoryStyled>{values.memory}</MemoryStyled>
-    </EntryStyled>
+    <EntryContainerLink to={`/journalentry/${values.id}`}>
+      <JournalEntryStyled>
+        <DateStyled>{parsedDate.format('DD MMM YYYY')}</DateStyled>
+
+        <ContentStyled>
+          <CategorieStyled>{values.category}</CategorieStyled>
+          <CityStyled>
+            <MarkerIconStyled src={markerIcon} />
+            {values.city}
+          </CityStyled>
+          <CaptionStyled>{values.caption}</CaptionStyled>
+          <MemoryStyled>
+            <Truncate lines={2} ellipsis={<span>... see more</span>}>
+              {values.memory}
+            </Truncate>
+          </MemoryStyled>
+        </ContentStyled>
+      </JournalEntryStyled>
+    </EntryContainerLink>
   )
+
+  // function routeChange() {
+  //   let path = `/${values.id}`
+  //   history.push(path)
+  // }
 }
 
-const EntryStyled = styled.div`
-  height: 280px;
-  width: 380px;
+const EntryContainerLink = styled(Link)`
+  position: relative;
+  display: block;
+  text-decoration: none;
+
+  width: 100%;
 `
-const CategorieStyled = styled.h2`
-  font-size: 17px;
-  font-weight: bolder;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: #1e81a0;
-  text-transform: uppercase;
+
+const JournalEntryStyled = styled.div`
+  color: var(--primary);
+  display: grid;
+  grid-template-columns: 18% 82%;
+  grid-template-rows: 1fr;
+  margin: 10px 15px;
 `
+
 const DateStyled = styled.p`
+  text-align: center;
+  font-size: 18px;
+
+  align-self: center;
+`
+
+const ContentStyled = styled.div`
+  padding: 10px 5px 10px 20px;
+  font-family: Roboto;
+`
+
+const CategorieStyled = styled.h2`
+  display: inline-block;
   font-size: 14px;
-  color: var(--secondary);
-  font-weight: light;
+  font-weight: 400;
+  letter-spacing: 1.3px;
+  margin-bottom: 5px;
 `
+const MarkerIconStyled = styled.img`
+  color: #8e969e;
+  height: 12px;
+  vertical-align: baseline;
+  padding-right: 5px;
+`
+
+const CityStyled = styled.h3`
+  font-size: 16px;
+  color: #8e969e;
+  font-family: Roboto;
+  font-weight: 400;
+  margin-bottom: 5px;
+`
+
 const CaptionStyled = styled.h3`
+  display: block;
+
   font-size: 18px;
-  color: var(--secondary);
-  font-weight: 500;
-`
-const CityStyled = styled.p`
-  font-size: 18px;
-  padding: 5px 0;
-  font-weight: bold;
-  color: var(--secondary);
+
+  font-weight: 600;
+  margin-bottom: 3px;
 `
 const MemoryStyled = styled.p`
   font-size: 16px;
-  color: var(--text);
-  width: 350px;
+
+  a {
+    text-decoration: none;
+    font-size: 9px;
+    font-family: Roboto;
+    font-weight: 500;
+    color: #86727c;
+  }
 `

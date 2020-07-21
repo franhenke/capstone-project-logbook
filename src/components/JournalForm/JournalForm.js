@@ -2,10 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import Button from '../Button/Button'
 import useForm from '../../hooks/useForm'
+import dayjs from 'dayjs'
 
 export default function Form({ onFormSubmit }) {
   const [values, handleChange, handleSubmit] = useForm(exportEntries)
-
+  const currentDate = dayjs().format('DD/MM/YYYY')
   return (
     <JournalFormStyled onSubmit={handleSubmit}>
       <label htmlFor="date">Date</label>
@@ -16,6 +17,7 @@ export default function Form({ onFormSubmit }) {
         name="date"
         id="date"
         autoFocus
+        max={currentDate}
         required
       />
       <label htmlFor="city">City</label>
@@ -47,9 +49,7 @@ export default function Form({ onFormSubmit }) {
         required
       >
         <option value="" disabled hidden></option>
-        <option className="memory" value="<3Memory">
-          Memory
-        </option>
+        <option value="Experience">Experience</option>
         <option value="Review">Review</option>
         <option value="Thoughts">Thoughts</option>
       </SelectStyled>
@@ -77,18 +77,17 @@ const JournalFormStyled = styled.form`
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  height: 450px;
+  height: 520px;
   width: 285px;
   font-family: Roboto;
   margin-bottom: 40px;
   label {
     color: #21374f;
-    font-size: 14px;
-    letter-spacing: 3.15px;
+    font-size: 16px;
+    letter-spacing: 2px;
     height: 16px;
     opacity: 0.5;
-    text-transform: uppercase;
-    margin: 25px 0 5px;
+    margin: 25px 0 10px;
   }
 
   input,
@@ -102,7 +101,6 @@ const JournalFormStyled = styled.form`
     border-bottom-width: 1px;
     font-size: 16px;
     opacity: 0.5;
-    height: 200px;
     width: 285px;
 
     &:focus {
@@ -115,7 +113,7 @@ const JournalFormStyled = styled.form`
 
   textarea {
     margin-bottom: 15px;
-    height: 300px;
+    height: 60px;
   }
 `
 const SelectStyled = styled.select`
@@ -128,7 +126,6 @@ const SelectStyled = styled.select`
   border-bottom-width: 1px;
   font-size: 16px;
   opacity: 0.5;
-  height: 200px;
   width: 285px;
 
   .memory {

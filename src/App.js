@@ -3,6 +3,9 @@ import JournalForm from './components/JournalForm/JournalForm'
 import JournalEntryList from './components/JournalEntry/JournalEntryList'
 import { v4 as uuid } from 'uuid'
 import styled from 'styled-components'
+import TabBar from './components/TabBar/TabBar'
+import { Switch, Route } from 'react-router-dom'
+import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
 
 function App() {
   const [journalEntries, setJournalEntries] = useState(
@@ -16,8 +19,28 @@ function App() {
   return (
     <>
       <AppWrapper>
-        <JournalForm onFormSubmit={handleJournalEntry} />
-        <JournalEntryList journalEntries={journalEntries} />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            component={() => (
+              <JournalEntryList journalEntries={journalEntries} />
+            )}
+          />
+          <Route
+            exact
+            path="/journalform"
+            component={() => <JournalForm onFormSubmit={handleJournalEntry} />}
+          />
+          <Route
+            exact
+            path="/journalentry/:entryId"
+            component={() => <JournalDetailPage values={journalEntries} />}
+          />
+        </Switch>
+        <FooterStyled>
+          <TabBar />
+        </FooterStyled>
       </AppWrapper>
     </>
   )
@@ -31,8 +54,15 @@ export default App
 
 const AppWrapper = styled.div`
   display: grid;
-  padding: 15px;
   grid-template-columns: auto;
-  grid-template-rows: auto;
+  grid-template-rows: 30% 60% 10%;
   justify-items: center;
+  height: 100vh;
+`
+
+const FooterStyled = styled.div`
+  width: 100%;
+  height: 50px;
+  grid-row: 3 / 4;
+  align-self: end;
 `

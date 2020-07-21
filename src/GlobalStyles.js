@@ -1,13 +1,17 @@
 import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
   :root {
-    --background: #F6F6F6;
-    --primary: #1E81A0;
+    --background: #F8FBFD;
+    --primary: #727C86;
+    --lighter: #A9AAAD;
     --secondary: #6D7885;
-    --text: #21374F;
+    --text: #5B636B
+;
     --highlight: #64B2D0;
+    --icon: #ACB6CE;
+    --iconactive: #49567E;
   }
  * {
     box-sizing: border-box;
@@ -16,7 +20,7 @@ export default createGlobalStyle`
   }
 
   body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
 	  background-color: var(--background);
     color: var(--text);
   
