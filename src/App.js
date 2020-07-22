@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import TabBar from './components/TabBar/TabBar'
 import { Switch, Route } from 'react-router-dom'
 import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
+import Register from './components/Register'
 
 function App() {
   const [journalEntries, setJournalEntries] = useState(
@@ -27,6 +28,7 @@ function App() {
               <JournalEntryList journalEntries={journalEntries} />
             )}
           />
+          <Route exact path="/register" component={Register} />
           <Route
             exact
             path="/journalform"
