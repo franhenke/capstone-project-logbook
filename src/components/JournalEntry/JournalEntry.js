@@ -30,11 +30,6 @@ export default function JournalEntry({ values }) {
       </JournalEntryStyled>
     </EntryContainerLink>
   )
-
-  // function routeChange() {
-  //   let path = `/${values.id}`
-  //   history.push(path)
-  // }
 }
 
 const EntryContainerLink = styled(Link)`
