@@ -8,8 +8,10 @@ import { Switch, Route } from 'react-router-dom'
 import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
+import useAuth from './components/auth/useAuth'
 
 function App() {
+  const user = useAuth()
   const [journalEntries, setJournalEntries] = useState(
     () => JSON.parse(localStorage.getItem('journalEntries')) || []
   )
@@ -21,6 +23,9 @@ function App() {
   return (
     <>
       <AppWrapper>
+        <WelcomeStyled>
+          {user ? <p>Welcome {user.displayName}</p> : null}
+        </WelcomeStyled>
         <Switch>
           <Route
             exact
@@ -55,6 +60,11 @@ function App() {
 }
 
 export default App
+
+const WelcomeStyled = styled.div`
+  height: 50px;
+  width: auto;
+`
 
 const AppWrapper = styled.div`
   display: grid;
