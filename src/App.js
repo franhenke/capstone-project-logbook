@@ -9,6 +9,8 @@ import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import useAuth from './components/auth/useAuth'
+import LoginContext from './components/auth/loginContext'
+import firebaseApp from './firebase'
 
 function App() {
   const user = useAuth()
@@ -22,35 +24,39 @@ function App() {
 
   return (
     <>
-      <AppWrapper>
-        <WelcomeStyled>
-          {user ? <p>Welcome {user.displayName}</p> : null}
-        </WelcomeStyled>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            component={() => (
-              <JournalEntryList journalEntries={journalEntries} />
-            )}
-          />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-          <Route
-            exact
-            path="/journalform"
-            component={() => <JournalForm onFormSubmit={handleJournalEntry} />}
-          />
-          <Route
-            exact
-            path="/journalentry/:entryId"
-            component={() => <JournalDetailPage values={journalEntries} />}
-          />
-        </Switch>
-        <FooterStyled>
-          <TabBar />
-        </FooterStyled>
-      </AppWrapper>
+      <LoginContext.Provider value={{ user, firebaseApp }}>
+        <AppWrapper>
+          <WelcomeStyled>
+            {user ? <p>Welcome {user.displayName}</p> : null}
+          </WelcomeStyled>
+          <Switch>
+            <Route
+              exact
+              path="/journalentry"
+              component={() => (
+                <JournalEntryList journalEntries={journalEntries} />
+              )}
+            />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Route
+              exact
+              path="/journalform"
+              component={() => (
+                <JournalForm onFormSubmit={handleJournalEntry} />
+              )}
+            />
+            <Route
+              exact
+              path="/journalentry/:entryId"
+              component={() => <JournalDetailPage values={journalEntries} />}
+            />
+          </Switch>
+          <FooterStyled>
+            <TabBar />
+          </FooterStyled>
+        </AppWrapper>
+      </LoginContext.Provider>
     </>
   )
   function handleJournalEntry(newJournalEntry) {
