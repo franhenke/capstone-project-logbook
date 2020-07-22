@@ -9,8 +9,9 @@ import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import useAuth from './components/auth/useAuth'
-import LoginContext from './components/auth/loginContext'
+import LoginContext from './components/auth/LoginContext'
 import firebaseApp from './firebase'
+import Home from './pages/Home'
 
 function App() {
   const user = useAuth()
@@ -29,14 +30,13 @@ function App() {
           <WelcomeStyled>
             {user ? <p>Welcome {user.displayName}</p> : null}
           </WelcomeStyled>
+
           <Switch>
-            <Route
-              exact
-              path="/journalentry"
-              component={() => (
-                <JournalEntryList journalEntries={journalEntries} />
-              )}
-            />
+            <Route exact path="/">
+              <Home />
+              <JournalEntryList journalEntries={journalEntries} />
+            </Route>
+
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route

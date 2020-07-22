@@ -7,8 +7,8 @@ import pencil from '../../images/book-open.svg'
 export default function TabBar() {
   return (
     <TabBarStyled>
-      <LinkStyled to="/journalentry">
-        <IconStyled src={homeIcon} alt="journalentry" />
+      <LinkStyled to="/">
+        <IconStyled src={homeIcon} alt="home" />
       </LinkStyled>
       <LinkStyled to="/journalform">
         <IconStyled src={pencil} alt="pencil" />
