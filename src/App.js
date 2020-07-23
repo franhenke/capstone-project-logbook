@@ -8,11 +8,12 @@ import TabBar from './components/TabBar/TabBar'
 import { Switch, Route } from 'react-router-dom'
 import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
 import Register from './components/auth/Register'
-import Login from './components/auth/Login'
+// import Login from './components/auth/Login'
 import useAuth from './components/auth/useAuth'
 import LoginContext from './components/auth/LoginContext'
 import firebaseApp from './firebase'
 import Home from './pages/Home'
+import Onboarding from './components/Onboarding/Onboarding'
 
 function App() {
   const user = useAuth()
@@ -28,18 +29,13 @@ function App() {
     <>
       <LoginContext.Provider value={{ user, firebaseApp }}>
         <AppWrapper>
-          <WelcomeStyled>
-            {user ? <p>Welcome {user.displayName}</p> : null}
-          </WelcomeStyled>
-
           <Switch>
             <Route exact path="/home">
               <Home />
               <JournalEntryList journalEntries={journalEntries} />
             </Route>
-
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
+            <Route path="/login" component={Onboarding} />
+            {/* <Route path="/register" component={Register} /> */}
             <Route
               exact
               path="/journalform"
@@ -67,11 +63,6 @@ function App() {
 }
 
 export default App
-
-const WelcomeStyled = styled.div`
-  height: 50px;
-  width: auto;
-`
 
 const AppWrapper = styled.div`
   display: grid;

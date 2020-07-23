@@ -1,64 +1,78 @@
-import React, { useRef } from 'react'
+import React from 'react'
+import { useRouteMatch, Link, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import firebaseApp from '../../firebase'
+import useForm from '../../hooks/useForm'
+import Button from '../Button/Button'
 
-export default function Login({ history }) {
-  const userEmail = useRef(null)
-  const userPassword = useRef(null)
+export default function LoginForm() {
+  const [values, handleChange, handleSubmit] = useForm(loginWithFirebase)
+  const history = useHistory()
+  let { url } = useRouteMatch()
 
-  async function loginWithFirebase(email, password) {
-    await firebaseApp.signInWithEmailAndPassword(email, password)
-    return history.push('/')
+  async function loginWithFirebase(values) {
+    await firebaseApp.signInWithEmailAndPassword(values.email, values.password)
+    return history.push('/home')
   }
 
   return (
-    <div>
-      <form
-        onSubmit={(event) => (
-          event.preventDefault(),
-          loginWithFirebase(userEmail.current.value, userPassword.current.value)
-        )}
-      >
+    <>
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
         <div>
-          <StyledLabel htmlFor="user-email">E-Mail</StyledLabel>
-          <StyledInput
-            htmlId="user-email"
-            name="user-email"
-            type="text"
-            ref={userEmail}
+          <LabelStyled htmlFor="email">Email</LabelStyled>
+          <InputStyled
+            name="email"
+            type="email"
+            onChange={handleChange}
+            value={values.email || ''}
+            required
           />
         </div>
         <div>
-          <StyledLabel htmlFor="user-password">Password</StyledLabel>
-          <StyledInput
-            htmlId="user-password"
-            name="user-password"
+          <LabelStyled htmlFor="password">Password</LabelStyled>
+          <InputStyled
+            name="password"
             type="password"
-            ref={userPassword}
+            onChange={handleChange}
+            value={values.password || ''}
+            required
           />
         </div>
-        <div>
-          <StyledButton type="submit">Login</StyledButton>
-        </div>
+        <Button text="Sign in" />
       </form>
-    </div>
+      <div className="caption">
+        Not a user yet? <Link to={`${url}/register`}>Sign up</Link>.
+      </div>
+    </>
   )
 }
 
-const StyledInput = styled.input`
-  padding: 0.5em;
-  margin: 0.5em;
-  border: 1px solid gray;
-  border-radius: 3px;
-  width: 40%;
+const InputStyled = styled.input`
+  background: var(--background);
+  color: var(--text);
+  outline: none;
+  border: none;
+  border-bottom-style: solid;
+  border-bottom-color: #979797;
+  border-bottom-width: 1px;
+  font-size: 16px;
+  opacity: 0.5;
+  width: 285px;
+
+  &:focus {
+    border: none;
+    border-bottom-style: solid;
+    border-bottom-color: var(--highlight);
+    border-bottom-width: 1px;
+  }
 `
 
-const StyledLabel = styled.label`
-  display: block;
-  margin: 0 0.5em;
-`
-
-const StyledButton = styled.button`
-  display: block;
-  margin: 0.5em;
+const LabelStyled = styled.label`
+  color: #21374f;
+  font-size: 16px;
+  letter-spacing: 2px;
+  height: 16px;
+  opacity: 0.5;
+  margin: 25px 0 10px;
 `

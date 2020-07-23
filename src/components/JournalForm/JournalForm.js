@@ -127,11 +127,4 @@ const SelectStyled = styled.select`
   font-size: 16px;
   opacity: 0.5;
   width: 285px;
-
-  .memory {
-    color: orange;
-    &:checked {
-      color: orange;
-    }
-  }
 `

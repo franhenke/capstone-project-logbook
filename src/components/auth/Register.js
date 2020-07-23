@@ -40,10 +40,10 @@ export default function SignUp() {
       ) : (
         <div>
           <h2>Sign up</h2>
-          <form onSubmit={handleSubmit}>
+          <RegisterFormStyled onSubmit={handleSubmit}>
             <div>
-              <StyledLabel htmlFor="name">Username</StyledLabel>
-              <StyledInput
+              <LabelStyled htmlFor="name">Username</LabelStyled>
+              <InputStyled
                 name="name"
                 type="text"
                 onChange={handleChange}
@@ -52,8 +52,8 @@ export default function SignUp() {
               />
             </div>
             <div>
-              <StyledLabel htmlFor="email">E-Mail</StyledLabel>
-              <StyledInput
+              <LabelStyled htmlFor="email">E-Mail</LabelStyled>
+              <InputStyled
                 name="email"
                 type="email"
                 onChange={handleChange}
@@ -62,8 +62,8 @@ export default function SignUp() {
               />
             </div>
             <div>
-              <StyledLabel htmlFor="password">Password</StyledLabel>
-              <StyledInput
+              <LabelStyled htmlFor="password">Password</LabelStyled>
+              <InputStyled
                 name="password"
                 type="password"
                 onChange={handleChange}
@@ -72,7 +72,7 @@ export default function SignUp() {
               />
             </div>
             <Button text="Sign up" />
-          </form>
+          </RegisterFormStyled>
         </div>
       )}
       <div className="caption">
@@ -82,15 +82,40 @@ export default function SignUp() {
   )
 }
 
-const StyledInput = styled.input`
-  padding: 0.5em;
-  margin: 10px 0;
-  border: 1px solid var(--grey-4);
-  border-radius: 3px;
-  width: 40%;
+const RegisterFormStyled = styled.form`
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 520px;
+  width: 285px;
+  font-family: Roboto;
+  margin-bottom: 40px;
+`
+const LabelStyled = styled.label`
+  color: #21374f;
+  font-size: 16px;
+  letter-spacing: 2px;
+  height: 16px;
+  opacity: 0.5;
+  margin: 25px 0 10px;
 `
 
-const StyledLabel = styled.label`
-  display: block;
-  margin: 0;
+const InputStyled = styled.input`
+  background: var(--background);
+  color: var(--text);
+  outline: none;
+  border: none;
+  border-bottom-style: solid;
+  border-bottom-color: #979797;
+  border-bottom-width: 1px;
+  font-size: 16px;
+  opacity: 0.5;
+  width: 285px;
+
+  &:focus {
+    border: none;
+    border-bottom-style: solid;
+    border-bottom-color: var(--highlight);
+    border-bottom-width: 1px;
+  }
 `

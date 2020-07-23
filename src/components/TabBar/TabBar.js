@@ -7,7 +7,7 @@ import pencil from '../../images/book-open.svg'
 export default function TabBar() {
   return (
     <TabBarStyled>
-      <LinkStyled exact path to="/home">
+      <LinkStyled to="/home">
         <IconStyled src={homeIcon} alt="home" />
       </LinkStyled>
       <LinkStyled to="/journalform">
@@ -36,10 +36,3 @@ const IconStyled = styled.img`
   color: var(--primary);
   height: 25px;
 `
-
-/* // const TabBarStyled = styled.nav`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   color: var(--summergreen);
-//  */
