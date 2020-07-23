@@ -1,20 +1,14 @@
 import React from 'react'
-import Welcome from './Welcome'
+import Onboarding from './Onboarding'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 export default {
-  title: 'Welcome',
-  component: Welcome,
+  title: 'Onboarding',
+  component: Onboarding,
 }
 
-export const welcomeWithText = () => (
+export const OnboardingWithText = () => (
   <Router>
-    <Welcome />
-  </Router>
-)
-
-export const welcomeWithoutText = () => (
-  <Router>
-    <Welcome />
+    <Onboarding />
   </Router>
 )
