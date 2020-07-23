@@ -72,7 +72,7 @@ export default function Register() {
               onChange={handleChange}
               value={values.password || ''}
               required
-              autoComplete="email"
+              autoComplete="new-password"
             />
           </div>
           <Button text="Sign up" disabled={isInvalid} />

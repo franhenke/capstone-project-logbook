@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRouteMatch, Route, Switch } from 'react-router-dom'
-import * as ROUTES from '../../routes'
+
 import Login from '../../components/auth/Login'
 import Register from '../../components/auth/Register'
 import bgImage from '../../images/bgl.png'
