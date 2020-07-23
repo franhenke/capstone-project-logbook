@@ -25,7 +25,7 @@ export default function JournalDetailPage({ values }) {
           <MarkerIconStyled src={MarkerIcon} />
           {selectedEntry.city}
         </CityStyled>
-        <Link to={`/journalentry`}>
+        <Link to={`/home`}>
           <BackIconStyled src={chevron} alt="journalentry" />
         </Link>
       </DetailPageWrapper>
