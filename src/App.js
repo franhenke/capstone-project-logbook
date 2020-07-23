@@ -7,8 +7,7 @@ import styled from 'styled-components'
 import TabBar from './components/TabBar/TabBar'
 import { Switch, Route } from 'react-router-dom'
 import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
-import Register from './components/auth/Register'
-// import Login from './components/auth/Login'
+
 import useAuth from './components/auth/useAuth'
 import LoginContext from './components/auth/LoginContext'
 import firebaseApp from './firebase'
@@ -37,7 +36,7 @@ function App() {
               <JournalEntryList journalEntries={journalEntries} />
             </Route>
             <Route path="/login" component={Onboarding} />
-            {/* <Route path="/register" component={Register} /> */}
+
             <Route
               exact
               path="/journalform"

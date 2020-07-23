@@ -7,13 +7,19 @@ import firebaseApp from '../../firebase'
 import useForm from '../../hooks/useForm'
 import Button from '../Button/Button'
 
-export default function SignUp() {
+export default function Register() {
   let history = useHistory()
   const [isRegistered, setIsRegistered] = useState(false)
   const [values, handleChange, handleSubmit] = useForm(registerToFirebase)
 
+  const isInvalid =
+    !values.password ||
+    !values.email ||
+    !/([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3})/.test(values.email) ||
+    !values.username
+
   const redirectTo = (path) => history.push(path)
-  const resetForm = () => setIsRegistered('')
+  const resetForm = () => setIsRegistered(false)
 
   async function registerToFirebase(values) {
     try {
@@ -33,48 +39,46 @@ export default function SignUp() {
 
   return (
     <>
-      {isRegistered ? (
-        <p>
-          Let's create memories! <Link to="/home">Home</Link>
-        </p>
-      ) : (
-        <div>
-          <h2>Sign up</h2>
-          <RegisterFormStyled onSubmit={handleSubmit}>
-            <div>
-              <LabelStyled htmlFor="name">Username</LabelStyled>
-              <InputStyled
-                name="name"
-                type="text"
-                onChange={handleChange}
-                value={values.name || ''}
-                required
-              />
-            </div>
-            <div>
-              <LabelStyled htmlFor="email">E-Mail</LabelStyled>
-              <InputStyled
-                name="email"
-                type="email"
-                onChange={handleChange}
-                value={values.email || ''}
-                required
-              />
-            </div>
-            <div>
-              <LabelStyled htmlFor="password">Password</LabelStyled>
-              <InputStyled
-                name="password"
-                type="password"
-                onChange={handleChange}
-                value={values.password || ''}
-                required
-              />
-            </div>
-            <Button text="Sign up" />
-          </RegisterFormStyled>
-        </div>
-      )}
+      <div>
+        <h2>Sign up</h2>
+        <RegisterFormStyled onSubmit={handleSubmit}>
+          <div>
+            <LabelStyled htmlFor="name">Username</LabelStyled>
+            <InputStyled
+              name="name"
+              type="text"
+              onChange={handleChange}
+              value={values.name || ''}
+              required
+              autoComplete="username"
+            />
+          </div>
+          <div>
+            <LabelStyled htmlFor="email">E-Mail</LabelStyled>
+            <InputStyled
+              name="email"
+              type="email"
+              onChange={handleChange}
+              value={values.email || ''}
+              required
+              autoComplete="email"
+            />
+          </div>
+          <div>
+            <LabelStyled htmlFor="password">Choose a Password</LabelStyled>
+            <InputStyled
+              name="password"
+              type="password"
+              onChange={handleChange}
+              value={values.password || ''}
+              required
+              autoComplete="email"
+            />
+          </div>
+          <Button text="Sign up" disabled={isInvalid} />
+        </RegisterFormStyled>
+      </div>
+
       <div className="caption">
         Back to <Link to="/login">Login</Link>.
       </div>
