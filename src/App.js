@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+
 import JournalForm from './components/JournalForm/JournalForm'
 import JournalEntryList from './components/JournalEntry/JournalEntryList'
 import { v4 as uuid } from 'uuid'
@@ -32,7 +33,7 @@ function App() {
           </WelcomeStyled>
 
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/home">
               <Home />
               <JournalEntryList journalEntries={journalEntries} />
             </Route>

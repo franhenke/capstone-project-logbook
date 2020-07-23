@@ -1,92 +1,96 @@
-import React, { useRef, useState } from 'react'
-import firebaseApp from '../../firebase'
+import React, { useState } from 'react'
+import * as ROUTES from '../../routes'
+import { useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import firebaseApp from '../../firebase'
+import useForm from '../../hooks/useForm'
+import Button from '../Button/Button'
 
-export default function Register() {
+export default function SignUp() {
+  let history = useHistory()
   const [isRegistered, setIsRegistered] = useState(false)
+  const [values, handleChange, handleSubmit] = useForm(registerToFirebase)
 
-  const userName = useRef(null)
-  const userEmail = useRef(null)
-  const userPassword = useRef(null)
+  const redirectTo = (path) => history.push(path)
+  const resetForm = () => setIsRegistered('')
 
-  async function registerToFirebase(name, email, password) {
-    const newUser = await firebaseApp.createUserWithEmailAndPassword(
-      email,
-      password
-    )
-
-    await newUser.user.updateProfile({
-      displayName: name,
-    })
-
-    return setIsRegistered(true)
+  async function registerToFirebase(values) {
+    try {
+      const newUser = await firebaseApp.createUserWithEmailAndPassword(
+        values.email,
+        values.password
+      )
+      await newUser.user.updateProfile({
+        displayName: values.name,
+      })
+      redirectTo(ROUTES.HOME)
+      resetForm()
+    } catch (error) {
+      setIsRegistered({ ...isRegistered, error })
+    }
   }
 
   return (
-    <div>
+    <>
       {isRegistered ? (
-        <p>You are registered!</p>
+        <p>
+          Let's create memories! <Link to="/home">Home</Link>
+        </p>
       ) : (
-        <form
-          onSubmit={(event) => (
-            event.preventDefault(),
-            registerToFirebase(
-              userName.current.value,
-              userEmail.current.value,
-              userPassword.current.value
-            )
-          )}
-        >
-          <div>
-            <StyledLabel htmlFor="user-name">Username</StyledLabel>
-            <StyledInput
-              htmlId="user-name"
-              name="user-name"
-              type="text"
-              ref={userName}
-            />
-          </div>
-          <div>
-            <StyledLabel htmlFor="user-email">E-Mail</StyledLabel>
-            <StyledInput
-              htmlId="user-email"
-              name="user-email"
-              type="text"
-              ref={userEmail}
-            />
-          </div>
-          <div>
-            <StyledLabel htmlFor="user-password">Password</StyledLabel>
-            <StyledInput
-              htmlId="user-password"
-              name="user-password"
-              type="password"
-              ref={userPassword}
-            />
-          </div>
-          <div>
-            <StyledButton type="submit">Create New User</StyledButton>
-          </div>
-        </form>
+        <div>
+          <h2>Sign up</h2>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <StyledLabel htmlFor="name">Username</StyledLabel>
+              <StyledInput
+                name="name"
+                type="text"
+                onChange={handleChange}
+                value={values.name || ''}
+                required
+              />
+            </div>
+            <div>
+              <StyledLabel htmlFor="email">E-Mail</StyledLabel>
+              <StyledInput
+                name="email"
+                type="email"
+                onChange={handleChange}
+                value={values.email || ''}
+                required
+              />
+            </div>
+            <div>
+              <StyledLabel htmlFor="password">Password</StyledLabel>
+              <StyledInput
+                name="password"
+                type="password"
+                onChange={handleChange}
+                value={values.password || ''}
+                required
+              />
+            </div>
+            <Button text="Sign up" />
+          </form>
+        </div>
       )}
-    </div>
+      <div className="caption">
+        Back to <Link to="/login">Login</Link>.
+      </div>
+    </>
   )
 }
 
 const StyledInput = styled.input`
   padding: 0.5em;
-  margin: 0.5em;
-  border: 1px solid gray;
+  margin: 10px 0;
+  border: 1px solid var(--grey-4);
   border-radius: 3px;
   width: 40%;
 `
 
 const StyledLabel = styled.label`
   display: block;
-  margin: 0 0.5em;
-`
-
-const StyledButton = styled.button`
-  display: block;
-  margin: 0.5em;
+  margin: 0;
 `
