@@ -14,6 +14,7 @@ import LoginContext from './components/auth/LoginContext'
 import firebaseApp from './firebase'
 import Home from './pages/Home'
 import Onboarding from './components/Onboarding/Onboarding'
+import UserBar from './components/auth/UserBar'
 
 function App() {
   const user = useAuth()
@@ -29,6 +30,7 @@ function App() {
     <>
       <LoginContext.Provider value={{ user, firebaseApp }}>
         <AppWrapper>
+          <UserBar />
           <Switch>
             <Route exact path="/home">
               <Home />
