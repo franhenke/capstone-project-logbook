@@ -36,7 +36,6 @@ function App() {
               <JournalEntryList journalEntries={journalEntries} />
             </Route>
             <Route path="/login" component={Onboarding} />
-
             <Route
               exact
               path="/journalform"

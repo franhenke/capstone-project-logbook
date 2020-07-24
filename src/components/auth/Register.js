@@ -12,11 +12,7 @@ export default function Register() {
   const [isRegistered, setIsRegistered] = useState(false)
   const [values, handleChange, handleSubmit] = useForm(registerToFirebase)
 
-  const isInvalid =
-    !values.password ||
-    !values.email ||
-    !/([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3})/.test(values.email) ||
-    !values.username
+  const isInvalid = !values.name || !values.email || !values.password
 
   const redirectTo = (path) => history.push(path)
   const resetForm = () => setIsRegistered(false)
@@ -115,7 +111,6 @@ const InputStyled = styled.input`
   font-size: 16px;
   opacity: 0.5;
   width: 285px;
-
   &:focus {
     border: none;
     border-bottom-style: solid;
