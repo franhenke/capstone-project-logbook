@@ -14,8 +14,11 @@ import firebaseApp from './firebase'
 import Home from './pages/Home'
 import Onboarding from './components/Onboarding/Onboarding'
 import UserBar from './components/auth/UserBar'
+import useServices from './hooks/useServices'
+import SignUp from './pages/Signup'
 
 function App() {
+  const { signUp, profile, setProfile } = useServices()
   const user = useAuth()
   const [journalEntries, setJournalEntries] = useState(
     () => JSON.parse(localStorage.getItem('journalEntries')) || []
@@ -35,7 +38,10 @@ function App() {
               <Home />
               <JournalEntryList journalEntries={journalEntries} />
             </Route>
-            <Route path="/login" component={Onboarding} />
+            <Route path="/register">
+              <SignUp signUp={signUp} setProfile={setProfile} />
+            </Route>
+            {/* <Route path="/login" component={Onboarding} /> */}
             <Route
               exact
               path="/journalform"

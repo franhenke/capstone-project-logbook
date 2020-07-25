@@ -10,7 +10,7 @@ SignUp.propTypes = {
   setProfile: PropTypes.func.isRequired,
 }
 
-export default function SignUp({ SetProfile, signUp }) {
+export default function SignUp({ setProfile, signUp }) {
   const {
     register,
     handleSubmit,
@@ -20,4 +20,112 @@ export default function SignUp({ SetProfile, signUp }) {
     getValues,
     formState,
   } = useForm()
+
+  const repeatValidation = (passwordRepeat) =>
+    passwordRepeat === getValues().password || 'Passwords do not match'
+
+  const validateRepeat = () => {
+    if (formState.isSubmitted) {
+      triggerValidation({ name: 'passwordRepeat' })
+    }
+  }
+
+  const history = useHistory()
+  return (
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <div className="name">
+        <input type="text" name="name" ref={register({ required: true })} />
+      </div>
+      <div className="email">
+        <input
+          type="email"
+          name="email"
+          ref={register({ required: true, pattern: /^\S+@\S+$/i })}
+        />
+        {((errors.email && errors.email.type === 'required') ||
+          (errors.email && errors.email.type === 'pattern')) && (
+          <Error>Please check your entered e-mail address</Error>
+        )}
+        {errors.email && errors.email.type === 'inUse' && (
+          <Error>{errors.email.message}</Error>
+        )}
+      </div>
+      <div className="password">
+        <input
+          ref={register({
+            required: true,
+            minLength: {
+              value: 6,
+              message: 'Password must have at least 6 characters',
+            },
+          })}
+          onChange={validateRepeat}
+          type="password"
+          name="password"
+        />
+        {errors.password && (
+          <Error>Password must have at least 6 characters</Error>
+        )}
+      </div>
+      <div>
+        <input
+          name="passwordRepeat"
+          type="password"
+          ref={register({ required: true, validate: repeatValidation })}
+        />
+        {errors.passwordRepeat && (
+          <Error>{errors.passwordRepeat.message}</Error>
+        )}
+        <div className="signUp">
+          <Button text="Sign up" type="submit" />
+        </div>
+        <Link to="/login">
+          <p>Back to login</p>
+        </Link>
+      </div>
+    </Form>
+  )
+
+  function onSubmit(data) {
+    setProfile(data)
+    signUp(data)
+      .then((res) => {
+        if (res.code === 'auth/email-already-in-use') {
+          return setError('email', 'inUse', 'E-mail address already in use')
+        }
+        setTimeout(history.push('/'), 3000)
+      })
+      .catch((error) => {
+        console.log(
+          'Sorry, there was an error with the server. Please try again later.',
+          error
+        )
+      })
+  }
 }
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  margin: 80px 20px 20px;
+
+  div {
+    margin: 24px 0;
+    width: 100%;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  .signup {
+    margin-top: 44px;
+    text-align: center;
+    button {
+      padding: 16px 60px;
+    }
+  }
+`
+const Error = styled.p`
+  color: red;
+`
