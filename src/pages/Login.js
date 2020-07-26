@@ -1,4 +1,5 @@
 import React from 'react'
+import * as ROUTES from '../constants/routes'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { Link, useHistory } from 'react-router-dom'
@@ -17,9 +18,9 @@ export default function Login({ loginWithFirebase, setProfile }) {
 
   let history = useHistory()
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <label>Email</label>
-      <InputStyledGet
+      <InputStyled
         type="email"
         name="email"
         ref={register}
@@ -41,10 +42,10 @@ export default function Login({ loginWithFirebase, setProfile }) {
       <div>
         <Button text="Sign up" type="submit" />
       </div>
-      <LinkStyled to="/login">
+      <LinkStyled to={ROUTES.REGISTER}>
         Not a user yet? <span>Sign up</span>
       </LinkStyled >
-    </form>
+    </Form>
   )
 
 
@@ -69,6 +70,22 @@ export default function Login({ loginWithFirebase, setProfile }) {
     // })
   }
 }
+
+
+const Form = styled.form`
+  font-family: Roboto;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 20px 20px;
+  label {
+    color: #21374f;
+    font-size: 16px;
+    letter-spacing: 2px;
+    height: 16px;
+    opacity: 0.5;
+    margin: 25px 0 20px;
+  }
+  `
 
 const InputStyled = styled.input` 
   background: var(--background);

@@ -1,4 +1,5 @@
 import React from 'react'
+import * as ROUTES from '../../constants/routes'
 import { useParams, Link } from 'react-router-dom'
 import styled from 'styled-components'
 import book from '../../images/book-open.svg'
@@ -25,7 +26,7 @@ export default function JournalDetailPage({ values }) {
           <MarkerIconStyled src={MarkerIcon} />
           {selectedEntry.city}
         </CityStyled>
-        <Link to={`/home`}>
+        <Link to={ROUTES.HOME}>
           <BackIconStyled src={chevron} alt="journalentry" />
         </Link>
       </DetailPageWrapper>

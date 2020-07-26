@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
-
+import * as ROUTES from './constants/routes'
 import JournalForm from './components/JournalForm/JournalForm'
 import JournalEntryList from './components/JournalEntry/JournalEntryList'
 import { v4 as uuid } from 'uuid'
 import styled from 'styled-components'
 import TabBar from './components/TabBar/TabBar'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
-
 import useAuth from './components/auth/useAuth'
 import LoginContext from './components/auth/LoginContext'
 import firebaseApp from './firebase'
@@ -37,31 +36,31 @@ function App() {
         <AppWrapper>
           <UserBar />
           <Switch>
-            <Redirect exact path from='/' to='/home' />
-            <Route exact path="/home">
+            <Route exact path={ROUTES.WELCOME} />
+            <Route exact path={ROUTES.HOME}>
               <Home />
               <JournalEntryList journalEntries={journalEntries} />
             </Route>
-            <Route path="/login">
+            <Route path={ROUTES.LOGIN}>
               <Login
                 loginWithFirebase={loginWithFirebase}
                 setProfile={setProfile}
               />
             </Route>
-            <Route path="/register">
+            <Route path={ROUTES.REGISTER}>
               <SignUp signUp={signUp} setProfile={setProfile} />
             </Route>
-            {/* <Route path="/login" component={Onboarding} /> */}
+
             <Route
               exact
-              path="/journalform"
+              path={ROUTES.JOURNALFORM}
               component={() => (
                 <JournalForm onFormSubmit={handleJournalEntry} />
               )}
             />
             <Route
               exact
-              path="/journalentry/:entryId"
+              path={ROUTES.JOURNALDETAILS}
               component={() => <JournalDetailPage values={journalEntries} />}
             />
             <UserBar />
