@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import Button from '../components/Button/Button'
 import LoginContext from '../components/auth/LoginContext'
@@ -12,13 +12,14 @@ LoginContext.propTypes = {
   setProfile: PropTypes.func.isRequired
 }
 
-export default function Login({ loginWithFirebase, profile, setProfile }) {
+export default function Login({ loginWithFirebase, setProfile }) {
   const { register, handleSubmit, errors, setError } = useForm()
 
+  let history = useHistory()
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <label>Email</label>
-      <InputStyled
+      <InputStyledGet
         type="email"
         name="email"
         ref={register}
@@ -45,8 +46,29 @@ export default function Login({ loginWithFirebase, profile, setProfile }) {
       </LinkStyled >
     </form>
   )
-}
 
+
+  function onSubmit(data) {
+    setProfile(data)
+    loginWithFirebase(data)
+    setTimeout(history.push('/home'), 2000)
+    // .then((res) => {
+    //   if (res.code === 'auth/user-not-found') {
+    //     return setError(
+    //       'email',
+    //       'notFound',
+    //       'The email or password you entered are incorrect. Please try again',
+    //     )
+    //   }
+    //   if (res.code === 'auth/wrong-password') {
+    //     return setError(
+    //       'password',
+    //       'The email or password you entered are incorrect. Please try again'
+    //     )
+    //   }
+    // })
+  }
+}
 
 const InputStyled = styled.input` 
   background: var(--background);

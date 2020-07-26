@@ -16,13 +16,13 @@ export default function UserBar() {
       {user ? (
         <button onClick={logoutFromFirebase}>Logout</button>
       ) : (
-        <>
-          <button onClick={() => history.push('/login')}>Login</button> |
-          <button onClick={() => history.push('/login/register')}>
-            Register
+          <>
+            <button onClick={() => history.push('/login')}>Login</button> |
+            <button onClick={() => history.push('/register')}>
+              Register
           </button>
-        </>
-      )}
+          </>
+        )}
     </div>
   )
 }

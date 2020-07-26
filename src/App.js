@@ -5,7 +5,7 @@ import JournalEntryList from './components/JournalEntry/JournalEntryList'
 import { v4 as uuid } from 'uuid'
 import styled from 'styled-components'
 import TabBar from './components/TabBar/TabBar'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
 
 import useAuth from './components/auth/useAuth'
@@ -16,10 +16,13 @@ import Onboarding from './components/Onboarding/Onboarding'
 import UserBar from './components/auth/UserBar'
 import useServices from './hooks/useServices'
 import SignUp from './pages/Signup'
+import Login from './pages/Login'
 
 function App() {
-  const { signUp, profile, setProfile } = useServices()
+  const { signUp, loginWithFirebase, setProfile } = useServices()
   const user = useAuth()
+
+
   const [journalEntries, setJournalEntries] = useState(
     () => JSON.parse(localStorage.getItem('journalEntries')) || []
   )
@@ -34,9 +37,16 @@ function App() {
         <AppWrapper>
           <UserBar />
           <Switch>
+            <Redirect exact path from='/' to='/home' />
             <Route exact path="/home">
               <Home />
               <JournalEntryList journalEntries={journalEntries} />
+            </Route>
+            <Route path="/login">
+              <Login
+                loginWithFirebase={loginWithFirebase}
+                setProfile={setProfile}
+              />
             </Route>
             <Route path="/register">
               <SignUp signUp={signUp} setProfile={setProfile} />
@@ -54,6 +64,7 @@ function App() {
               path="/journalentry/:entryId"
               component={() => <JournalDetailPage values={journalEntries} />}
             />
+            <UserBar />
           </Switch>
           <FooterStyled>
             <TabBar />

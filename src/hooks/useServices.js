@@ -28,9 +28,8 @@ export default function useServices() {
       email,
       password
     )
-      .then((res) => res)
-      .catch((error) => error)
+
   }
 
-  return { signUp, profile, setProfile }
+  return { signUp, profile, setProfile, loginWithFirebase }
 }
