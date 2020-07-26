@@ -18,11 +18,18 @@ export default function useServices() {
       await newUser.user.updateProfile({
         displayName: name,
       })
-
     } catch (error) {
       setProfile({ ...setProfile, error })
     }
+  }
 
+  async function loginWithFirebase({ email, password }) {
+    await firebaseApp.signInWithEmailAndPassword(
+      email,
+      password
+    )
+      .then((res) => res)
+      .catch((error) => error)
   }
 
   return { signUp, profile, setProfile }
