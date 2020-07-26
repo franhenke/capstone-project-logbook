@@ -31,6 +31,13 @@ export default function SignUp({ setProfile, signUp }) {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      <label>Username</label>
+      <InputStyled
+        type="name"
+        name="name"
+        ref={register({ required: true })}
+      />
+      {((errors.email && errors.email.type === 'required') && <Error>Please provide a Username</Error>)}
       <label>Email</label>
       <InputStyled
         type="email"
@@ -70,18 +77,18 @@ export default function SignUp({ setProfile, signUp }) {
       />
 
       {errors.passwordRepeat && <Error>{errors.passwordRepeat.message}</Error>}
-
-      <Button text="Sign up" type="submit" />
-
-      <Link to="/login">
-        <p>Back to login</p>
-      </Link>
+      <div>
+        <Button text="Sign up" type="submit" />
+      </div>
+      <LinkStyled to="/login">
+        Back to <span>login</span>
+      </LinkStyled >
     </Form >
   )
 
-  function onSubmit(data) {
-    setProfile(data)
-    signUp(data)
+  function onSubmit(values) {
+    setProfile(values)
+    signUp(values)
     //     .then((res) => {
     //       if (res.code === 'auth/email-already-in-use') {
     //         return setError('email', 'inUse', 'E-mail address already in use')
@@ -103,14 +110,18 @@ const Form = styled.form`
   font-family: Roboto;
   display: flex;
   flex-direction: column;
-  margin: 80px 20px 20px;
+  margin: 10px 20px 20px;
   label {
     color: #21374f;
     font-size: 16px;
     letter-spacing: 2px;
     height: 16px;
     opacity: 0.5;
-    margin: 25px 0 10px;
+    margin: 25px 0 20px;
+  }
+
+  div {
+    margin-top: 20px;
   }
 
   `
@@ -133,6 +144,20 @@ const InputStyled = styled.input`
       border-bottom-width: 1px;
     }
   `
+
+const LinkStyled = styled(Link)`
+text-decoration: none;
+color: #21374f;
+    font-size: 14px;
+    height: 16px;
+    opacity: 0.5;
+    margin: 25px 0 10px;
+    text-align: center;
+
+    span {
+      font-weight: 700;
+    }
+`
 
 const Error = styled.p`
 color: red;
