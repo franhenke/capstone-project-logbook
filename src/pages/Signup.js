@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
@@ -29,6 +30,7 @@ export default function SignUp({ setProfile, signUp }) {
     }
   }
 
+  let history = useHistory()
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <label>Username</label>
@@ -89,12 +91,15 @@ export default function SignUp({ setProfile, signUp }) {
   function onSubmit(values) {
     setProfile(values)
     signUp(values)
+    setTimeout(history.push('/home'), 2000)
+    alert('You are now registered')
+
+
     //     .then((res) => {
     //       if (res.code === 'auth/email-already-in-use') {
     //         return setError('email', 'inUse', 'E-mail address already in use')
     //       }
-    //       setTimeout(history.push('/'), 2000)
-    //       alert('You are now registered')
+    //  
     //     })
     //     .catch((error) => {
     //       console.log(

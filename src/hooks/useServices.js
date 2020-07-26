@@ -1,19 +1,13 @@
-import firebaseApp, { db } from '../firebase'
+import firebaseApp from '../firebase'
 import { useState } from 'react'
-import * as ROUTES from '../routes'
-import { useHistory } from 'react-router-dom'
+
 
 export default function useServices() {
-  let history = useHistory()
-  const [isRegistered, setIsRegistered] = useState(false)
   const [profile, setProfile] = useState({
     email: '',
     password: '',
     id: '',
   })
-
-  const redirectTo = (path) => history.push(path)
-  const resetForm = () => setIsRegistered(false)
 
   async function signUp({ name, email, password }) {
     try {
@@ -24,11 +18,12 @@ export default function useServices() {
       await newUser.user.updateProfile({
         displayName: name,
       })
-      redirectTo(ROUTES.HOME)
-      resetForm()
+
     } catch (error) {
-      setIsRegistered({ ...isRegistered, error })
+      setProfile({ ...setProfile, error })
     }
+
   }
+
   return { signUp, profile, setProfile }
 }
