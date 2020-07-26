@@ -88,9 +88,9 @@ export default function SignUp({ setProfile, signUp }) {
     </Form >
   )
 
-  function onSubmit(values) {
-    setProfile(values)
-    signUp(values)
+  function onSubmit(data) {
+    setProfile(data)
+    signUp(data)
     setTimeout(history.push('/home'), 2000)
     alert('You are now registered')
 
