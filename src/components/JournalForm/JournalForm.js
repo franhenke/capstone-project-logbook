@@ -79,6 +79,7 @@ export default function Form({ onFormSubmit }) {
       caption: values.caption,
       category: values.category,
       details: values.entry,
+      user: user.uid,
     })
     console.log(values)
     return values
