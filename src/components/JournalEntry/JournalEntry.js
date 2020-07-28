@@ -21,11 +21,11 @@ export default function JournalEntry({ values }) {
             {values.city}
           </CityStyled>
           <CaptionStyled>{values.caption}</CaptionStyled>
-          <MemoryStyled>
+          <EntryStyled>
             <Truncate lines={2} ellipsis={<span>... see more</span>}>
-              {values.memory}
+              {values.entry}
             </Truncate>
-          </MemoryStyled>
+          </EntryStyled>
         </ContentStyled>
       </JournalEntryStyled>
     </EntryContainerLink>
@@ -62,7 +62,7 @@ const ContentStyled = styled.div`
 
 const CategorieStyled = styled.h2`
   display: inline-block;
-  color: #004F64;
+  color: #004f64;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 1.3px;
@@ -91,7 +91,7 @@ const CaptionStyled = styled.h3`
   font-weight: 600;
   margin-bottom: 3px;
 `
-const MemoryStyled = styled.p`
+const EntryStyled = styled.p`
   font-size: 16px;
 
   a {

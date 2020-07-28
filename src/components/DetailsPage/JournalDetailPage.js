@@ -21,7 +21,7 @@ export default function JournalDetailPage({ values }) {
         <CaptionStyled>{selectedEntry.caption}</CaptionStyled>
         <IconStyled src={book} alt="book" />
 
-        <MemoryStyled>{selectedEntry.memory}</MemoryStyled>
+        <EntryStyled>{selectedEntry.entry}</EntryStyled>
         <CityStyled>
           <MarkerIconStyled src={MarkerIcon} />
           {selectedEntry.city}
@@ -82,7 +82,7 @@ const IconStyled = styled.img`
   height: 20px;
   margin: 20px 0;
 `
-const MemoryStyled = styled.p`
+const EntryStyled = styled.p`
   width: 90%;
   font-size: 16px;
   color: var(--primary);
