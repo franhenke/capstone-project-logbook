@@ -11,7 +11,6 @@ import useAuth from './components/auth/useAuth'
 import LoginContext from './components/auth/LoginContext'
 import firebaseApp from './firebase'
 import Home from './pages/Home'
-import Onboarding from './components/Onboarding/Onboarding'
 import UserBar from './components/auth/UserBar'
 import useServices from './hooks/useServices'
 import SignUp from './pages/Signup'
@@ -21,7 +20,6 @@ function App() {
   const { signUp, loginWithFirebase, setProfile } = useServices()
   const user = useAuth()
   const location = useLocation()
-
 
   const [journalEntries, setJournalEntries] = useState(
     () => JSON.parse(localStorage.getItem('journalEntries')) || []
@@ -35,15 +33,27 @@ function App() {
     <>
       <LoginContext.Provider value={{ user, firebaseApp }}>
         <AppWrapper>
-          
           <Switch>
-            {/* <Route exact path={ROUTES.WELCOME}>
-              <Onboarding />
-            </Route> */}
             <Route exact path={ROUTES.HOME}>
-              <Home />
-              <UserBar />
-              <JournalEntryList journalEntries={journalEntries} />
+              {user ? (
+                <Home /> && <UserBar /> && (
+                  <JournalEntryList journalEntries={journalEntries} />
+                )
+              ) : (
+                <Login />
+              )}
+            </Route>
+
+            <Route exact path={ROUTES.JOURNALFORM}>
+              {user ? (
+                <JournalForm onFormSubmit={handleJournalEntry} />
+              ) : (
+                <Login />
+              )}
+            </Route>
+
+            <Route exact path={ROUTES.JOURNALDETAILS}>
+              {user ? <JournalDetailPage values={journalEntries} /> : <Login />}
             </Route>
             <Route path={ROUTES.LOGIN}>
               <Login
@@ -54,23 +64,11 @@ function App() {
             <Route path={ROUTES.REGISTER}>
               <SignUp signUp={signUp} setProfile={setProfile} />
             </Route>
-
-            <Route
-              exact
-              path={ROUTES.JOURNALFORM}
-              component={() => (
-                <JournalForm onFormSubmit={handleJournalEntry} />
-              )}
-            />
-            <Route
-              exact
-              path={ROUTES.JOURNALDETAILS}
-              component={() => <JournalDetailPage values={journalEntries} />}
-            />
-            <UserBar />
           </Switch>
           <FooterStyled>
-            {location.pathname !== '/' && location.pathname !== '/login' && location.pathname !== '/register' && <TabBar />}
+            {location.pathname !== '/' &&
+              location.pathname !== '/login' &&
+              location.pathname !== '/register' && <TabBar />}
           </FooterStyled>
         </AppWrapper>
       </LoginContext.Provider>
