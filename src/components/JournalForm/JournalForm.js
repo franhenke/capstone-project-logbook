@@ -74,13 +74,14 @@ export default function Form({ onFormSubmit }) {
 }
 
 const JournalFormStyled = styled.form`
+margin-top: 150px;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   height: 520px;
   width: 285px;
   font-family: Roboto;
-  margin-bottom: 40px;
+  
   label {
     color: #21374f;
     font-size: 16px;

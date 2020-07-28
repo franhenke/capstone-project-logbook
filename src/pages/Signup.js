@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import Button from '../components/Button/Button'
+import bgImage from '../images/bgl.png'
 
 SignUp.propTypes = {
   signUp: PropTypes.func.isRequired,
@@ -32,7 +33,10 @@ export default function SignUp({ setProfile, signUp }) {
 
   let history = useHistory()
   return (
+    <BackgroundStyled>
+    <FormWrapper>
     <Form onSubmit={handleSubmit(onSubmit)}>
+    <h2>Create Account</h2>
       <label>Username</label>
       <InputStyled
         type="name"
@@ -86,6 +90,8 @@ export default function SignUp({ setProfile, signUp }) {
         Back to <span>login</span>
       </LinkStyled >
     </Form >
+    </FormWrapper>
+    </BackgroundStyled>
   )
 
   function onSubmit(data) {
@@ -111,18 +117,49 @@ export default function SignUp({ setProfile, signUp }) {
   }
 }
 
+const BackgroundStyled = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background-image: url(${bgImage});
+ background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+`
+
+const FormWrapper = styled.div`
+justify-items: center;
+ height: 570px;
+  width: 313px;
+  background: RGBA(51,54,64,0.32);
+position: absolute;
+top: 150px;
+
+h2 {
+  font-size: 20px;
+  font-weight: medium;
+  width: 80px;
+  color: white;
+  margin-bottom: 40px;
+  margin-top: 30px;
+
+}
+`
+
 const Form = styled.form`
   font-family: Roboto;
   display: flex;
   flex-direction: column;
   margin: 10px 20px 20px;
   label {
-    color: #21374f;
+    color: white;
     font-size: 16px;
     letter-spacing: 2px;
     height: 16px;
-    opacity: 0.5;
-    margin: 25px 0 20px;
+  margin: 25px 0 20px;
   }
 
   div {
@@ -131,7 +168,7 @@ const Form = styled.form`
 
   `
 const InputStyled = styled.input` 
-  background: var(--background);
+  background: none;
   color: var(--text);
   outline: none;
   border: none;
@@ -139,8 +176,8 @@ const InputStyled = styled.input`
   border-bottom-color: #979797;
   border-bottom-width: 1px;
   font-size: 16px;
-  opacity: 0.5;
-  width: 285px;
+  
+  width: 273px;
 
   &:focus {
       border: none;
@@ -152,15 +189,14 @@ const InputStyled = styled.input`
 
 const LinkStyled = styled(Link)`
 text-decoration: none;
-color: #21374f;
+color: white;
     font-size: 14px;
     height: 16px;
-    opacity: 0.5;
-    margin: 25px 0 10px;
     text-align: center;
 
     span {
       font-weight: 700;
+      
     }
 `
 

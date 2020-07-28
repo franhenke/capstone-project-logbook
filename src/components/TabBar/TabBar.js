@@ -6,6 +6,7 @@ import homeIcon from '../../images/list.svg'
 import pencil from '../../images/book-open.svg'
 
 export default function TabBar() {
+
   return (
     <TabBarStyled>
       <LinkStyled to={ROUTES.HOME}>

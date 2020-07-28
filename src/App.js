@@ -5,7 +5,7 @@ import JournalEntryList from './components/JournalEntry/JournalEntryList'
 import { v4 as uuid } from 'uuid'
 import styled from 'styled-components'
 import TabBar from './components/TabBar/TabBar'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, useLocation } from 'react-router-dom'
 import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
 import useAuth from './components/auth/useAuth'
 import LoginContext from './components/auth/LoginContext'
@@ -20,6 +20,7 @@ import Login from './pages/Login'
 function App() {
   const { signUp, loginWithFirebase, setProfile } = useServices()
   const user = useAuth()
+  const location = useLocation()
 
 
   const [journalEntries, setJournalEntries] = useState(
@@ -34,11 +35,14 @@ function App() {
     <>
       <LoginContext.Provider value={{ user, firebaseApp }}>
         <AppWrapper>
-          <UserBar />
+          
           <Switch>
-            <Route exact path={ROUTES.WELCOME} />
+            {/* <Route exact path={ROUTES.WELCOME}>
+              <Onboarding />
+            </Route> */}
             <Route exact path={ROUTES.HOME}>
               <Home />
+              <UserBar />
               <JournalEntryList journalEntries={journalEntries} />
             </Route>
             <Route path={ROUTES.LOGIN}>
@@ -66,7 +70,7 @@ function App() {
             <UserBar />
           </Switch>
           <FooterStyled>
-            <TabBar />
+            {location.pathname !== '/' && location.pathname !== '/login' && location.pathname !== '/register' && <TabBar />}
           </FooterStyled>
         </AppWrapper>
       </LoginContext.Provider>
@@ -74,7 +78,7 @@ function App() {
   )
   function handleJournalEntry(newJournalEntry) {
     newJournalEntry.id = uuid()
-    setJournalEntries([...journalEntries, newJournalEntry])
+    setJournalEntries([newJournalEntry, ...journalEntries])
   }
 }
 

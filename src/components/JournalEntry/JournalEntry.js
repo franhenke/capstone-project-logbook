@@ -62,6 +62,7 @@ const ContentStyled = styled.div`
 
 const CategorieStyled = styled.h2`
   display: inline-block;
+  color: #004F64;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 1.3px;
