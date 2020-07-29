@@ -18,7 +18,7 @@ import Login from './pages/Login'
 
 function App() {
   const { signUp, loginWithFirebase, setProfile } = useServices()
-  const user = useAuth()
+  const [user, authCompleted] = useAuth()
   const location = useLocation()
 
   const [journalEntries, setJournalEntries] = useState(
@@ -29,31 +29,26 @@ function App() {
     localStorage.setItem('journalEntries', JSON.stringify(journalEntries))
   }, [journalEntries])
 
+  if (!authCompleted) {
+    return <LoadingScreen>Almost there....</LoadingScreen>
+  }
+
   return (
     <>
       <LoginContext.Provider value={{ user, firebaseApp }}>
         <AppWrapper>
           <Switch>
             <Route exact path={ROUTES.HOME}>
-              {user ? (
-                <Home /> && <UserBar /> && (
-                  <JournalEntryList journalEntries={journalEntries} />
-                )
-              ) : (
-                <Login />
-              )}
+              <Home />
+              <JournalEntryList journalEntries={journalEntries} />
             </Route>
 
             <Route exact path={ROUTES.JOURNALFORM}>
-              {user ? (
-                <JournalForm onFormSubmit={handleJournalEntry} />
-              ) : (
-                <Login />
-              )}
+              <JournalForm onFormSubmit={handleJournalEntry} />
             </Route>
 
             <Route exact path={ROUTES.JOURNALDETAILS}>
-              {user ? <JournalDetailPage values={journalEntries} /> : <Login />}
+              <JournalDetailPage values={journalEntries} />
             </Route>
             <Route path={ROUTES.LOGIN}>
               <Login
@@ -95,4 +90,9 @@ const FooterStyled = styled.div`
   height: 50px;
   grid-row: 3 / 4;
   align-self: end;
+`
+
+const LoadingScreen = styled.div`
+  color: var(--sand);
+  padding: 30px;
 `

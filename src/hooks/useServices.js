@@ -1,6 +1,6 @@
 import firebaseApp from '../firebase'
 import { useState } from 'react'
-
+import { useHistory } from 'react-router-dom'
 
 export default function useServices() {
   const [profile, setProfile] = useState({
@@ -23,12 +23,10 @@ export default function useServices() {
     }
   }
 
+  let history = useHistory()
   async function loginWithFirebase({ email, password }) {
-    await firebaseApp.signInWithEmailAndPassword(
-      email,
-      password
-    )
-
+    await firebaseApp.signInWithEmailAndPassword(email, password)
+    history.push('/home')
   }
 
   return { signUp, profile, setProfile, loginWithFirebase }
