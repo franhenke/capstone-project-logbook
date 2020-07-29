@@ -18,7 +18,6 @@ export default function useAuth() {
 
       if (user) {
         setAuthUser(user)
-        localStorage.setItem('user', JSON.stringify(user))
       }
       setIsAuthCompleted(true)
     })
