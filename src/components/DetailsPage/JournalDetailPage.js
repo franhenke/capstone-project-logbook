@@ -12,7 +12,7 @@ export default function JournalDetailPage({ values }) {
   const { entryId } = useParams()
   const [selectedEntry] = values.filter((values) => entryId === values.id)
   const parsedDate = dayjs(selectedEntry.date)
-  console.log(selectedEntry)
+
   return (
     <>
       <DetailPageWrapper>

@@ -3,12 +3,13 @@ import styled from 'styled-components'
 import Button from '../Button/Button'
 import useForm from '../../hooks/useForm'
 import dayjs from 'dayjs'
-import { db } from '../../firebase'
 import { useContext } from 'react'
 import LoginContext from '../auth/LoginContext'
+import AddJournalEntryToDbButton from '../AddJournalEntryToDbButton'
 
 export default function Form({ onFormSubmit }) {
   const [values, handleChange, handleSubmit] = useForm(exportEntries)
+
   const currentDate = dayjs().format('DD/MM/YYYY')
   const { user } = useContext(LoginContext)
 
@@ -68,20 +69,13 @@ export default function Form({ onFormSubmit }) {
         min="10"
         required
       />
-      <Button text="Save" />
+      {user ? (
+        <AddJournalEntryToDbButton userId={user.uid} values={values} />
+      ) : null}
     </JournalFormStyled>
   )
   function exportEntries(values) {
     onFormSubmit(values)
-    db.collection('journalentries').add({
-      date: values.date,
-      city: values.city,
-      caption: values.caption,
-      category: values.category,
-      details: values.entry,
-      user: user.uid,
-    })
-    console.log(values)
     return values
   }
 }

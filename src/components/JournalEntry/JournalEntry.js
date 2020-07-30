@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-
+import AddToFaveListButton from '../AddToFaveListButton'
+import LoginContext from '../auth/LoginContext'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import Truncate from 'react-truncate'
@@ -8,6 +9,7 @@ import markerIcon from '../../images/mappin.svg'
 
 export default function JournalEntry({ values }) {
   const parsedDate = dayjs(values.date)
+  const { user } = useContext(LoginContext)
 
   return (
     <EntryContainerLink to={`/journalentry/${values.id}`}>
@@ -25,6 +27,9 @@ export default function JournalEntry({ values }) {
             <Truncate lines={2} ellipsis={<span>... see more</span>}>
               {values.entry}
             </Truncate>
+            {user ? (
+              <AddToFaveListButton userId={user.uid} values={values} />
+            ) : null}
           </EntryStyled>
         </ContentStyled>
       </JournalEntryStyled>

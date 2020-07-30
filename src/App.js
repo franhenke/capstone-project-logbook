@@ -14,6 +14,8 @@ import Home from './pages/Home'
 import UserBar from './components/auth/UserBar'
 import useServices from './hooks/useServices'
 import SignUp from './pages/Signup'
+import GetUserFavJournalsList from './components/GetUserFavJournalsList'
+import GetUserJournalEntries from './components/GetUserJournalEntries'
 import Login from './pages/Login'
 
 function App() {
@@ -40,15 +42,18 @@ function App() {
           <Switch>
             <Route exact path={ROUTES.HOME}>
               <Home />
-              <JournalEntryList journalEntries={journalEntries} />
+              {/* <JournalEntryList journalEntries={journalEntries} /> */}
+              <GetUserJournalEntries journalEntry={journalEntries} />
             </Route>
 
             <Route exact path={ROUTES.JOURNALFORM}>
               <JournalForm onFormSubmit={handleJournalEntry} />
             </Route>
-
             <Route exact path={ROUTES.JOURNALDETAILS}>
               <JournalDetailPage values={journalEntries} />
+            </Route>
+            <Route exact path={'/favjournalentries'}>
+              <GetUserFavJournalsList />
             </Route>
             <Route path={ROUTES.LOGIN}>
               <Login
