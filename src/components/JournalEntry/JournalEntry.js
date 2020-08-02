@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-
+import AddToFaveListButton from '../AddToFaveListButton'
+import LoginContext from '../auth/LoginContext'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import Truncate from 'react-truncate'
@@ -8,70 +9,72 @@ import markerIcon from '../../images/mappin.svg'
 
 export default function JournalEntry({ values }) {
   const parsedDate = dayjs(values.date)
+  const { user } = useContext(LoginContext)
 
   return (
     <EntryContainerLink to={`/journalentry/${values.id}`}>
       <JournalEntryStyled>
-        <DateStyled>{parsedDate.format('DD MMM YYYY')}</DateStyled>
-
-        <ContentStyled>
+        <SectionStyled>
           <CategorieStyled>{values.category}</CategorieStyled>
+          <DateStyled>{parsedDate.format('DD MMM YYYY')}</DateStyled>
+        </SectionStyled>
+        <ContentStyled>
+          <CaptionStyled>{values.caption}</CaptionStyled>
+          <EntryStyled>
+            <Truncate lines={2} ellipsis={<span>... see more</span>}>
+              {values.entry}
+            </Truncate>
+            {user ? (
+              <AddToFaveListButton userId={user.uid} values={values} />
+            ) : null}
+          </EntryStyled>
+
           <CityStyled>
             <MarkerIconStyled src={markerIcon} />
             {values.city}
           </CityStyled>
-          <CaptionStyled>{values.caption}</CaptionStyled>
-          <MemoryStyled>
-            <Truncate lines={2} ellipsis={<span>... see more</span>}>
-              {values.memory}
-            </Truncate>
-          </MemoryStyled>
         </ContentStyled>
       </JournalEntryStyled>
     </EntryContainerLink>
   )
-
-  // function routeChange() {
-  //   let path = `/${values.id}`
-  //   history.push(path)
-  // }
 }
 
-const EntryContainerLink = styled(Link)`
-  position: relative;
-  display: block;
-  text-decoration: none;
+const SectionStyled = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 8px;
+`
+const DateStyled = styled.p`
+  font-size: 14px;
+`
+const CategorieStyled = styled.h2`
+  font-size: 14px;
+  letter-spacing: 0.8px;
+  font-weight: lighter;
+`
 
+const EntryContainerLink = styled.div`
+  position: relative;
   width: 100%;
 `
 
 const JournalEntryStyled = styled.div`
   color: var(--primary);
-  display: grid;
-  grid-template-columns: 18% 82%;
-  grid-template-rows: 1fr;
-  margin: 10px 15px;
-`
+  height: 115px;
+  margin-bottom: 40px;
 
-const DateStyled = styled.p`
-  text-align: center;
-  font-size: 18px;
-
-  align-self: center;
+  /* display: flex;
+  flex-direction: row; */
+  /* margin: 10px 15px; */
 `
 
 const ContentStyled = styled.div`
-  padding: 10px 5px 10px 20px;
   font-family: Roboto;
+  display: flex;
+  flex-direction: column;
 `
 
-const CategorieStyled = styled.h2`
-  display: inline-block;
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 1.3px;
-  margin-bottom: 5px;
-`
 const MarkerIconStyled = styled.img`
   color: #8e969e;
   height: 12px;
@@ -80,7 +83,8 @@ const MarkerIconStyled = styled.img`
 `
 
 const CityStyled = styled.h3`
-  font-size: 16px;
+  color: #707d8c;
+  font-size: 12px;
   color: #8e969e;
   font-family: Roboto;
   font-weight: 400;
@@ -88,15 +92,13 @@ const CityStyled = styled.h3`
 `
 
 const CaptionStyled = styled.h3`
-  display: block;
-
-  font-size: 18px;
-
-  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 1.1px;
+  font-weight: bold;
   margin-bottom: 3px;
 `
-const MemoryStyled = styled.p`
-  font-size: 16px;
+const EntryStyled = styled.p`
+  font-size: 12px;
 
   a {
     text-decoration: none;

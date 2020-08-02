@@ -1,4 +1,5 @@
 import React from 'react'
+import * as ROUTES from '../../constants/routes'
 import { useParams, Link } from 'react-router-dom'
 import styled from 'styled-components'
 import book from '../../images/book-open.svg'
@@ -11,7 +12,7 @@ export default function JournalDetailPage({ values }) {
   const { entryId } = useParams()
   const [selectedEntry] = values.filter((values) => entryId === values.id)
   const parsedDate = dayjs(selectedEntry.date)
-  console.log(selectedEntry)
+
   return (
     <>
       <DetailPageWrapper>
@@ -20,13 +21,13 @@ export default function JournalDetailPage({ values }) {
         <CaptionStyled>{selectedEntry.caption}</CaptionStyled>
         <IconStyled src={book} alt="book" />
 
-        <MemoryStyled>{selectedEntry.memory}</MemoryStyled>
+        <EntryStyled>{selectedEntry.entry}</EntryStyled>
         <CityStyled>
           <MarkerIconStyled src={MarkerIcon} />
           {selectedEntry.city}
         </CityStyled>
-        <Link to={`/`}>
-          <BackIconStyled src={chevron} alt="home" />
+        <Link to={ROUTES.HOME}>
+          <BackIconStyled src={chevron} alt="journalentry" />
         </Link>
       </DetailPageWrapper>
     </>
@@ -81,7 +82,7 @@ const IconStyled = styled.img`
   height: 20px;
   margin: 20px 0;
 `
-const MemoryStyled = styled.p`
+const EntryStyled = styled.p`
   width: 90%;
   font-size: 16px;
   color: var(--primary);

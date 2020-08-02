@@ -7,7 +7,7 @@ export default createGlobalStyle`
     --primary: #727C86;
     --lighter: #A9AAAD;
     --secondary: #6D7885;
-    --text: #5B636B
+    --text: #6E7A85;
 ;
     --highlight: #64B2D0;
     --icon: #ACB6CE;

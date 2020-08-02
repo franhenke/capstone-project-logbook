@@ -3,10 +3,16 @@ import styled from 'styled-components'
 import Button from '../Button/Button'
 import useForm from '../../hooks/useForm'
 import dayjs from 'dayjs'
+import { useContext } from 'react'
+import LoginContext from '../auth/LoginContext'
+import AddJournalEntryToDbButton from '../AddJournalEntryToDbButton'
 
 export default function Form({ onFormSubmit }) {
   const [values, handleChange, handleSubmit] = useForm(exportEntries)
+
   const currentDate = dayjs().format('DD/MM/YYYY')
+  const { user } = useContext(LoginContext)
+
   return (
     <JournalFormStyled onSubmit={handleSubmit}>
       <label htmlFor="date">Date</label>
@@ -49,38 +55,40 @@ export default function Form({ onFormSubmit }) {
         required
       >
         <option value="" disabled hidden></option>
-        <option value="Experience">Experience</option>
+        <option value="Memory">Memory</option>
         <option value="Review">Review</option>
         <option value="Thoughts">Thoughts</option>
       </SelectStyled>
-      <label htmlFor="memory">Memory</label>
+      <label htmlFor="Entry">Entry</label>
       <textarea
         onChange={(event) => handleChange(event)}
-        value={values.memory || ''}
+        value={values.entry || ''}
         type="text"
-        name="memory"
-        id="memory"
+        name="entry"
+        id="entry"
         min="10"
         required
       />
-      <Button text="Save" />
+      {user ? (
+        <AddJournalEntryToDbButton userId={user.uid} values={values} />
+      ) : null}
     </JournalFormStyled>
   )
   function exportEntries(values) {
     onFormSubmit(values)
-    console.log(values)
     return values
   }
 }
 
 const JournalFormStyled = styled.form`
+  margin-top: 150px;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   height: 520px;
   width: 285px;
   font-family: Roboto;
-  margin-bottom: 40px;
+
   label {
     color: #21374f;
     font-size: 16px;
@@ -127,11 +135,4 @@ const SelectStyled = styled.select`
   font-size: 16px;
   opacity: 0.5;
   width: 285px;
-
-  .memory {
-    color: orange;
-    &:checked {
-      color: orange;
-    }
-  }
 `

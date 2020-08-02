@@ -1,17 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import * as ROUTES from '../../constants/routes'
 import styled from 'styled-components'
 import homeIcon from '../../images/list.svg'
 import pencil from '../../images/book-open.svg'
 
 export default function TabBar() {
+
   return (
     <TabBarStyled>
-      <LinkStyled to="/">
-        <IconStyled src={homeIcon} alt="home" />
+      <LinkStyled to={ROUTES.HOME}>
+        <IconStyled src={homeIcon} />
       </LinkStyled>
-      <LinkStyled to="/journalform">
-        <IconStyled src={pencil} alt="pencil" />
+      <LinkStyled to={ROUTES.JOURNALFORM}>
+        <IconStyled src={pencil} />
       </LinkStyled>
     </TabBarStyled>
   )
@@ -36,10 +38,3 @@ const IconStyled = styled.img`
   color: var(--primary);
   height: 25px;
 `
-
-/* // const TabBarStyled = styled.nav`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   color: var(--summergreen);
-//  */
