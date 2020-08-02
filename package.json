@@ -10,6 +10,7 @@
     "deck.gl": "^8.2.3",
     "eslint-plugin-react-hooks": "^4.0.8",
     "firebase": "^7.16.1",
+    "framer-motion": "^2.3.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-datepicker": "^3.0.0",
