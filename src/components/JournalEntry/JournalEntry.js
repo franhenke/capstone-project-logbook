@@ -28,6 +28,7 @@ export default function JournalEntry({ values }) {
               <AddToFaveListButton userId={user.uid} values={values} />
             ) : null}
           </EntryStyled>
+
           <CityStyled>
             <MarkerIconStyled src={markerIcon} />
             {values.city}

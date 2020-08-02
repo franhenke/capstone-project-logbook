@@ -14,8 +14,7 @@ import useServices from './hooks/useServices'
 import SignUp from './pages/Signup'
 import GetUserFavJournalsList from './components/GetUserFavJournalsList'
 import Login from './pages/Login'
-import GetUserJournalEntries from './components/GetUserJournalEntries'
-import JournalEntryListFromDb from './components/JournalEntry/JournalEntryListFromDb'
+import Homepage from './pages/Homepage'
 
 function App() {
   const { signUp, loginWithFirebase, setProfile } = useServices()
@@ -46,7 +45,7 @@ function App() {
               <JournalDetailPage values={journalEntries} />
             </Route>
             <Route exact path={ROUTES.DASHBOARD}>
-              <JournalEntryListFromDb values={journalEntries} />
+              <Homepage values={journalEntries} />
             </Route>
             <Route exact path={'/favjournalentries'}>
               <GetUserFavJournalsList />
