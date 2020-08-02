@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types'
-import React, { useRef, useState } from 'react'
-import { animated, useSpring } from 'react-spring'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
-import cross from '../../images/x.svg'
-import deleteIcon from '../../images/delete.svg'
-import searchIcon from '../../images/search.svg'
+import searchIcon from '../../images/chevron-right.svg'
 
 SearchBar.propTypes = {
   searchInput: PropTypes.string,
@@ -12,26 +9,10 @@ SearchBar.propTypes = {
 }
 
 export default function SearchBar({ searchInput, setSearchTerm }) {
-  const [isSearchBarVisible, setIsSearchBarVisible] = useState(false)
-
   const searchField = useRef()
-
-  const animateWidth = useSpring({
-    width: isSearchBarVisible ? '300px' : '0px',
-  })
 
   function handleSearch(event) {
     setSearchTerm(event.target.value)
-  }
-
-  function viewSearch() {
-    setIsSearchBarVisible(true)
-    searchField.current.focus()
-  }
-
-  function endSearch() {
-    setSearchTerm('')
-    setIsSearchBarVisible(false)
   }
 
   function clearSearchField() {
@@ -41,28 +22,20 @@ export default function SearchBar({ searchInput, setSearchTerm }) {
 
   return (
     <StyledSearchBar>
-      {isSearchBarVisible ? (
-        <ToggleIcon src={cross} alt="cross" onClick={endSearch} />
-      ) : (
-        <ToggleIcon src={searchIcon} alt="searchIcon" onClick={viewSearch} />
-      )}
-      <StyledSearchForm
-        style={animateWidth}
-        onSubmit={(event) => event.preventDefault()}
-      >
+      <StyledSearchForm onSubmit={(event) => event.preventDefault()}>
         <StyledTextField
           ref={searchField}
           type="text"
-          placeholder="Wonach suchst du?"
+          placeholder="search for an entry"
           value={searchInput}
           onChange={handleSearch}
           data-testid="textField"
         />
-        <DeleteTextIcon
+        <ClickAreaStyled
           onClick={clearSearchField}
-          src={deleteIcon}
           alt="delete"
-        />
+        ></ClickAreaStyled>
+        <SearchIconStyled src={searchIcon} />
       </StyledSearchForm>
     </StyledSearchBar>
   )
@@ -70,42 +43,43 @@ export default function SearchBar({ searchInput, setSearchTerm }) {
 
 const StyledSearchBar = styled.div`
   display: flex;
+  width: 250px;
   justify-content: left;
   align-items: center;
   padding: 10px 0;
 `
 
-const StyledSearchForm = styled(animated.form)`
+const StyledSearchForm = styled.form`
   position: relative;
-  margin-left: -10px;
-  height: 35px;
-  max-width: 90%;
-  border-radius: 5px;
-  border: 1px solid var(--grey-5);
+  height: 27px;
+  width: 250px;
+  border: 0.5px solid #8dacab;
 `
 const StyledTextField = styled.input`
   height: 100%;
   width: 100%;
   border: none;
-  border-radius: 5px;
-  padding-left: 20px;
+  padding-left: 10px;
   padding-right: 20%;
-  font-family: var(--fontbody);
   font-size: 14px;
   &:focus {
     outline: none;
   }
 `
-const DeleteTextIcon = styled.img`
-  height: 50%;
-  top: 25%;
+const ClickAreaStyled = styled.span`
   position: absolute;
-  right: 10px;
+  top: 0;
+  right: 0;
+  display: block;
+  background: #8dacab;
+  height: 26.5px;
+  width: 27px;
+  border: 0.5px solid #8dacab;
   cursor: pointer;
 `
-
-const ToggleIcon = styled.img`
-  height: 35px;
-  cursor: pointer;
-  z-index: 100;
+const SearchIconStyled = styled.img`
+  position: absolute;
+  right: 2px;
+  top: 1px;
+  pointer-events: none;
 `
