@@ -5,22 +5,21 @@ import JournalEntryList from './components/JournalEntry/JournalEntryList'
 import { v4 as uuid } from 'uuid'
 import styled from 'styled-components'
 import TabBar from './components/TabBar/TabBar'
-import { Switch, Route, useLocation } from 'react-router-dom'
+import { Redirect, Switch, Route, useLocation } from 'react-router-dom'
 import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
 import useAuth from './components/auth/useAuth'
 import LoginContext from './components/auth/LoginContext'
 import firebaseApp from './firebase'
-import Home from './pages/Home'
-import UserBar from './components/auth/UserBar'
 import useServices from './hooks/useServices'
 import SignUp from './pages/Signup'
 import GetUserFavJournalsList from './components/GetUserFavJournalsList'
-import GetUserJournalEntries from './components/GetUserJournalEntries'
 import Login from './pages/Login'
+import GetUserJournalEntries from './components/GetUserJournalEntries'
+import JournalEntryListFromDb from './components/JournalEntry/JournalEntryListFromDb'
 
 function App() {
   const { signUp, loginWithFirebase, setProfile } = useServices()
-  const [user, authCompleted] = useAuth()
+  const [user, userIsLoading] = useAuth()
   const location = useLocation()
 
   const [journalEntries, setJournalEntries] = useState(
@@ -31,26 +30,23 @@ function App() {
     localStorage.setItem('journalEntries', JSON.stringify(journalEntries))
   }, [journalEntries])
 
-  if (!authCompleted) {
-    return <LoadingScreen>Almost there....</LoadingScreen>
-  }
-
   return (
     <>
-      <LoginContext.Provider value={{ user, firebaseApp }}>
+      <LoginContext.Provider value={{ user, userIsLoading, firebaseApp }}>
         <AppWrapper>
           <Switch>
+            <Redirect exact from="/" to="/home" />
             <Route exact path={ROUTES.HOME}>
-              <Home />
-              {/* <JournalEntryList journalEntries={journalEntries} /> */}
-              <GetUserJournalEntries journalEntry={journalEntries} />
+              <JournalEntryList journalEntries={journalEntries} />
             </Route>
-
             <Route exact path={ROUTES.JOURNALFORM}>
               <JournalForm onFormSubmit={handleJournalEntry} />
             </Route>
             <Route exact path={ROUTES.JOURNALDETAILS}>
               <JournalDetailPage values={journalEntries} />
+            </Route>
+            <Route exact path={ROUTES.DASHBOARD}>
+              <JournalEntryListFromDb values={journalEntries} />
             </Route>
             <Route exact path={'/favjournalentries'}>
               <GetUserFavJournalsList />
@@ -85,7 +81,7 @@ export default App
 const AppWrapper = styled.div`
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 30% 60% 10%;
+  grid-template-rows: 25% 65% 10%;
   justify-items: center;
   height: 100vh;
 `
@@ -95,9 +91,4 @@ const FooterStyled = styled.div`
   height: 50px;
   grid-row: 3 / 4;
   align-self: end;
-`
-
-const LoadingScreen = styled.div`
-  color: var(--sand);
-  padding: 30px;
 `
