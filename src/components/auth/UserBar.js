@@ -1,6 +1,10 @@
 import React, { useContext } from 'react'
 import LoginContext from './LoginContext'
+import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
+import logoutIcon from '../../images/log-out.svg'
+import loginIcon from '../../images/log-in.svg'
+import registerIcon from '../../images/user-plus.svg'
 
 export default function UserBar() {
   const { user, firebaseApp } = useContext(LoginContext)
@@ -14,15 +18,49 @@ export default function UserBar() {
   return (
     <div>
       {user ? (
-        <button onClick={logoutFromFirebase}>Logout</button>
+        <LogoutIconStyled src={logoutIcon} onClick={logoutFromFirebase} />
       ) : (
-          <>
-            <button onClick={() => history.push('/login')}>Login</button> |
-            <button onClick={() => history.push('/register')}>
-              Register
-          </button>
-          </>
-        )}
+        <>
+          <LoginIconStyled
+            src={loginIcon}
+            onClick={() => history.push('/login')}
+          />{' '}
+          |
+          <RegisterIconStyled
+            src={registerIcon}
+            onClick={() => history.push('/register')}
+          />
+        </>
+      )}
     </div>
   )
 }
+
+const LogoutIconStyled = styled.img`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 100;
+  height: 20px;
+  width: 20px;
+`
+
+const LoginIconStyled = styled.img`
+  position: absolute;
+  top: 55px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 100;
+  height: 20px;
+  width: 20px;
+`
+const RegisterIconStyled = styled.img`
+  position: absolute;
+  top: 55px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 100;
+  height: 20px;
+  width: 20px;
+`

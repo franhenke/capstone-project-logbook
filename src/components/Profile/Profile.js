@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import image from '../../images/profile.jpg'
+import image from '../../images/mockuser.svg'
 
 export default function Profile() {
   return (
@@ -13,11 +13,12 @@ export default function Profile() {
 const ProfileImage = styled.div`
   background-image: url(${image});
   position: absolute;
+  overflow: visible;
   top: 20px;
   left: 20px;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 50px;
-  width: 50px;
+  height: 45px;
+  width: 45px;
   border-radius: 50%;
 `
