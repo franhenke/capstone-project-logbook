@@ -7,10 +7,9 @@ import markerIcon from '../images/mappin.svg'
 import AddToFaveListButton from '../components/AddToFaveListButton'
 import dayjs from 'dayjs'
 
-export default function GetUserJournalEntries(journalEntry) {
+export default function GetUserJournalEntries() {
   const [userJournalEntries, setuserJournalEntries] = useState([])
   const { user } = useContext(LoginContext)
-  const parsedDate = dayjs(journalEntry.date)
 
   useEffect(() => {
     if (!user) return
@@ -23,6 +22,7 @@ export default function GetUserJournalEntries(journalEntry) {
         if (doc.exists) {
           setuserJournalEntries(doc.data().UserJournalEntries)
         }
+        console.log(doc.data().UserJournalEntries)
       })
       .catch(function (error) {
         console.log('Error getting document:', error)
@@ -31,51 +31,32 @@ export default function GetUserJournalEntries(journalEntry) {
 
   return (
     <>
-      <ScrollableWrapper>
-        {userJournalEntries.map((journalEntry) => (
-          <li
-            key={journalEntry.date}
-            data-testid="journalEntry-navigation-item"
-          >
-            <JournalEntryStyled>
-              <DateStyled>{parsedDate.format('DD MMM YYYY')}</DateStyled>
-              <ContentStyled>
-                <CategorieStyled>{journalEntry.category}</CategorieStyled>
-                <CityStyled>
-                  <MarkerIconStyled src={markerIcon} />
-                  {journalEntry.city}
-                </CityStyled>
-                <CaptionStyled>{journalEntry.caption}</CaptionStyled>
-                <EntryStyled>
-                  <Truncate lines={2} ellipsis={<span>... see more</span>}>
-                    {journalEntry.entry}
-                  </Truncate>
-                  {user ? (
-                    <AddToFaveListButton
-                      userId={user.uid}
-                      journalEntry={journalEntry}
-                    />
-                  ) : null}
-                </EntryStyled>
-              </ContentStyled>
-            </JournalEntryStyled>
-          </li>
-        ))}
-      </ScrollableWrapper>
+      {userJournalEntries.map((values) => (
+        <div key={values.date} data-testid="journalEntry-navigation-item">
+          <JournalEntryStyled>
+            <DateStyled>{values.date}</DateStyled>
+            <ContentStyled>
+              <CategorieStyled>{values.category}</CategorieStyled>
+              <CityStyled>
+                <MarkerIconStyled src={markerIcon} />
+                {values.city}
+              </CityStyled>
+              <CaptionStyled>{values.caption}</CaptionStyled>
+              <EntryStyled>
+                <Truncate lines={2} ellipsis={<span>... see more</span>}>
+                  {values.entry}
+                </Truncate>
+                {user ? (
+                  <AddToFaveListButton userId={user.uid} values={values} />
+                ) : null}
+              </EntryStyled>
+            </ContentStyled>
+          </JournalEntryStyled>
+        </div>
+      ))}
     </>
   )
 }
-
-const ScrollableWrapper = styled.main`
-  height: 400px;
-  overflow-y: scroll;
-  grid-row: 2 / 3;
-  scrollbar-width: none;
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`
 
 const JournalEntryStyled = styled.div`
   color: var(--primary);

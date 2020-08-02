@@ -7,11 +7,11 @@ export default function AddJournalEntryToDbButton({ userId, values }) {
   async function addToDb() {
     const parsedDate = dayjs(values.date)
     const journalFormData = {
-      date: parsedDate.format('DD MMM YYYY'),
-      city: values.city,
       caption: values.caption,
       category: values.category,
-      details: values.entry,
+      city: values.city,
+      date: values.date,
+      entry: values.entry,
     }
 
     const userDoc = db.collection('journalentries').doc(userId)

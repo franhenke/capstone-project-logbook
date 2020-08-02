@@ -25,12 +25,12 @@ export default function GetUserFavJournalsList() {
 
   return (
     <>
-      {favJournalsList.map((journalEntry) => (
-        <li key={journalEntry.date} data-testid="journalEntry-navigation-item">
-          <h3>{journalEntry.caption}</h3>
-          <h3>{journalEntry.date}</h3>
-          <h3>{journalEntry.city}</h3>
-          <h3>{journalEntry.details}</h3>
+      {favJournalsList.map((values) => (
+        <li key={values.caption} data-testid="journalEntry-navigation-item">
+          <h3>{values.caption}</h3>
+          <h3>{values.date}</h3>
+          <h3>{values.city}</h3>
+          <h3>{values.details}</h3>
         </li>
       ))}
     </>
