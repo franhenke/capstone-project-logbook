@@ -47,6 +47,7 @@ const StyledSearchBar = styled.div`
   justify-content: left;
   align-items: center;
   padding: 10px 0;
+  margin-bottom: 20px;
 `
 
 const StyledSearchForm = styled.form`

@@ -1,46 +1,57 @@
-import React, { useContext } from 'react'
+import PropTypes from 'prop-types'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import LoginContext from '../components/auth/LoginContext'
-import image from '../images/profile.jpg'
-import UserBar from '../components/auth/UserBar'
+import SearchBar from '../components/SearchBar/SearchBar'
+import ProfileHeader from '../components/Header/ProfileHeader'
+import JournalEntryList from '../components/JournalEntry/JournalEntryList'
 
-function Home() {
-  const { user } = useContext(LoginContext)
+Home.propTypes = {
+  values: PropTypes.arrayOf(PropTypes.object),
+}
+
+export default function Home({ values }) {
+  const [searchTerm, setSearchTerm] = useState('')
+  const results = searchTerm
+    ? values.filter((values) =>
+        values.caption.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : values
+
   return (
     <>
-      <ProfileImage></ProfileImage>
-      <UserBar />
-      <Container>
-        {user ? <h3>Welcome back, {user.displayName}! </h3> : null}
-        {user ? <p>Let's create memories</p> : null}
-      </Container>
+      <ProfileHeader />
+      <EntryContainerStyled>
+        <IntroStyled>Your Journalentries</IntroStyled>
+        <SearchBar setSearchTerm={setSearchTerm} searchInput={searchTerm} />
+        <ScrollableWrapper>
+          {results.length > 0 ? (
+            <JournalEntryList values={values} journalEntries={results} />
+          ) : (
+            <div>No entries found. Please change your search.</div>
+          )}
+        </ScrollableWrapper>
+      </EntryContainerStyled>
     </>
   )
 }
 
-export default Home
-
-const ProfileImage = styled.div`
-  background-image: url(${image});
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
+const EntryContainerStyled = styled.main`
+  grid-row: 2 / 3;
+  width: 90vw;
 `
 
-const Container = styled.main`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  overflow: scroll;
-  text-align: left;
+const ScrollableWrapper = styled.div`
+  height: 400px;
+  overflow-y: scroll;
 
-  h3 {
-    text-align: left;
+  scrollbar-width: none;
+
+  ::-webkit-scrollbar {
+    display: none;
   }
+`
+const IntroStyled = styled.h3`
+  font-size: 16px;
+  color: #8dacab;
+  font-weight: bold;
 `

@@ -54,9 +54,10 @@ const CategorieStyled = styled.h2`
   font-weight: lighter;
 `
 
-const EntryContainerLink = styled.div`
+const EntryContainerLink = styled(Link)`
   position: relative;
   width: 100%;
+  text-decoration: none;
 `
 
 const JournalEntryStyled = styled.div`

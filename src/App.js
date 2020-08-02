@@ -14,7 +14,7 @@ import useServices from './hooks/useServices'
 import SignUp from './pages/Signup'
 import GetUserFavJournalsList from './components/GetUserFavJournalsList'
 import Login from './pages/Login'
-import Homepage from './pages/Homepage'
+import Home from './pages/Home'
 
 function App() {
   const { signUp, loginWithFirebase, setProfile } = useServices()
@@ -36,16 +36,13 @@ function App() {
           <Switch>
             <Redirect exact from="/" to="/home" />
             <Route exact path={ROUTES.HOME}>
-              <JournalEntryList journalEntries={journalEntries} />
+              <Home values={journalEntries} />
             </Route>
             <Route exact path={ROUTES.JOURNALFORM}>
               <JournalForm onFormSubmit={handleJournalEntry} />
             </Route>
             <Route exact path={ROUTES.JOURNALDETAILS}>
               <JournalDetailPage values={journalEntries} />
-            </Route>
-            <Route exact path={ROUTES.DASHBOARD}>
-              <Homepage values={journalEntries} />
             </Route>
             <Route exact path={'/favjournalentries'}>
               <GetUserFavJournalsList />
