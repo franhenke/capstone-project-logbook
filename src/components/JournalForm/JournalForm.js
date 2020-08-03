@@ -1,14 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
 import Button from '../Button/Button'
-import useForm from '../../hooks/useForm'
+import useForm from '../../services/useForm'
 import dayjs from 'dayjs'
 import { useContext } from 'react'
 import LoginContext from '../auth/LoginContext'
 import AddJournalEntryToDbButton from '../AddJournalEntryToDbButton'
 
-export default function Form({ onFormSubmit }) {
-  const [values, handleChange, handleSubmit] = useForm(exportEntries)
+import 'react-toastify/dist/ReactToastify.css'
+
+export default function Form() {
+  const [values, handleChange, handleSubmit] = useForm()
 
   const currentDate = dayjs().format('DD/MM/YYYY')
   const { user } = useContext(LoginContext)
@@ -74,10 +76,6 @@ export default function Form({ onFormSubmit }) {
       ) : null}
     </JournalFormStyled>
   )
-  function exportEntries(values) {
-    onFormSubmit(values)
-    return values
-  }
 }
 
 const JournalFormStyled = styled.form`

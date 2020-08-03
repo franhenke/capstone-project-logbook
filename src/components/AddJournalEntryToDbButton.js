@@ -1,11 +1,9 @@
 import React from 'react'
 import { db } from '../firebase/index'
 import firebase from 'firebase'
-import dayjs from 'dayjs'
 
 export default function AddJournalEntryToDbButton({ userId, values }) {
   async function addToDb() {
-    const parsedDate = dayjs(values.date)
     const journalFormData = {
       caption: values.caption,
       category: values.category,
