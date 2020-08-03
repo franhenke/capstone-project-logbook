@@ -16,7 +16,7 @@ export default function Form() {
   const { user } = useContext(LoginContext)
 
   return (
-    <JournalFormStyled onSubmit={handleSubmit}>
+    <JournalFormStyled onSubmit={handleSubmit} noValidate>
       <label htmlFor="date">Date</label>
       <input
         onChange={(event) => handleChange(event)}

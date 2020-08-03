@@ -38,7 +38,7 @@ export default function UserBar() {
 
 const LogoutIconStyled = styled.img`
   position: absolute;
-  top: 20px;
+  top: 30px;
   right: 20px;
   cursor: pointer;
   z-index: 100;
@@ -49,7 +49,7 @@ const LogoutIconStyled = styled.img`
 const LoginIconStyled = styled.img`
   position: absolute;
   top: 55px;
-  right: 20px;
+  right: 30px;
   cursor: pointer;
   z-index: 100;
   height: 20px;

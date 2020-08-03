@@ -12,30 +12,37 @@ export default function JournalEntry({ values }) {
   const { user } = useContext(LoginContext)
 
   return (
-    <EntryContainerLink to={`/journalentry/${values.id}`}>
-      <JournalEntryStyled>
-        <SectionStyled>
-          <CategorieStyled>{values.category}</CategorieStyled>
-          <DateStyled>{parsedDate.format('DD MMM YYYY')}</DateStyled>
-        </SectionStyled>
-        <ContentStyled>
-          <CaptionStyled>{values.caption}</CaptionStyled>
-          <EntryStyled>
-            <Truncate lines={2} ellipsis={<span>... see more</span>}>
-              {values.entry}
-            </Truncate>
-            {user ? (
-              <AddToFaveListButton userId={user.uid} values={values} />
-            ) : null}
-          </EntryStyled>
+    <JournalEntryStyled>
+      <SectionStyled>
+        <CategorieStyled>{values.category}</CategorieStyled>
+        <DateStyled>{parsedDate.format('DD MMM YYYY')}</DateStyled>
+      </SectionStyled>
+      <ContentStyled>
+        <CaptionStyled>{values.caption}</CaptionStyled>
+        <EntryStyled>
+          <Truncate
+            lines={2}
+            ellipsis={
+              <span>
+                <LinkStyled to={'/journalentry/:entryId'}>
+                  ... see more
+                </LinkStyled>
+              </span>
+            }
+          >
+            {values.entry}
+          </Truncate>
+          {user ? (
+            <AddToFaveListButton userId={user.uid} values={values} />
+          ) : null}
+        </EntryStyled>
 
-          <CityStyled>
-            <MarkerIconStyled src={markerIcon} />
-            {values.city}
-          </CityStyled>
-        </ContentStyled>
-      </JournalEntryStyled>
-    </EntryContainerLink>
+        <CityStyled>
+          <MarkerIconStyled src={markerIcon} />
+          {values.city}
+        </CityStyled>
+      </ContentStyled>
+    </JournalEntryStyled>
   )
 }
 
@@ -43,20 +50,18 @@ const SectionStyled = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 `
 const DateStyled = styled.p`
-  font-size: 14px;
+  font-size: 13px;
 `
 const CategorieStyled = styled.h2`
-  font-size: 14px;
-  letter-spacing: 0.8px;
+  font-size: 13px;
+  letter-spacing: 0.3px;
   font-weight: lighter;
 `
 
-const EntryContainerLink = styled(Link)`
-  position: relative;
-  width: 100%;
+const LinkStyled = styled(Link)`
   text-decoration: none;
 `
 
@@ -64,10 +69,6 @@ const JournalEntryStyled = styled.div`
   color: var(--primary);
   height: 115px;
   margin-bottom: 40px;
-
-  /* display: flex;
-  flex-direction: row; */
-  /* margin: 10px 15px; */
 `
 
 const ContentStyled = styled.div`
@@ -78,14 +79,14 @@ const ContentStyled = styled.div`
 
 const MarkerIconStyled = styled.img`
   color: #8e969e;
-  height: 12px;
+  height: 11px;
   vertical-align: baseline;
   padding-right: 5px;
 `
 
 const CityStyled = styled.h3`
   color: #707d8c;
-  font-size: 12px;
+  font-size: 11px;
   color: #8e969e;
   font-family: Roboto;
   font-weight: 400;
@@ -93,17 +94,17 @@ const CityStyled = styled.h3`
 `
 
 const CaptionStyled = styled.h3`
-  font-size: 16px;
-  letter-spacing: 1.1px;
+  font-size: 15px;
+  letter-spacing: 0.5px;
   font-weight: bold;
   margin-bottom: 3px;
 `
 const EntryStyled = styled.p`
   font-size: 12px;
 
-  a {
+  span {
     text-decoration: none;
-    font-size: 9px;
+    font-size: 12px;
     font-family: Roboto;
     font-weight: 500;
     color: #86727c;

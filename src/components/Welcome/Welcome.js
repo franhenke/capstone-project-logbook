@@ -13,7 +13,7 @@ export default function Welcome() {
 
 const WelcomeStyled = styled.div`
   position: absolute;
-  top: 75px;
+  top: 80px;
   left: 20px;
   text-align: left;
   font-size: 14px;
