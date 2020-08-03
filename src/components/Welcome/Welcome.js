@@ -6,12 +6,12 @@ export default function Welcome() {
   const { user } = useContext(LoginContext)
   return (
     <WelcomeStyled>
-      {user ? <h3>Welcome back, {user.displayName}! </h3> : null}
+      {user ? <div>Welcome back, {user.displayName}! </div> : null}
     </WelcomeStyled>
   )
 }
 
-const WelcomeStyled = styled.h2`
+const WelcomeStyled = styled.div`
   position: absolute;
   top: 75px;
   left: 20px;
