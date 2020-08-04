@@ -17,7 +17,6 @@ LoginContext.propTypes = {
 export default function Login({ loginWithFirebase, setProfile }) {
   const { register, handleSubmit, errors, setError } = useForm()
 
-  let history = useHistory()
   return (
     <BackgroundStyled>
       <FormWrapper>

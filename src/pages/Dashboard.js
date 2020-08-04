@@ -4,13 +4,15 @@ import styled from 'styled-components'
 import SearchBar from '../components/SearchBar/SearchBar'
 import ProfileHeader from '../components/Header/ProfileHeader'
 import GetUserJournalEntries from '../components/GetUserJournalEntries'
+import JournalEntryList from '../components/JournalEntry/JournalEntryList'
 
 Dashboard.propTypes = {
   values: PropTypes.arrayOf(PropTypes.object),
 }
 
-export default function Dashboard({ values }) {
+export default function Dashboard() {
   const [searchTerm, setSearchTerm] = useState('')
+  const values = GetUserJournalEntries()
   const results = searchTerm
     ? values.filter((values) =>
         values.caption.toLowerCase().includes(searchTerm.toLowerCase())
@@ -25,7 +27,7 @@ export default function Dashboard({ values }) {
         <SearchBar setSearchTerm={setSearchTerm} searchInput={searchTerm} />
         <ScrollableWrapper>
           {results.length > 0 ? (
-            <GetUserJournalEntries values={values} values={results} />
+            <JournalEntryList journalEntries={results} />
           ) : (
             <div>No entries found. Please change your search.</div>
           )}
