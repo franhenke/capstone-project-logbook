@@ -15,6 +15,7 @@ import GetUserFavJournalsList from './components/GetUserFavJournalsList'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import { ToastContainer } from 'react-toastify'
+import NotFound from './pages/NotFound'
 
 function App() {
   const { signUp, loginWithFirebase, setProfile } = useServices()
@@ -56,6 +57,7 @@ function App() {
             <Route path={ROUTES.REGISTER}>
               <SignUp signUp={signUp} setProfile={setProfile} />
             </Route>
+            <Route component={NotFound} />
           </Switch>
           <ToastContainer
             position="bottom-center"
