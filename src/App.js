@@ -22,14 +22,6 @@ function App() {
   const [user, userIsLoading] = useAuth()
   const location = useLocation()
 
-  // const [journalEntries, setJournalEntries] = useState(
-  //   () => JSON.parse(localStorage.getItem('journalEntries')) || []
-  // )
-
-  // useEffect(() => {
-  //   localStorage.setItem('journalEntries', JSON.stringify(journalEntries))
-  // }, [journalEntries])
-
   return (
     <>
       <LoginContext.Provider value={{ user, userIsLoading, firebaseApp }}>
@@ -76,10 +68,6 @@ function App() {
       </LoginContext.Provider>
     </>
   )
-  // function handleJournalEntry(newJournalEntry) {
-  //   newJournalEntry.id = uuid()
-  //   setJournalEntries([newJournalEntry, ...journalEntries])
-  // }
 }
 
 export default App
