@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Button from '../Button/Button'
 import useForm from '../../services/useForm'
@@ -8,12 +8,17 @@ import LoginContext from '../auth/LoginContext'
 import AddJournalEntryToDbButton from '../AddJournalEntryToDbButton'
 
 import 'react-toastify/dist/ReactToastify.css'
+import ImageUpload from '../imageUpload'
 
 export default function Form() {
-  const [values, handleChange, handleSubmit] = useForm()
-
+  const [values, handleChange, handleSubmit, setUrlToValues] = useForm()
+  const [fileUrl, setFileUrl] = useState(null)
   const currentDate = dayjs().format('DD/MM/YYYY')
   const { user } = useContext(LoginContext)
+
+  useEffect(() => {
+    setUrlToValues(fileUrl)
+  }, [fileUrl])
 
   return (
     <JournalFormStyled onSubmit={handleSubmit} noValidate>
@@ -71,6 +76,8 @@ export default function Form() {
         min="10"
         required
       />
+      <ImageUpload setFileUrl={setFileUrl} />
+
       {user ? (
         <AddJournalEntryToDbButton userId={user.uid} values={values} />
       ) : null}

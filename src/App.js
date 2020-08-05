@@ -1,7 +1,6 @@
 import React from 'react'
 import * as ROUTES from './constants/routes'
 import JournalForm from './components/JournalForm/JournalForm'
-import { v4 as uuid } from 'uuid'
 import styled from 'styled-components'
 import TabBar from './components/TabBar/TabBar'
 import { Redirect, Switch, Route, useLocation } from 'react-router-dom'
@@ -16,11 +15,13 @@ import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import { ToastContainer } from 'react-toastify'
 import NotFound from './pages/NotFound'
+import GetUserJournalEntries from './components/GetUserJournalEntries'
 
 function App() {
   const { signUp, loginWithFirebase, setProfile } = useServices()
   const [user, userIsLoading] = useAuth()
   const location = useLocation()
+  const values = GetUserJournalEntries()
 
   return (
     <>
@@ -29,13 +30,13 @@ function App() {
           <Switch>
             <Redirect exact from="/" to="/home" />
             <Route exact path={ROUTES.HOME}>
-              <Dashboard />
+              <Dashboard values={values} />
             </Route>
             <Route exact path={ROUTES.JOURNALFORM}>
               <JournalForm />
             </Route>
             <Route exact path={'/journalentry/:entryId'}>
-              <JournalDetailPage />
+              <JournalDetailPage values={values} />
             </Route>
             <Route exact path={'/favjournalentries'}>
               <GetUserFavJournalsList />

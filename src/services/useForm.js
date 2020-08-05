@@ -37,7 +37,13 @@ export default function useForm() {
       [event.target.name]: event.target.value,
     }))
   }
-  return [inputs, handleChange, handleSubmit]
+  const setUrlToInput = (url) => {
+    setInputs({
+      ...inputs,
+      image: url,
+    })
+  }
+  return [inputs, handleChange, handleSubmit, setUrlToInput]
 }
 
 const ToastTextStyled = styled.p`

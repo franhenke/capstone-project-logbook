@@ -10,9 +10,9 @@ Dashboard.propTypes = {
   values: PropTypes.arrayOf(PropTypes.object),
 }
 
-export default function Dashboard() {
+export default function Dashboard({ values }) {
   const [searchTerm, setSearchTerm] = useState('')
-  const values = GetUserJournalEntries()
+
   const results = searchTerm
     ? values.filter((values) =>
         values.caption.toLowerCase().includes(searchTerm.toLowerCase())

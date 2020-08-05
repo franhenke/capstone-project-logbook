@@ -1,6 +1,7 @@
 import React from 'react'
 import { db } from '../firebase/index'
 import firebase from 'firebase'
+import styled from 'styled-components'
 
 export default function AddJournalEntryToDbButton({ userId, values }) {
   async function addToDb() {
@@ -10,6 +11,7 @@ export default function AddJournalEntryToDbButton({ userId, values }) {
       city: values.city,
       date: values.date,
       entry: values.entry,
+      image: values.image,
     }
 
     const userDoc = db.collection('journalentries').doc(userId)
@@ -31,5 +33,9 @@ export default function AddJournalEntryToDbButton({ userId, values }) {
     }
   }
 
-  return <button onClick={addToDb}>Save</button>
+  return <ButtonStyled onClick={addToDb}>Save</ButtonStyled>
 }
+
+const ButtonStyled = styled.button`
+  margin-top: 20px;
+`

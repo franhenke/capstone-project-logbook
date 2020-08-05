@@ -32,10 +32,10 @@ export default function JournalEntry({ values }) {
           >
             {values.entry}
           </Truncate>
-          {user ? (
-            <AddToFaveListButton userId={user.uid} values={values} />
-          ) : null}
         </EntryStyled>
+        {user ? (
+          <AddToFaveListButton userId={user.uid} values={values} />
+        ) : null}
 
         <CityStyled>
           <MarkerIconStyled src={markerIcon} />
@@ -63,6 +63,7 @@ const CategorieStyled = styled.h2`
 
 const LinkStyled = styled(Link)`
   text-decoration: none;
+  color: #8e969e;
 `
 
 const JournalEntryStyled = styled.div`
@@ -85,7 +86,6 @@ const MarkerIconStyled = styled.img`
 `
 
 const CityStyled = styled.h3`
-  color: #707d8c;
   font-size: 11px;
   color: #8e969e;
   font-family: Roboto;
@@ -101,12 +101,13 @@ const CaptionStyled = styled.h3`
 `
 const EntryStyled = styled.p`
   font-size: 12px;
+  color: #8e969e;
 
   span {
     text-decoration: none;
     font-size: 12px;
     font-family: Roboto;
     font-weight: 500;
-    color: #86727c;
+    color: #8e969e;
   }
 `
