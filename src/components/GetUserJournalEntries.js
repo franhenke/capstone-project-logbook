@@ -4,10 +4,10 @@ import LoginContext from './auth/LoginContext'
 
 export default function GetUserJournalEntries() {
   const [userJournalEntries, setuserJournalEntries] = useState([])
-  const { user, userIsLoading } = useContext(LoginContext)
+  const { user } = useContext(LoginContext)
 
   useEffect(() => {
-    if (!user && !userIsLoading) return
+    if (!user) return
 
     const docRef = db.collection('journalentries').doc(user.uid)
 

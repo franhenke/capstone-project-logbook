@@ -10,7 +10,7 @@ import dayjs from 'dayjs'
 
 export default function JournalDetailPage({ values }) {
   const { entryId } = useParams()
-  const [selectedEntry] = values.filter((values) => entryId === values.id)
+  const [selectedEntry] = values.filter((values) => entryId === values.caption)
   const parsedDate = dayjs(selectedEntry.date)
 
   return (

@@ -1,6 +1,6 @@
 export const HOME = '/home'
 export const JOURNALDETAILS = '/journalentry/:entryId'
-export const JOURNALFORM = '/home/JournalForm'
+export const JOURNALFORM = '/home/journalform'
 export const FAVLIST = '/home/favejournalentries'
 export const DASHBOARD = '/dashboard'
 export const LOGIN = '/login'

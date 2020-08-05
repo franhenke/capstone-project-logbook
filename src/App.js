@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import * as ROUTES from './constants/routes'
 import JournalForm from './components/JournalForm/JournalForm'
 import styled from 'styled-components'
@@ -8,6 +8,7 @@ import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
 import useAuth from './components/auth/useAuth'
 import LoginContext from './components/auth/LoginContext'
 import firebaseApp from './firebase'
+import { db } from './firebase/index'
 import useServices from './services/useServices'
 import SignUp from './pages/Signup'
 import GetUserFavJournalsList from './components/GetUserFavJournalsList'
@@ -15,41 +16,51 @@ import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import { ToastContainer } from 'react-toastify'
 import NotFound from './pages/NotFound'
-import GetUserJournalEntries from './components/GetUserJournalEntries'
 
 function App() {
   const { signUp, loginWithFirebase, setProfile } = useServices()
-  const [user, userIsLoading] = useAuth()
+  const [user, isAuthCompleted] = useAuth()
   const location = useLocation()
   const values = GetUserJournalEntries()
 
+  if (!isAuthCompleted) {
+    return <div>....Loading</div>
+  }
+
   return (
     <>
-      <LoginContext.Provider value={{ user, userIsLoading, firebaseApp }}>
+      <LoginContext.Provider value={{ user, isAuthCompleted, firebaseApp }}>
         <AppWrapper>
           <Switch>
             <Redirect exact from="/" to="/home" />
-            <Route exact path={ROUTES.HOME}>
-              <Dashboard values={values} />
+
+            <Route path={ROUTES.REGISTER}>
+              <SignUp signUp={signUp} setProfile={setProfile} />
             </Route>
-            <Route exact path={ROUTES.JOURNALFORM}>
-              <JournalForm />
-            </Route>
-            <Route exact path={'/journalentry/:entryId'}>
-              <JournalDetailPage values={values} />
-            </Route>
-            <Route exact path={'/favjournalentries'}>
-              <GetUserFavJournalsList />
-            </Route>
-            <Route path={ROUTES.LOGIN}>
+            <Route exact path="/login">
               <Login
                 loginWithFirebase={loginWithFirebase}
                 setProfile={setProfile}
               />
             </Route>
-            <Route path={ROUTES.REGISTER}>
-              <SignUp signUp={signUp} setProfile={setProfile} />
+
+            <Route
+              exact
+              path={ROUTES.HOME}
+              component={() => <Dashboard values={values} />}
+            />
+            <Route path={ROUTES.JOURNALFORM}>
+              <JournalForm />
             </Route>
+            <Route
+              path={'/journalentry/:entryId'}
+              component={() => <JournalDetailPage values={values} />}
+            />
+
+            <Route exact path={'/favjournalentries'}>
+              <GetUserFavJournalsList />
+            </Route>
+
             <Route component={NotFound} />
           </Switch>
           <ToastContainer
@@ -69,6 +80,30 @@ function App() {
       </LoginContext.Provider>
     </>
   )
+
+  function GetUserJournalEntries() {
+    const [userJournalEntries, setuserJournalEntries] = useState([])
+
+    useEffect(() => {
+      if (!user) return
+
+      const docRef = db.collection('journalentries').doc(user.uid)
+
+      docRef
+        .get()
+        .then(function (doc) {
+          if (doc.exists) {
+            setuserJournalEntries(doc.data().UserJournalEntries)
+          }
+          console.log(doc.data().UserJournalEntries)
+        })
+        .catch(function (error) {
+          console.log('Error getting document:', error)
+        })
+    }, [user])
+
+    return userJournalEntries
+  }
 }
 
 export default App

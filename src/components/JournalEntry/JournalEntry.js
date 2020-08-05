@@ -24,7 +24,7 @@ export default function JournalEntry({ values }) {
             lines={2}
             ellipsis={
               <span>
-                <LinkStyled to={'/journalentry/:entryId'}>
+                <LinkStyled to={`/journalentry/${values.caption}`}>
                   ... see more
                 </LinkStyled>
               </span>

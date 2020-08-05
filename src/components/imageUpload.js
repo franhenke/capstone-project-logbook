@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { storage } from 'firebase'
 
 export default function ImageUpload({ setFileUrl }) {
@@ -14,7 +14,6 @@ export default function ImageUpload({ setFileUrl }) {
   return (
     <>
       <input type="file" onChange={onFileChange} />
-      {/* <div onClick={onFileChange}>Add photo</div> */}
     </>
   )
 }

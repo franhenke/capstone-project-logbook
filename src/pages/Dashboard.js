@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import SearchBar from '../components/SearchBar/SearchBar'
 import ProfileHeader from '../components/Header/ProfileHeader'
-import GetUserJournalEntries from '../components/GetUserJournalEntries'
 import JournalEntryList from '../components/JournalEntry/JournalEntryList'
 
 Dashboard.propTypes = {
