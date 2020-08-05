@@ -97,15 +97,14 @@ const ContentStyled = styled.div`
 
 const MarkerIconStyled = styled.img`
   position: absolute;
-  color: #8e969e;
-  top: 2px;
+  top: 3px;
   height: 11px;
-  left: 67px;
+  left: 75px;
 `
 
 const CityStyled = styled.h3`
   position: relative;
-  font-size: 11px;
+  font-size: 12px;
   font-family: Roboto;
   font-weight: 400;
   margin-top: 3px;
@@ -119,6 +118,7 @@ const CaptionStyled = styled.h3`
 `
 const EntryStyled = styled.p`
   font-size: 12px;
+  opacity: 0.8;
   color: #8e969e;
 
   span {

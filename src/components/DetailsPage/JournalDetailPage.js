@@ -23,10 +23,10 @@ export default function JournalDetailPage({ values }) {
 
         <EntryStyled>{selectedEntry.entry}</EntryStyled>
         <CityStyled>
-          <MarkerIconStyled src={MarkerIcon} />
+          <MarkerIconStyled src={MarkerIcon} alt="icon of a pin" />
           {selectedEntry.city}
         </CityStyled>
-        <img src={selectedEntry.image} />
+        <img src={selectedEntry.image} alt="upload" />
         <Link to={ROUTES.HOME}>
           <BackIconStyled src={chevron} alt="journalentry" />
         </Link>

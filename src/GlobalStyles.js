@@ -9,7 +9,7 @@ export default createGlobalStyle`
     --secondary: #6D7885;
     --text: #6E7A85;
     --lightgrey: #C3C6C9;
-;
+    --mint: #8DACAB;
     --highlight: #64B2D0;
     --icon: #ACB6CE;
     --iconactive: #49567E;
