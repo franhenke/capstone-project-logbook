@@ -3,6 +3,7 @@ import { db } from '../firebase/index'
 import firebase from 'firebase'
 import { toast } from 'react-toastify'
 import styled from 'styled-components'
+import heartIcon from '../images/heart.svg'
 
 export default function AddToFaveList({ userId, values }) {
   async function addToFavList() {
@@ -42,8 +43,13 @@ export default function AddToFaveList({ userId, values }) {
     }
   }
 
-  return <button onClick={addToFavList}>Add to faves</button>
+  return <AddToFaveIconStyled src={heartIcon} onClick={addToFavList} />
 }
+
+const AddToFaveIconStyled = styled.img`
+  height: 16px;
+  width: 16px;
+`
 
 const ToastTextStyled = styled.p`
   text-align: center;

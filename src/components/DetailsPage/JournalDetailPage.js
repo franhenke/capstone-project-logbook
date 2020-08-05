@@ -26,6 +26,7 @@ export default function JournalDetailPage({ values }) {
           <MarkerIconStyled src={MarkerIcon} />
           {selectedEntry.city}
         </CityStyled>
+        <img src={selectedEntry.image} />
         <Link to={ROUTES.HOME}>
           <BackIconStyled src={chevron} alt="journalentry" />
         </Link>

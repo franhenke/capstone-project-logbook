@@ -5,60 +5,82 @@ import LoginContext from '../auth/LoginContext'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import Truncate from 'react-truncate'
-import markerIcon from '../../images/mappin.svg'
+import markerIcon from '../../images/markerpin.svg'
+import { Divider } from '../Divider/Divider'
 
 export default function JournalEntry({ values }) {
   const parsedDate = dayjs(values.date)
   const { user } = useContext(LoginContext)
 
   return (
-    <JournalEntryStyled>
-      <SectionStyled>
-        <CategorieStyled>{values.category}</CategorieStyled>
-        <DateStyled>{parsedDate.format('DD MMM YYYY')}</DateStyled>
-      </SectionStyled>
-      <ContentStyled>
-        <CaptionStyled>{values.caption}</CaptionStyled>
-        <EntryStyled>
-          <Truncate
-            lines={2}
-            ellipsis={
-              <span>
-                <LinkStyled to={`/journalentry/${values.caption}`}>
-                  ... see more
-                </LinkStyled>
-              </span>
-            }
-          >
-            {values.entry}
-          </Truncate>
-        </EntryStyled>
-        {user ? (
-          <AddToFaveListButton userId={user.uid} values={values} />
-        ) : null}
+    <>
+      <JournalEntryStyled>
+        <ContentStyled>
+          <CategorieStyled>{values.category}</CategorieStyled>
+          <DateStyled>{parsedDate.format('DD MMM YYYY')}</DateStyled>
 
-        <CityStyled>
-          <MarkerIconStyled src={markerIcon} />
-          {values.city}
-        </CityStyled>
-      </ContentStyled>
-    </JournalEntryStyled>
+          <CaptionStyled>{values.caption}</CaptionStyled>
+          <EntryStyled>
+            <Truncate
+              lines={2}
+              ellipsis={
+                <span>
+                  <LinkStyled to={`/journalentry/${values.caption}`}>
+                    ... see more
+                  </LinkStyled>
+                </span>
+              }
+            >
+              {values.entry}
+            </Truncate>
+          </EntryStyled>
+
+          <CityStyled>
+            <MarkerIconStyled src={markerIcon} />
+            {values.city}
+          </CityStyled>
+          <FaveIconStyled>
+            {user ? (
+              <AddToFaveListButton userId={user.uid} values={values} />
+            ) : null}
+          </FaveIconStyled>
+        </ContentStyled>
+      </JournalEntryStyled>
+      <Divider />
+    </>
   )
 }
-
-const SectionStyled = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 5px;
+const JournalEntryStyled = styled.div`
+  color: var(--primary);
+  height: 100px;
+  margin-bottom: 40px;
 `
+
+const FaveIconStyled = styled.div`
+  height: 25px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+`
+
 const DateStyled = styled.p`
-  font-size: 13px;
+  font-size: 12px;
 `
 const CategorieStyled = styled.h2`
-  font-size: 13px;
-  letter-spacing: 0.3px;
+  position: relative;
+  font-size: 10px;
+  line-height: 20px;
+  margin: 10px 0 5px;
   font-weight: lighter;
+  &:after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    left: 1px;
+    top: 17px;
+    height: 1px;
+    background-color: #8dacab;
+  }
 `
 
 const LinkStyled = styled(Link)`
@@ -66,31 +88,27 @@ const LinkStyled = styled(Link)`
   color: #8e969e;
 `
 
-const JournalEntryStyled = styled.div`
-  color: var(--primary);
-  height: 115px;
-  margin-bottom: 40px;
-`
-
 const ContentStyled = styled.div`
+  position: relative;
   font-family: Roboto;
   display: flex;
   flex-direction: column;
 `
 
 const MarkerIconStyled = styled.img`
+  position: absolute;
   color: #8e969e;
+  top: 2px;
   height: 11px;
-  vertical-align: baseline;
-  padding-right: 5px;
+  left: 67px;
 `
 
 const CityStyled = styled.h3`
+  position: relative;
   font-size: 11px;
-  color: #8e969e;
   font-family: Roboto;
   font-weight: 400;
-  margin-bottom: 5px;
+  margin-top: 3px;
 `
 
 const CaptionStyled = styled.h3`
