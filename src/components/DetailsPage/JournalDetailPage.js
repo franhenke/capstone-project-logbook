@@ -24,7 +24,7 @@ export default function JournalDetailPage({ values }) {
         <EntryStyled>{selectedEntry.entry}</EntryStyled>
         <CityStyled>
           <MarkerIconStyled src={MarkerIcon} alt="icon of a pin" />
-          {selectedEntry.city}
+          {selectedEntry.place}
         </CityStyled>
         <img src={selectedEntry.image} alt="upload" />
         <Link to={ROUTES.HOME}>

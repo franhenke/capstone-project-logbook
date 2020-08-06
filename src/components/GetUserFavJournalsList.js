@@ -29,7 +29,7 @@ export default function GetUserFavJournalsList() {
         <li key={values.caption} data-testid="journalEntry-navigation-item">
           <h3>{values.caption}</h3>
           <h3>{values.date}</h3>
-          <h3>{values.city}</h3>
+          <h3>{values.place}</h3>
           <h3>{values.details}</h3>
         </li>
       ))}

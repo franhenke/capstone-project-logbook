@@ -9,8 +9,8 @@ export default function ProfileHeader() {
     <>
       <HeaderStyled>
         <Profile />
-        <Welcome />
-        <UserBar />
+        {/* <Welcome /> */}
+        {/* <UserBar /> */}
       </HeaderStyled>
     </>
   )

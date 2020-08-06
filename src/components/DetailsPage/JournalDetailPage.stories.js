@@ -10,7 +10,7 @@ export default {
 const entrySelected = [
   {
     date: '2020-06-06',
-    city: 'Dublin',
+    place: 'Dublin',
     category: 'Thoughts',
     caption: 'A night to remember',
     memory:

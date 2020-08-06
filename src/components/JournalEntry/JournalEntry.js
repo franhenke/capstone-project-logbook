@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import AddToFaveListButton from '../AddToFaveListButton'
+import AddToFaveListButton from '../Button/AddToFaveListButton'
 import LoginContext from '../auth/LoginContext'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
@@ -37,7 +37,7 @@ export default function JournalEntry({ values }) {
 
           <CityStyled>
             <MarkerIconStyled src={markerIcon} />
-            {values.city}
+            {values.place}
           </CityStyled>
           <FaveIconStyled>
             {user ? (

@@ -9,13 +9,13 @@ export default {
 
 const values = [
   {
-    city: 'Dublin',
+    place: 'Dublin',
     date: '2020-06-06',
     caption: 'This was fun',
     memory: 'a day to remember"',
   },
   {
-    city: 'Dublin',
+    place: 'Dublin',
     date: '2020-06-01',
     caption: 'Why does it always rain on me',
     memory: 'Why didn´t I buy the umbrella',
