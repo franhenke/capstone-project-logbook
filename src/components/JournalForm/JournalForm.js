@@ -30,96 +30,110 @@ export default function JournalForm() {
   }, [fileUrl])
 
   return (
-    <JournalFormStyled onSubmit={handleSubmit} noValidate>
-      <FirstSectionStyled>
-        <DatePickerStyled>
-          <DatePickerLabelStyled htmlFor="date">
-            Date
-            <img src={dateIcon} alt="calendar icon" data-cy="dateIcon" />
-            <DatePickerInputStyled
+    <>
+      <HeadlineStyled>Create a memory</HeadlineStyled>
+      <JournalFormStyled onSubmit={handleSubmit} noValidate>
+        <FirstSectionStyled>
+          <DatePickerStyled>
+            <DatePickerLabelStyled htmlFor="date">
+              Date
+              <img src={dateIcon} alt="calendar icon" data-cy="dateIcon" />
+              <DatePickerInputStyled
+                onChange={(event) => handleChange(event)}
+                value={values.date || ''}
+                type="date"
+                name="date"
+                id="date"
+                autoFocus
+                max={currentDate}
+                required
+              />
+            </DatePickerLabelStyled>
+          </DatePickerStyled>
+          <CategoryStyled>
+            <label htmlFor="category">Category</label>
+            <SelectStyled
+              defaultValue=""
               onChange={(event) => handleChange(event)}
-              value={values.date || ''}
-              type="date"
-              name="date"
-              id="date"
-              autoFocus
-              max={currentDate}
+              value={values.category || ''}
+              name="category"
+              id="category"
               required
-            />
-          </DatePickerLabelStyled>
-        </DatePickerStyled>
-        <CategoryStyled>
-          <label htmlFor="category">Category</label>
-          <SelectStyled
-            defaultValue=""
+            >
+              <option value="" hidden>
+                Category
+              </option>
+              <option value="Memory">Memory</option>
+              <option value="Review">Review</option>
+              <option value="Thoughts">Thoughts</option>
+            </SelectStyled>
+          </CategoryStyled>
+        </FirstSectionStyled>
+        <PlaceStyled>
+          <label htmlFor="place">Place</label>
+          <input
             onChange={(event) => handleChange(event)}
-            value={values.category || ''}
-            name="category"
-            id="category"
+            value={values.place || ''}
+            type="text"
+            name="place"
+            id="place"
             required
-          >
-            <option value="" hidden>
-              Category
-            </option>
-            <option value="Memory">Memory</option>
-            <option value="Review">Review</option>
-            <option value="Thoughts">Thoughts</option>
-          </SelectStyled>
-        </CategoryStyled>
-      </FirstSectionStyled>
-      <PlaceStyled>
-        <label htmlFor="place">Place</label>
+            placeholder="Add a place or location to your entry"
+          />
+        </PlaceStyled>
+        <label htmlFor="caption">Caption</label>
         <input
           onChange={(event) => handleChange(event)}
-          value={values.place || ''}
+          value={values.caption || ''}
           type="text"
-          name="place"
-          id="place"
+          name="caption"
+          id="caption"
+          min="5"
           required
+          placeholder="Add a titel to your entry"
         />
-      </PlaceStyled>
-      <label htmlFor="caption">Caption</label>
-      <input
-        onChange={(event) => handleChange(event)}
-        value={values.caption || ''}
-        type="text"
-        name="caption"
-        id="caption"
-        min="5"
-        required
-        placeholder="Add a titel to your entry"
-      />
-      <TextAreaSection>
-        <label htmlFor="Entry">Entry</label>
-        <StyledTextAreaInputField>
-          <StyledTextArea
-            onChange={(event) => handleChange(event)}
-            value={values.entry || ''}
-            type="text"
-            name="entry"
-            id="entry"
-            min="10"
-            required
-            placeholder="tell your story.."
-          />
-        </StyledTextAreaInputField>
-      </TextAreaSection>
-      <ImageUpload setFileUrl={setFileUrl} />
+        <TextAreaSection>
+          <label htmlFor="Entry">Entry</label>
+          <StyledTextAreaInputField>
+            <StyledTextArea
+              onChange={(event) => handleChange(event)}
+              value={values.entry || ''}
+              type="text"
+              name="entry"
+              id="entry"
+              min="10"
+              required
+              placeholder="tell your story.."
+            />
+          </StyledTextAreaInputField>
+        </TextAreaSection>
+        <ImageUpload setFileUrl={setFileUrl} />
 
-      {user ? (
-        <AddJournalEntryToDbButton userId={user.uid} values={values} />
-      ) : null}
-    </JournalFormStyled>
+        {user ? (
+          <AddJournalEntryToDbButton userId={user.uid} values={values} />
+        ) : null}
+      </JournalFormStyled>
+    </>
   )
 }
 
+const HeadlineStyled = styled.p`
+  left: 37px;
+  top: 80px;
+  position: absolute;
+  color: var(--mint);
+  font-size: 18px;
+  font-weight: 600;
+  text-align: left;
+`
+
 const JournalFormStyled = styled.form`
-  margin-top: 150px;
+  margin-top: 120px;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   height: 520px;
-  width: 285px;
+  width: 300px;
   font-family: Roboto;
 `
 
@@ -128,34 +142,65 @@ const FirstSectionStyled = styled.section`
   grid-template-columns: 180px 150px;
   grid-template-rows: 70px;
   justify-content: space-between;
+  margin-bottom: 35px;
+  align-items: baseline;
 `
 
 const DatePickerStyled = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  align-self: flex-end;
 
   img {
     position: absolute;
-    top: 27px;
+    top: 32px;
     left: 1px;
     pointer-events: none;
     height: 14px;
   }
 `
+const DatePickerLabelStyled = styled.label`
+  color: var(--background);
+`
+
+const DatePickerInputStyled = styled.input`
+  margin-left: 23px;
+  height: 23px;
+  font-size: 17px;
+  opacity: 0.5;
+  color: var(--text);
+  opacity: 0.5;
+`
+
+const SelectStyled = styled.select`
+  background: var(--background);
+  color: var(--text);
+  outline: none;
+  border: none;
+
+  height: 20px;
+  font-size: 16px;
+  width: 120px;
+`
 
 const CategoryStyled = styled.div`
   display: flex;
   flex-direction: column;
+  align-self: flex-end;
 
   label {
     opacity: 0;
   }
 `
 
+const PlaceStyled = styled.div`
+  margin-bottom: 35px;
+`
+
 const TextAreaSection = styled.section`
-  margin: 25px 0;
-  height: 250px;
+  margin: 35px 0;
+  height: 150px;
   overflow-y: scroll;
 
   scrollbar-width: none;
@@ -165,39 +210,8 @@ const TextAreaSection = styled.section`
   }
 `
 
-const SelectStyled = styled.select`
-  background: var(--background);
-  color: var(--text);
-  outline: none;
-  border: none;
-  height: 23px;
-  font-size: 16px;
-  opacity: 0.5;
-  width: 120px;
-  padding-top: 1.5px;
-`
-
-const DatePickerLabelStyled = styled.label`
-  color: var(--background);
-`
-
-const DatePickerInputStyled = styled.input`
-  margin-left: 23px;
-  height: 20px;
-  font-size: 17px;
-  opacity: 0.5;
-  color: var(--text);
-  opacity: 0.5;
-  padding-bottom: 2px;
-`
-
-const PlaceStyled = styled.div`
-  margin-bottom: 20px;
-`
-
 const StyledTextAreaInputField = styled.div`
   position: relative;
-  margin-top: 10px;
   margin-bottom: 50px;
 `
 
@@ -206,12 +220,11 @@ const StyledTextArea = styled(TextareaAutosize)`
   border: none;
   background: var(--background);
   width: 90%;
-
   font-size: 16px;
-  ::placeholder {
+
+  &::placeholder {
     color: #abb3bb;
-    font-size: 12px;
-    padding: 0;
+    font-family: 'Roboto', sans-serif;
   }
   &:focus {
     outline: none;

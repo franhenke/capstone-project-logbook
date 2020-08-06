@@ -28,14 +28,22 @@ export default createGlobalStyle`
   }
 
   input, textarea {
-
+    font-size: 16px;
     background-color: var(--background);
     outline: none;
     border: none;
+    width: 90%;
+    margin-top: 8px;
 
     &:focus {
     outline: none;
     border: none;
+  }
+
+  &::placeholder {
+    color: #abb3bb;
+    font-size: 13px;
+    padding: 0;
   }
   }
   `
