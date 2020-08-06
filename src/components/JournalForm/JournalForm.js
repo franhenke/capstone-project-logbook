@@ -228,6 +228,5 @@ const StyledTextArea = styled(TextareaAutosize)`
   }
   &:focus {
     outline: none;
-    border-bottom: 1px solid var(--highlight);
   }
 `

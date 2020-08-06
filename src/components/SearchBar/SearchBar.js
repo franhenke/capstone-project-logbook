@@ -21,50 +21,53 @@ export default function SearchBar({ searchInput, setSearchTerm }) {
   }
 
   return (
-    <StyledSearchBar>
-      <StyledSearchForm onSubmit={(event) => event.preventDefault()}>
-        <StyledTextField
-          ref={searchField}
-          type="text"
-          placeholder="search for an entry"
-          value={searchInput}
-          onChange={handleSearch}
-          data-testid="textField"
-        />
-        <ClickAreaStyled
-          onClick={clearSearchField}
-          alt="delete"
-        ></ClickAreaStyled>
-        <SearchIconStyled src={searchIcon} />
-      </StyledSearchForm>
-    </StyledSearchBar>
+    // <SearchBarStyled>
+    <SearchFormStyled onSubmit={(event) => event.preventDefault()}>
+      <TextFieldStyled
+        ref={searchField}
+        type="text"
+        placeholder="search for an entry"
+        value={searchInput}
+        onChange={handleSearch}
+        data-testid="textField"
+      />
+      <ClickAreaStyled
+        onClick={clearSearchField}
+        alt="delete"
+      ></ClickAreaStyled>
+      <SearchIconStyled src={searchIcon} />
+    </SearchFormStyled>
+    // {/* </SearchBarStyled> */}
   )
 }
 
-const StyledSearchBar = styled.div`
-  display: flex;
-  width: 250px;
-  justify-content: left;
-  align-items: center;
-  padding: 10px 0;
-  margin-bottom: 20px;
-`
+// const SearchBarStyled = styled.div`
+//   display: flex;
+//   width: 250px;
+//   /* justify-content: left;
+//   align-items: center; */
 
-const StyledSearchForm = styled.form`
+//   margin-bottom: 20px;
+// `
+
+const SearchFormStyled = styled.form`
   position: relative;
-  height: 27px;
   width: 250px;
   border: 0.5px solid #8dacab;
+  margin: 8px 0 25px;
 `
-const StyledTextField = styled.input`
-  height: 100%;
-  width: 100%;
+const TextFieldStyled = styled.input`
   border: none;
   padding-left: 10px;
   padding-right: 20%;
   font-size: 14px;
   &:focus {
     outline: none;
+  }
+
+  &::placeholder {
+    color: #abb3bb;
+    font-size: 14px;
   }
 `
 const ClickAreaStyled = styled.span`
