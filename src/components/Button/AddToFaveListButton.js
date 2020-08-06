@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { db } from '../../firebase/index'
 import firebase from 'firebase'
 import { toast } from 'react-toastify'
 import styled from 'styled-components'
 import heartIcon from '../../images/heart.svg'
+import heartIconFilled from '../../images/heartFilled.svg'
+import { motion } from 'framer-motion'
 
 export default function AddToFaveList({ userId, values }) {
+  const [isButtonClicked, setIsButtonClicked] = useState(false)
   async function addToFavList() {
     const journalData = {
       caption: values.caption,
@@ -36,6 +39,7 @@ export default function AddToFaveList({ userId, values }) {
         draggable: true,
         progress: undefined,
       })
+      setIsButtonClicked(!isButtonClicked)
     } else {
       await userDoc.set({
         journalEntries: [journalData],
@@ -43,10 +47,18 @@ export default function AddToFaveList({ userId, values }) {
     }
   }
 
-  return <AddToFaveIconStyled src={heartIcon} onClick={addToFavList} />
+  return (
+    <AddToFaveIconStyled onClick={addToFavList} whileTap={{ scale: 0.9 }}>
+      {isButtonClicked ? (
+        <img src={heartIconFilled} />
+      ) : (
+        <img src={heartIcon} />
+      )}
+    </AddToFaveIconStyled>
+  )
 }
 
-const AddToFaveIconStyled = styled.img`
+const AddToFaveIconStyled = styled(motion.div)`
   height: 16px;
   width: 16px;
 `
