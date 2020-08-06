@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import Button from '../Button/Button'
 import useForm from '../../services/useForm'
 import dayjs from 'dayjs'
+import dateIcon from '../../images/datePicker.svg'
 import { useContext } from 'react'
 import LoginContext from '../auth/LoginContext'
-import AddJournalEntryToDbButton from '../AddJournalEntryToDbButton'
+import AddJournalEntryToDbButton from '../Button/AddJournalEntryToDbButton'
 
 import 'react-toastify/dist/ReactToastify.css'
 import ImageUpload from '../imageUpload'
@@ -22,17 +22,42 @@ export default function Form() {
 
   return (
     <JournalFormStyled onSubmit={handleSubmit} noValidate>
-      <label htmlFor="date">Date</label>
-      <input
-        onChange={(event) => handleChange(event)}
-        value={values.date || ''}
-        type="date"
-        name="date"
-        id="date"
-        autoFocus
-        max={currentDate}
-        required
-      />
+      <FirstSectionStyled>
+        <DatePickerStyled>
+          <DatePickerLabelStyled htmlFor="date">
+            Date
+            <img src={dateIcon} alt="calendar icon" data-cy="dateIcon" />
+            <DatePickerInputStyled
+              onChange={(event) => handleChange(event)}
+              value={values.date || ''}
+              type="date"
+              name="date"
+              id="date"
+              autoFocus
+              max={currentDate}
+              required
+            />
+          </DatePickerLabelStyled>
+        </DatePickerStyled>
+        <CategoryStyled>
+          <label htmlFor="category">Category</label>
+          <SelectStyled
+            defaultValue=""
+            onChange={(event) => handleChange(event)}
+            value={values.category || ''}
+            name="category"
+            id="category"
+            required
+          >
+            <option value="" hidden>
+              Category
+            </option>
+            <option value="Memory">Memory</option>
+            <option value="Review">Review</option>
+            <option value="Thoughts">Thoughts</option>
+          </SelectStyled>
+        </CategoryStyled>
+      </FirstSectionStyled>
       <label htmlFor="city">City</label>
       <input
         onChange={(event) => handleChange(event)}
@@ -53,19 +78,7 @@ export default function Form() {
         min="5"
         required
       />
-      <label htmlFor="category">Category</label>
-      <SelectStyled
-        onChange={(event) => handleChange(event)}
-        value={values.category || ''}
-        name="category"
-        id="category"
-        required
-      >
-        <option value="" disabled hidden></option>
-        <option value="Memory">Memory</option>
-        <option value="Review">Review</option>
-        <option value="Thoughts">Thoughts</option>
-      </SelectStyled>
+
       <label htmlFor="Entry">Entry</label>
       <textarea
         onChange={(event) => handleChange(event)}
@@ -94,50 +107,93 @@ const JournalFormStyled = styled.form`
   width: 285px;
   font-family: Roboto;
 
-  label {
+  /* label {
     color: #21374f;
     font-size: 16px;
     letter-spacing: 2px;
     height: 16px;
     opacity: 0.5;
     margin: 25px 0 10px;
-  }
+  } */
 
-  input,
+  /* input,
   textarea {
     background: var(--background);
     color: var(--text);
     outline: none;
     border: none;
-    border-bottom-style: solid;
+    /* border-bottom-style: solid;
     border-bottom-color: #979797;
-    border-bottom-width: 1px;
-    font-size: 16px;
+    border-bottom-width: 1px; */
+  /* font-size: 16px;
     opacity: 0.5;
-    width: 285px;
+    width: 285px; */
 
-    &:focus {
+  /* &:focus {
       border: none;
       border-bottom-style: solid;
       border-bottom-color: var(--highlight);
       border-bottom-width: 1px;
     }
-  }
-
-  textarea {
+  } */
+  */ textarea {
     margin-bottom: 15px;
     height: 60px;
   }
 `
+
+const FirstSectionStyled = styled.section`
+  display: grid;
+  grid-template-columns: 180px 150px;
+  grid-template-rows: 70px;
+  justify-content: space-between;
+`
+
+const DatePickerStyled = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  img {
+    position: absolute;
+    top: 27px;
+    left: 1px;
+    pointer-events: none;
+    height: 14px;
+  }
+`
+
+const CategoryStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  label {
+    opacity: 0;
+  }
+`
+
 const SelectStyled = styled.select`
   background: var(--background);
   color: var(--text);
   outline: none;
   border: none;
-  border-bottom-style: solid;
-  border-bottom-color: #979797;
-  border-bottom-width: 1px;
+  height: 23px;
   font-size: 16px;
   opacity: 0.5;
-  width: 285px;
+  width: 120px;
+  padding-top: 1.5px;
+`
+
+const DatePickerLabelStyled = styled.label`
+  color: var(--background);
+`
+
+const DatePickerInputStyled = styled.input`
+  margin-left: 23px;
+  height: 20px;
+  font-size: 17px;
+  opacity: 0.5;
+  color: var(--text);
+  opacity: 0.5;
+  padding-bottom: 2px;
 `

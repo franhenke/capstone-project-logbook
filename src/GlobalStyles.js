@@ -26,4 +26,16 @@ export default createGlobalStyle`
     color: var(--text);
   
   }
+
+  input, textarea {
+
+    background-color: var(--background);
+    outline: none;
+    border: none;
+
+    &:focus {
+    outline: none;
+    border: none;
+  }
+  }
   `
