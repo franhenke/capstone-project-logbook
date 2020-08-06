@@ -6,11 +6,20 @@ import dateIcon from '../../images/datePicker.svg'
 import { useContext } from 'react'
 import LoginContext from '../auth/LoginContext'
 import AddJournalEntryToDbButton from '../Button/AddJournalEntryToDbButton'
-
+import TextareaAutosize from 'react-textarea-autosize'
+import PropTypes from 'prop-types'
 import 'react-toastify/dist/ReactToastify.css'
 import ImageUpload from '../imageUpload'
 
-export default function Form() {
+JournalForm.propTypes = {
+  placeholder: PropTypes.string,
+  name: PropTypes.string,
+  handleChange: PropTypes.func,
+  required: PropTypes.bool,
+  error: PropTypes.string,
+}
+
+export default function JournalForm() {
   const [values, handleChange, handleSubmit, setUrlToValues] = useForm()
   const [fileUrl, setFileUrl] = useState(null)
   const currentDate = dayjs().format('DD/MM/YYYY')
@@ -58,16 +67,17 @@ export default function Form() {
           </SelectStyled>
         </CategoryStyled>
       </FirstSectionStyled>
-      <label htmlFor="city">City</label>
-      <input
-        onChange={(event) => handleChange(event)}
-        value={values.city || ''}
-        type="text"
-        name="city"
-        id="city"
-        required
-      />
-
+      <PlaceStyled>
+        <label htmlFor="place">Place</label>
+        <input
+          onChange={(event) => handleChange(event)}
+          value={values.place || ''}
+          type="text"
+          name="place"
+          id="place"
+          required
+        />
+      </PlaceStyled>
       <label htmlFor="caption">Caption</label>
       <input
         onChange={(event) => handleChange(event)}
@@ -77,18 +87,23 @@ export default function Form() {
         id="caption"
         min="5"
         required
+        placeholder="Add a titel to your entry"
       />
-
-      <label htmlFor="Entry">Entry</label>
-      <textarea
-        onChange={(event) => handleChange(event)}
-        value={values.entry || ''}
-        type="text"
-        name="entry"
-        id="entry"
-        min="10"
-        required
-      />
+      <TextAreaSection>
+        <label htmlFor="Entry">Entry</label>
+        <StyledTextAreaInputField>
+          <StyledTextArea
+            onChange={(event) => handleChange(event)}
+            value={values.entry || ''}
+            type="text"
+            name="entry"
+            id="entry"
+            min="10"
+            required
+            placeholder="tell your story.."
+          />
+        </StyledTextAreaInputField>
+      </TextAreaSection>
       <ImageUpload setFileUrl={setFileUrl} />
 
       {user ? (
@@ -106,40 +121,6 @@ const JournalFormStyled = styled.form`
   height: 520px;
   width: 285px;
   font-family: Roboto;
-
-  /* label {
-    color: #21374f;
-    font-size: 16px;
-    letter-spacing: 2px;
-    height: 16px;
-    opacity: 0.5;
-    margin: 25px 0 10px;
-  } */
-
-  /* input,
-  textarea {
-    background: var(--background);
-    color: var(--text);
-    outline: none;
-    border: none;
-    /* border-bottom-style: solid;
-    border-bottom-color: #979797;
-    border-bottom-width: 1px; */
-  /* font-size: 16px;
-    opacity: 0.5;
-    width: 285px; */
-
-  /* &:focus {
-      border: none;
-      border-bottom-style: solid;
-      border-bottom-color: var(--highlight);
-      border-bottom-width: 1px;
-    }
-  } */
-  */ textarea {
-    margin-bottom: 15px;
-    height: 60px;
-  }
 `
 
 const FirstSectionStyled = styled.section`
@@ -172,6 +153,18 @@ const CategoryStyled = styled.div`
   }
 `
 
+const TextAreaSection = styled.section`
+  margin: 25px 0;
+  height: 250px;
+  overflow-y: scroll;
+
+  scrollbar-width: none;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`
+
 const SelectStyled = styled.select`
   background: var(--background);
   color: var(--text);
@@ -196,4 +189,32 @@ const DatePickerInputStyled = styled.input`
   color: var(--text);
   opacity: 0.5;
   padding-bottom: 2px;
+`
+
+const PlaceStyled = styled.div`
+  margin-bottom: 20px;
+`
+
+const StyledTextAreaInputField = styled.div`
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 50px;
+`
+
+const StyledTextArea = styled(TextareaAutosize)`
+  outline: none;
+  border: none;
+  background: var(--background);
+  width: 90%;
+
+  font-size: 16px;
+  ::placeholder {
+    color: #abb3bb;
+    font-size: 12px;
+    padding: 0;
+  }
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid var(--highlight);
+  }
 `
