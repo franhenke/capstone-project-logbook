@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as ROUTES from './constants/routes'
 import JournalForm from './components/JournalForm/JournalForm'
-import JournalEntryList from './components/JournalEntry/JournalEntryList'
-import { v4 as uuid } from 'uuid'
 import styled from 'styled-components'
 import TabBar from './components/TabBar/TabBar'
 import { Redirect, Switch, Route, useLocation } from 'react-router-dom'
@@ -10,56 +8,70 @@ import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
 import useAuth from './components/auth/useAuth'
 import LoginContext from './components/auth/LoginContext'
 import firebaseApp from './firebase'
-import useServices from './hooks/useServices'
+import { db } from './firebase/index'
+import useServices from './services/useServices'
 import SignUp from './pages/Signup'
 import GetUserFavJournalsList from './components/GetUserFavJournalsList'
 import Login from './pages/Login'
-import Homepage from './pages/Homepage'
+import Dashboard from './pages/Dashboard'
+import { ToastContainer } from 'react-toastify'
+import NotFound from './pages/NotFound'
+import FaveListPage from './pages/FaveListPage'
 
 function App() {
   const { signUp, loginWithFirebase, setProfile } = useServices()
-  const [user, userIsLoading] = useAuth()
+  const [user, isAuthCompleted] = useAuth()
   const location = useLocation()
+  const values = GetUserJournalEntries()
 
-  const [journalEntries, setJournalEntries] = useState(
-    () => JSON.parse(localStorage.getItem('journalEntries')) || []
-  )
-
-  useEffect(() => {
-    localStorage.setItem('journalEntries', JSON.stringify(journalEntries))
-  }, [journalEntries])
+  if (!isAuthCompleted) {
+    return <div>....Loading</div>
+  }
 
   return (
     <>
-      <LoginContext.Provider value={{ user, userIsLoading, firebaseApp }}>
+      <LoginContext.Provider value={{ user, isAuthCompleted, firebaseApp }}>
         <AppWrapper>
           <Switch>
             <Redirect exact from="/" to="/home" />
-            <Route exact path={ROUTES.HOME}>
-              <JournalEntryList journalEntries={journalEntries} />
+
+            <Route path={ROUTES.REGISTER}>
+              <SignUp signUp={signUp} setProfile={setProfile} />
             </Route>
-            <Route exact path={ROUTES.JOURNALFORM}>
-              <JournalForm onFormSubmit={handleJournalEntry} />
-            </Route>
-            <Route exact path={ROUTES.JOURNALDETAILS}>
-              <JournalDetailPage values={journalEntries} />
-            </Route>
-            <Route exact path={ROUTES.DASHBOARD}>
-              <Homepage values={journalEntries} />
-            </Route>
-            <Route exact path={'/favjournalentries'}>
-              <GetUserFavJournalsList />
-            </Route>
-            <Route path={ROUTES.LOGIN}>
+            <Route exact path="/login">
               <Login
                 loginWithFirebase={loginWithFirebase}
                 setProfile={setProfile}
               />
             </Route>
-            <Route path={ROUTES.REGISTER}>
-              <SignUp signUp={signUp} setProfile={setProfile} />
+
+            <Route
+              exact
+              path={ROUTES.HOME}
+              component={() => <Dashboard values={values} />}
+            />
+            <Route path={ROUTES.JOURNALFORM}>
+              <JournalForm />
             </Route>
+            <Route
+              path={'/journalentry/:entryId'}
+              component={() => <JournalDetailPage values={values} />}
+            />
+
+            <Route exact path={ROUTES.FAVLIST}>
+              <FaveListPage />
+            </Route>
+
+            <Route component={NotFound} />
           </Switch>
+          <ToastContainer
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar
+            closeOnClick
+            rtl={false}
+          />
+
           <FooterStyled>
             {location.pathname !== '/' &&
               location.pathname !== '/login' &&
@@ -69,9 +81,29 @@ function App() {
       </LoginContext.Provider>
     </>
   )
-  function handleJournalEntry(newJournalEntry) {
-    newJournalEntry.id = uuid()
-    setJournalEntries([newJournalEntry, ...journalEntries])
+
+  function GetUserJournalEntries() {
+    const [userJournalEntries, setuserJournalEntries] = useState([])
+
+    useEffect(() => {
+      if (!user) return
+
+      const docRef = db.collection('journalentries').doc(user.uid)
+
+      docRef
+        .get()
+        .then(function (doc) {
+          if (doc.exists) {
+            setuserJournalEntries(doc.data().UserJournalEntries)
+          }
+          console.log(doc.data().UserJournalEntries)
+        })
+        .catch(function (error) {
+          console.log('Error getting document:', error)
+        })
+    }, [user])
+
+    return userJournalEntries
   }
 }
 
@@ -87,7 +119,6 @@ const AppWrapper = styled.div`
 
 const FooterStyled = styled.div`
   width: 100%;
-  height: 50px;
   grid-row: 3 / 4;
-  align-self: end;
+ 
 `

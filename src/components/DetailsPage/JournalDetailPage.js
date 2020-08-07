@@ -10,7 +10,7 @@ import dayjs from 'dayjs'
 
 export default function JournalDetailPage({ values }) {
   const { entryId } = useParams()
-  const [selectedEntry] = values.filter((values) => entryId === values.id)
+  const [selectedEntry] = values.filter((values) => entryId === values.caption)
   const parsedDate = dayjs(selectedEntry.date)
 
   return (
@@ -23,9 +23,10 @@ export default function JournalDetailPage({ values }) {
 
         <EntryStyled>{selectedEntry.entry}</EntryStyled>
         <CityStyled>
-          <MarkerIconStyled src={MarkerIcon} />
-          {selectedEntry.city}
+          <MarkerIconStyled src={MarkerIcon} alt="icon of a pin" />
+          {selectedEntry.place}
         </CityStyled>
+        <img src={selectedEntry.image} alt="upload" />
         <Link to={ROUTES.HOME}>
           <BackIconStyled src={chevron} alt="journalentry" />
         </Link>

@@ -5,9 +5,7 @@ import { useHistory } from 'react-router-dom'
 
 export default function useAuth() {
   const [authUser, setAuthUser] = useState(null)
-  const [isAuthCompleted, setIsAuthCompleted] = useState(true)
-
-  const [userIsLoading, setUserIsLoading] = useState(true)
+  const [isAuthCompleted, setIsAuthCompleted] = useState(false)
   const history = useHistory()
 
   useEffect(() => {
@@ -22,11 +20,11 @@ export default function useAuth() {
         setAuthUser(user)
         localStorage.setItem('uid', user.uid)
       }
-    })
-    setUserIsLoading(false)
-    setIsAuthCompleted(true)
-    return () => unsubscribe()
-  }, [])
 
-  return [authUser, isAuthCompleted, userIsLoading]
+      setIsAuthCompleted(true)
+    })
+    return () => unsubscribe()
+  }, [history, isAuthCompleted])
+
+  return [authUser, isAuthCompleted]
 }

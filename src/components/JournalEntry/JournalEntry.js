@@ -1,110 +1,134 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import AddToFaveListButton from '../AddToFaveListButton'
+import AddToFaveListButton from '../Button/AddToFaveListButton'
 import LoginContext from '../auth/LoginContext'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import Truncate from 'react-truncate'
-import markerIcon from '../../images/mappin.svg'
+import markerIcon from '../../images/markerpin.svg'
+import { Divider } from '../Divider/Divider'
 
 export default function JournalEntry({ values }) {
   const parsedDate = dayjs(values.date)
   const { user } = useContext(LoginContext)
 
   return (
-    <EntryContainerLink to={`/journalentry/${values.id}`}>
+    <>
       <JournalEntryStyled>
-        <SectionStyled>
+        <ContentStyled>
           <CategorieStyled>{values.category}</CategorieStyled>
           <DateStyled>{parsedDate.format('DD MMM YYYY')}</DateStyled>
-        </SectionStyled>
-        <ContentStyled>
+
           <CaptionStyled>{values.caption}</CaptionStyled>
           <EntryStyled>
-            <Truncate lines={2} ellipsis={<span>... see more</span>}>
+            <Truncate
+              lines={2}
+              ellipsis={
+                <span>
+                  <LinkStyled to={`/journalentry/${values.caption}`}>
+                    ... see more
+                  </LinkStyled>
+                </span>
+              }
+            >
               {values.entry}
             </Truncate>
-            {user ? (
-              <AddToFaveListButton userId={user.uid} values={values} />
-            ) : null}
           </EntryStyled>
 
           <CityStyled>
             <MarkerIconStyled src={markerIcon} />
-            {values.city}
+            {values.place}
           </CityStyled>
+          <FaveIconStyled>
+            {user ? (
+              <AddToFaveListButton userId={user.uid} values={values} />
+            ) : null}
+          </FaveIconStyled>
         </ContentStyled>
       </JournalEntryStyled>
-    </EntryContainerLink>
+      <Divider />
+    </>
   )
 }
-
-const SectionStyled = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 8px;
-`
-const DateStyled = styled.p`
-  font-size: 14px;
-`
-const CategorieStyled = styled.h2`
-  font-size: 14px;
-  letter-spacing: 0.8px;
-  font-weight: lighter;
-`
-
-const EntryContainerLink = styled.div`
-  position: relative;
-  width: 100%;
-`
-
 const JournalEntryStyled = styled.div`
   color: var(--primary);
-  height: 115px;
+  height: 100px;
   margin-bottom: 40px;
+`
 
-  /* display: flex;
-  flex-direction: row; */
-  /* margin: 10px 15px; */
+const FaveIconStyled = styled.div`
+  height: 25px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+`
+
+const DateStyled = styled.p`
+  font-size: 11px;
+`
+const CategorieStyled = styled.h2`
+  position: relative;
+  font-size: 11px;
+  line-height: 20px;
+  margin: 10px 0 5px;
+  font-weight: lighter;
+  &:after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    left: 1px;
+    top: 17px;
+    height: 1px;
+    background-color: #8dacab;
+  }
+`
+
+const LinkStyled = styled(Link)`
+  text-decoration: none;
+  color: #8e969e;
 `
 
 const ContentStyled = styled.div`
+  position: relative;
   font-family: Roboto;
   display: flex;
   flex-direction: column;
 `
 
 const MarkerIconStyled = styled.img`
-  color: #8e969e;
-  height: 12px;
-  vertical-align: baseline;
-  padding-right: 5px;
+  position: absolute;
+  height: 11px;
+  left: 1px;
+  top: 2px;
 `
 
 const CityStyled = styled.h3`
-  color: #707d8c;
-  font-size: 12px;
+  position: relative;
   color: #8e969e;
-  font-family: Roboto;
-  font-weight: 400;
-  margin-bottom: 5px;
+  font-size: 11px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 500;
+  margin-top: 3px;
+  padding-left: 13px;
 `
 
 const CaptionStyled = styled.h3`
-  font-size: 16px;
-  letter-spacing: 1.1px;
-  font-weight: bold;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  font-weight: 600;
   margin-bottom: 3px;
 `
 const EntryStyled = styled.p`
   font-size: 12px;
+  opacity: 0.8;
+  color: #8e969e;
 
-  a {
+  span {
     text-decoration: none;
-    font-size: 9px;
+    font-size: 12px;
     font-family: Roboto;
-    font-weight: 500;
-    color: #86727c;
+    font-weight: 400;
+    color: #8e969e;
   }
 `

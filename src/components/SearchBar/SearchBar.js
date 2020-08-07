@@ -1,10 +1,10 @@
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
-import React, { useRef, useState } from 'react'
-import { animated, useSpring } from 'react-spring'
 import styled from 'styled-components'
-import cross from '../../images/x.svg'
-import deleteIcon from '../../images/delete.svg'
-import searchIcon from '../../images/search.svg'
+import searchIcon from '../../images/chevron-right.svg'
+import { Link } from 'react-router-dom'
+import * as ROUTES from '../../constants/routes'
+import bookmarkIconFilled from '../../images/bookmarkFilled.svg'
 
 SearchBar.propTypes = {
   searchInput: PropTypes.string,
@@ -12,26 +12,10 @@ SearchBar.propTypes = {
 }
 
 export default function SearchBar({ searchInput, setSearchTerm }) {
-  const [isSearchBarVisible, setIsSearchBarVisible] = useState(false)
-
   const searchField = useRef()
-
-  const animateWidth = useSpring({
-    width: isSearchBarVisible ? '300px' : '0px',
-  })
 
   function handleSearch(event) {
     setSearchTerm(event.target.value)
-  }
-
-  function viewSearch() {
-    setIsSearchBarVisible(true)
-    searchField.current.focus()
-  }
-
-  function endSearch() {
-    setSearchTerm('')
-    setIsSearchBarVisible(false)
   }
 
   function clearSearchField() {
@@ -40,72 +24,84 @@ export default function SearchBar({ searchInput, setSearchTerm }) {
   }
 
   return (
-    <StyledSearchBar>
-      {isSearchBarVisible ? (
-        <ToggleIcon src={cross} alt="cross" onClick={endSearch} />
-      ) : (
-        <ToggleIcon src={searchIcon} alt="searchIcon" onClick={viewSearch} />
-      )}
-      <StyledSearchForm
-        style={animateWidth}
-        onSubmit={(event) => event.preventDefault()}
-      >
-        <StyledTextField
+    <FilterSectionStyled>
+      <SearchFormStyled onSubmit={(event) => event.preventDefault()}>
+        <TextFieldStyled
           ref={searchField}
           type="text"
-          placeholder="Wonach suchst du?"
+          placeholder="search for an entry"
           value={searchInput}
           onChange={handleSearch}
           data-testid="textField"
         />
-        <DeleteTextIcon
+        <ClickAreaStyled
           onClick={clearSearchField}
-          src={deleteIcon}
           alt="delete"
-        />
-      </StyledSearchForm>
-    </StyledSearchBar>
+        ></ClickAreaStyled>
+        <SearchIconStyled src={searchIcon} />
+
+      </SearchFormStyled>
+      <BookmarkLinkStyled to={ROUTES.FAVLIST} />
+    </FilterSectionStyled>
+
   )
 }
 
-const StyledSearchBar = styled.div`
+const FilterSectionStyled = styled.section`
   display: flex;
-  justify-content: left;
-  align-items: center;
-  padding: 10px 0;
+  flex-direction: row;
+  align-content: center;
 `
 
-const StyledSearchForm = styled(animated.form)`
+const SearchFormStyled = styled.form`
   position: relative;
-  margin-left: -10px;
-  height: 35px;
-  max-width: 90%;
-  border-radius: 5px;
-  border: 1px solid var(--grey-5);
+  width: 250px;
+  border: 0.5px solid #8dacab;
+  margin: 8px 0 25px;
 `
-const StyledTextField = styled.input`
-  height: 100%;
-  width: 100%;
+const TextFieldStyled = styled.input`
+  height: 16px;
   border: none;
-  border-radius: 5px;
-  padding-left: 20px;
+  padding-left: 10px;
+  padding-bottom: 8px;
   padding-right: 20%;
-  font-family: var(--fontbody);
-  font-size: 14px;
   &:focus {
     outline: none;
   }
+
+  &::placeholder {
+    color: #abb3bb;
+    font-size: 14px;
+    vertical-align: center;
+  }
 `
-const DeleteTextIcon = styled.img`
-  height: 50%;
-  top: 25%;
+const ClickAreaStyled = styled.span`
   position: absolute;
-  right: 10px;
+  top: 0;
+  right: 0;
+  display: block;
+  background: #8dacab;
+  height: 24px;
+  width: 27px;
+  border: 0.5px solid #8dacab;
   cursor: pointer;
+`
+const SearchIconStyled = styled.img`
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  pointer-events: none;
 `
 
-const ToggleIcon = styled.img`
-  height: 35px;
-  cursor: pointer;
-  z-index: 100;
+const BookmarkLinkStyled = styled(Link)`
+  background-image: url(${bookmarkIconFilled});
+  position: absolute;
+  background-repeat: no-repeat;
+
+  margin-left: px;
+  margin-top: 10px;
+  width: 25px;
+  height: 25px;
+ right: 29px;
+ top: 191px;
 `

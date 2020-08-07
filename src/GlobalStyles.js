@@ -8,7 +8,8 @@ export default createGlobalStyle`
     --lighter: #A9AAAD;
     --secondary: #6D7885;
     --text: #6E7A85;
-;
+    --lightgrey: #C3C6C9;
+    --mint: #8DACAB;
     --highlight: #64B2D0;
     --icon: #ACB6CE;
     --iconactive: #49567E;
@@ -24,5 +25,28 @@ export default createGlobalStyle`
 	  background-color: var(--background);
     color: var(--text);
   
+  }
+
+  input, textarea {
+    font-size: 16px;
+    background-color: var(--background);
+    color: #808E8E;
+    font-size: 14px;
+  font-weight: 300;
+    outline: none;
+    border: none;
+    width: 90%;
+    margin-top: 8px;
+
+    &:focus {
+    outline: none;
+    border: none;
+  }
+
+  &::placeholder {
+    color: #abb3bb;
+    font-size: 13px;
+    padding: 0;
+  }
   }
   `

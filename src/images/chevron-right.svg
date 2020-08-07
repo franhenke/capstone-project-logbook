@@ -1,15 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="17px" height="28px" viewBox="0 0 17 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>🔷 Arrow Color</title>
-    <defs>
-        <polygon id="path-1" points="377 761.29 373.765182 758 360 772 373.765182 786 377 782.71 366.492578 772"></polygon>
-    </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="iPhone-X-Version-2" transform="translate(-360.000000, -758.000000)">
-            <mask id="mask-2" fill="white">
-                <use xlink:href="#path-1"></use>
-            </mask>
-            <use id="🔷-Arrow-Color" fill="#F6F6F6" transform="translate(368.500000, 772.000000) scale(-1, 1) translate(-368.500000, -772.000000) " xlink:href="#path-1"></use>
-        </g>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="	#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>

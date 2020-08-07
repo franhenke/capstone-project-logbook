@@ -1,17 +1,19 @@
 import React from 'react'
-import { db } from '../firebase/index'
+import { db } from '../../firebase/index'
 import firebase from 'firebase'
-import dayjs from 'dayjs'
+import styled from 'styled-components'
+import { motion } from 'framer-motion'
+import sendIcon from '../../images/sendIcon2.svg'
 
 export default function AddJournalEntryToDbButton({ userId, values }) {
   async function addToDb() {
-    const parsedDate = dayjs(values.date)
     const journalFormData = {
       caption: values.caption,
       category: values.category,
-      city: values.city,
+      place: values.place,
       date: values.date,
       entry: values.entry,
+      image: values.image,
     }
 
     const userDoc = db.collection('journalentries').doc(userId)
@@ -33,5 +35,17 @@ export default function AddJournalEntryToDbButton({ userId, values }) {
     }
   }
 
-  return <button onClick={addToDb}>Save</button>
+  return <AnimatedButtonStyled onClick={addToDb} />
 }
+
+const AnimatedButtonStyled = styled(motion.button)`
+  background-image: url(${sendIcon});
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background-color: var(--mint);
+  height: 45px;
+  width: 45px;
+  border-radius: 50px;
+  border: none;
+`

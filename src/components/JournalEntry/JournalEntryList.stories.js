@@ -10,7 +10,7 @@ export default {
 const values = [
   {
     date: '2020-06-06',
-    city: 'Dublin',
+    place: 'Dublin',
     category: 'Thoughts',
     caption: 'A night to remember',
     memory:
@@ -18,7 +18,7 @@ const values = [
   },
   {
     date: '2020-06-05',
-    city: 'Dublin',
+    place: 'Dublin',
     category: 'Memory',
     caption: 'Going to Moher',
     memory:

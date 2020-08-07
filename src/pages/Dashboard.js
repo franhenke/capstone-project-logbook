@@ -1,30 +1,39 @@
 import PropTypes from 'prop-types'
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import SearchBar from '../components/SearchBar/SearchBar'
 import ProfileHeader from '../components/Header/ProfileHeader'
 import JournalEntryList from '../components/JournalEntry/JournalEntryList'
-import LoginContext from '../components/auth/LoginContext'
+import ButtonToForm from '../components/Button/ButtonToForm'
 
-export default function Homepage({ values }) {
+Dashboard.propTypes = {
+  values: PropTypes.arrayOf(PropTypes.object),
+}
+
+export default function Dashboard({ values }) {
   const [searchTerm, setSearchTerm] = useState('')
-  const { user, userIsLoading } = useContext(LoginContext)
 
   const results = searchTerm
     ? values.filter((values) =>
-        values.caption.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+      values.caption.toLowerCase().includes(searchTerm.toLowerCase())
+    )
     : values
 
   return (
     <>
       <ProfileHeader />
       <EntryContainerStyled>
+        <IntroStyled>Your Journalentries</IntroStyled>
         <SearchBar setSearchTerm={setSearchTerm} searchInput={searchTerm} />
         <ScrollableWrapper>
-          <JournalEntryList values={values} journalEntries={results} />
+          {results.length > 0 ? (
+            <JournalEntryList journalEntries={results} />
+          ) : (
+              <div>No entries found. Please change your search.</div>
+            )}
         </ScrollableWrapper>
       </EntryContainerStyled>
+      <ButtonToForm />
     </>
   )
 }
@@ -32,11 +41,10 @@ export default function Homepage({ values }) {
 const EntryContainerStyled = styled.main`
   grid-row: 2 / 3;
   width: 90vw;
-  padding: 0 15px;
 `
 
 const ScrollableWrapper = styled.div`
-  height: 400px;
+  height: 380px;
   overflow-y: scroll;
 
   scrollbar-width: none;
@@ -44,4 +52,9 @@ const ScrollableWrapper = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
+`
+const IntroStyled = styled.h3`
+  font-size: 16px;
+  color: #8dacab;
+  font-weight: bold;
 `
