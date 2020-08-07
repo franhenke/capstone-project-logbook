@@ -35,9 +35,10 @@ export default function JournalForm() {
       <JournalFormStyled onSubmit={handleSubmit} noValidate>
         <FirstSectionStyled>
           <DatePickerStyled>
+          <img src={dateIcon} alt="calendar icon" data-cy="dateIcon" />
             <DatePickerLabelStyled htmlFor="date">
               Date
-              <img src={dateIcon} alt="calendar icon" data-cy="dateIcon" />
+             
               <DatePickerInputStyled
                 onChange={(event) => handleChange(event)}
                 value={values.date || ''}
@@ -133,7 +134,7 @@ const JournalFormStyled = styled.form`
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  height: 520px;
+  height: 480px;
   width: 300px;
   font-family: Roboto;
 `
@@ -213,7 +214,7 @@ const TextAreaSection = styled.section`
 
 const StyledTextAreaInputField = styled.div`
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 `
 
 const StyledTextArea = styled(TextareaAutosize)`

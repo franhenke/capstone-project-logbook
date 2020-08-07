@@ -15,8 +15,8 @@ export default function Dashboard({ values }) {
 
   const results = searchTerm
     ? values.filter((values) =>
-        values.caption.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+      values.caption.toLowerCase().includes(searchTerm.toLowerCase())
+    )
     : values
 
   return (
@@ -29,8 +29,8 @@ export default function Dashboard({ values }) {
           {results.length > 0 ? (
             <JournalEntryList journalEntries={results} />
           ) : (
-            <div>No entries found. Please change your search.</div>
-          )}
+              <div>No entries found. Please change your search.</div>
+            )}
         </ScrollableWrapper>
       </EntryContainerStyled>
       <ButtonToForm />
@@ -44,7 +44,7 @@ const EntryContainerStyled = styled.main`
 `
 
 const ScrollableWrapper = styled.div`
-  height: 400px;
+  height: 380px;
   overflow-y: scroll;
 
   scrollbar-width: none;

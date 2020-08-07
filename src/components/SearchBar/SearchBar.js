@@ -102,6 +102,6 @@ const BookmarkLinkStyled = styled(Link)`
   margin-top: 10px;
   width: 25px;
   height: 25px;
- right: 28px;
+ right: 29px;
  top: 191px;
 `

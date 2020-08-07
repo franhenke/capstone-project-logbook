@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="8px" height="12px" viewBox="0 0 8 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Marker</title>
+    <defs>
+        <filter id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.431373 0 0 0 0 0.478431 0 0 0 0 0.521569 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+        <path d="M0,4.2 C0,7.35 4,12 4,12 C4,12 8,7.35 8,4.2 C8,1.878 6.21142857,0 4,0 C1.78857143,0 0,1.878 0,4.2 Z M4,5.7 C3.21142857,5.7 2.57142857,5.028 2.57142857,4.2 C2.57142857,3.372 3.21142857,2.7 4,2.7 C4.78857143,2.7 5.42857143,3.372 5.42857143,4.2 C5.42857143,5.028 4.78857143,5.7 4,5.7 L4,5.7 Z" id="path-2"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Dashboard-Copy" transform="translate(-57.000000, -453.000000)">
+            <g id="Marker" transform="translate(57.000000, 453.000000)" filter="url(#filter-1)">
+                <g>
+                    <mask id="mask-3" fill="white">
+                        <use xlink:href="#path-2"></use>
+                    </mask>
+                    <use id="🔷-Icon-Color" fill="#9FA0A0" xlink:href="#path-2"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

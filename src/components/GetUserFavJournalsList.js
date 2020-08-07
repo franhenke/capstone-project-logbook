@@ -85,7 +85,7 @@ display: inline-block;
     height: 80px;
   overflow: hidden;
   position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 
   img {
   width: 100%;

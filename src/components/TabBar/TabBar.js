@@ -20,16 +20,17 @@ export default function TabBar() {
 }
 
 const TabBarStyled = styled.div`
-  position: relative;
+/* grid-row: 3 / 4;
+  position: relative; */
   display: flex;
   justify-content: space-around;
-  width: 100vw;
-  height: 40px;
+  /* width: 100vw; */
   background: var(--background);
-  align-self: end;
+  
 `
 const LinkStyled = styled(Link)`
-  height: 40px;
+    z-index: 99;
+
   :active {
     color: var(--iconactive);
   }
@@ -37,4 +38,5 @@ const LinkStyled = styled(Link)`
 const IconStyled = styled.img`
   color: var(--primary);
   height: 25px;
+  pointer-events: none;
 `

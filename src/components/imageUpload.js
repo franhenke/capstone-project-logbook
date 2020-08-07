@@ -35,16 +35,17 @@ export default function ImageUpload({ props, setFileUrl }) {
 
 const ImageUploadStyled = styled.label`
   position: absolute;
-  bottom: 80px;
+  bottom: 100px;
   background-image: url(${cameraIcon});
   background-repeat: no-repeat;
   background-size: 22px 22px;
   width: 150px;
   height: 25px;
   border-radius: 5px;
-
   cursor: pointer;
   input {
-    display: none;
+    /* display: none; */
+   
+
   }
 `
