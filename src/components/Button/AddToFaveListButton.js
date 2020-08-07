@@ -3,8 +3,8 @@ import { db } from '../../firebase/index'
 import firebase from 'firebase'
 import { toast } from 'react-toastify'
 import styled from 'styled-components'
-import heartIcon from '../../images/heart.svg'
-import heartIconFilled from '../../images/heartFilled.svg'
+import bookmarkIcon from '../../images/bookmarkEmpty.svg'
+import bookmarkIconFilled from '../../images/bookmarkFilled.svg'
 import { motion } from 'framer-motion'
 
 export default function AddToFaveList({ userId, values }) {
@@ -16,6 +16,8 @@ export default function AddToFaveList({ userId, values }) {
       place: values.place,
       date: values.date,
       entry: values.entry,
+      image: values.image,
+
     }
     const Msg = () => (
       <div data-cy="toast">
@@ -50,17 +52,21 @@ export default function AddToFaveList({ userId, values }) {
   return (
     <AddToFaveIconStyled onClick={addToFavList} whileTap={{ scale: 0.9 }}>
       {isButtonClicked ? (
-        <img src={heartIconFilled} />
+        <img src={bookmarkIconFilled} />
       ) : (
-        <img src={heartIcon} />
-      )}
+          <img src={bookmarkIcon} />
+        )}
     </AddToFaveIconStyled>
   )
 }
 
 const AddToFaveIconStyled = styled(motion.div)`
-  height: 16px;
-  width: 16px;
+  height: 15px;
+  width: 15px;
+
+  img {
+    height: 20px;
+  }
 `
 
 const ToastTextStyled = styled.p`

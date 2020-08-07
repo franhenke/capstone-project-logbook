@@ -30,7 +30,9 @@ export default createGlobalStyle`
   input, textarea {
     font-size: 16px;
     background-color: var(--background);
-    color: var(--text);
+    color: #808E8E;
+    font-size: 14px;
+  font-weight: 300;
     outline: none;
     border: none;
     width: 90%;

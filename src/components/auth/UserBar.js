@@ -18,16 +18,21 @@ export default function UserBar() {
   return (
     <div>
       {user ? (
-        <LogoutIconStyled src={logoutIcon} onClick={logoutFromFirebase} />
+        <LogoutIconStyled onClick={logoutFromFirebase}>
+          <img src={logoutIcon} alt="Icon for the logout" />
+          Logout
+        </LogoutIconStyled>
       ) : (
         <>
           <LoginIconStyled
             src={loginIcon}
+            alt="Icon for the login"
             onClick={() => history.push('/login')}
           />{' '}
           |
           <RegisterIconStyled
             src={registerIcon}
+            alt="Icon for the signup"
             onClick={() => history.push('/register')}
           />
         </>
@@ -36,14 +41,20 @@ export default function UserBar() {
   )
 }
 
-const LogoutIconStyled = styled.img`
-  position: absolute;
-  top: 30px;
-  right: 20px;
+const LogoutIconStyled = styled.div`
+  font-size: 16px;
+  padding-left: 25px;
+  position: relative;
   cursor: pointer;
   z-index: 100;
-  height: 20px;
-  width: 20px;
+  margin-top: 15px;
+
+  img {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    height: 18px;
+  }
 `
 
 const LoginIconStyled = styled.img`

@@ -107,6 +107,7 @@ export default function JournalForm() {
             />
           </StyledTextAreaInputField>
         </TextAreaSection>
+
         <ImageUpload setFileUrl={setFileUrl} />
 
         {user ? (
@@ -220,7 +221,11 @@ const StyledTextArea = styled(TextareaAutosize)`
   border: none;
   background: var(--background);
   width: 90%;
-  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: #808e8e;
 
   &::placeholder {
     color: #abb3bb;

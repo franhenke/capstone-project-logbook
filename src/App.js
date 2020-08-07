@@ -16,6 +16,7 @@ import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import { ToastContainer } from 'react-toastify'
 import NotFound from './pages/NotFound'
+import FaveListPage from './pages/FaveListPage'
 
 function App() {
   const { signUp, loginWithFirebase, setProfile } = useServices()
@@ -57,8 +58,8 @@ function App() {
               component={() => <JournalDetailPage values={values} />}
             />
 
-            <Route exact path={'/favjournalentries'}>
-              <GetUserFavJournalsList />
+            <Route exact path={ROUTES.FAVLIST}>
+              <FaveListPage />
             </Route>
 
             <Route component={NotFound} />

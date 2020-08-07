@@ -64,11 +64,11 @@ const FaveIconStyled = styled.div`
 `
 
 const DateStyled = styled.p`
-  font-size: 12px;
+  font-size: 11px;
 `
 const CategorieStyled = styled.h2`
   position: relative;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 20px;
   margin: 10px 0 5px;
   font-weight: lighter;
@@ -97,23 +97,26 @@ const ContentStyled = styled.div`
 
 const MarkerIconStyled = styled.img`
   position: absolute;
-  top: 3px;
   height: 11px;
-  left: 75px;
+  left: 1px;
+  top: 2px;
 `
 
 const CityStyled = styled.h3`
   position: relative;
-  font-size: 12px;
-  font-family: Roboto;
-  font-weight: 400;
+  color: #8e969e;
+  font-size: 11px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 500;
   margin-top: 3px;
+  padding-left: 13px;
 `
 
 const CaptionStyled = styled.h3`
   font-size: 15px;
-  letter-spacing: 0.5px;
-  font-weight: bold;
+  letter-spacing: 0.3px;
+  font-weight: 600;
   margin-bottom: 3px;
 `
 const EntryStyled = styled.p`
@@ -125,7 +128,7 @@ const EntryStyled = styled.p`
     text-decoration: none;
     font-size: 12px;
     font-family: Roboto;
-    font-weight: 500;
+    font-weight: 400;
     color: #8e969e;
   }
 `
