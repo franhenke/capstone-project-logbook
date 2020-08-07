@@ -82,7 +82,7 @@ const FormWrapper = styled.div`
   width: 313px;
   background: RGBA(51, 54, 64, 0.32);
   position: absolute;
-  top: 150px;
+  top: 50px;
 
   h2 {
     font-size: 20px;

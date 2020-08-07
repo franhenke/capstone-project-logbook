@@ -19,7 +19,7 @@ const StyledButton = styled.button`
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
-  margin-top: 20px;
+  margin-top: 15px;
   padding: 5px 5px;
   margin-bottom: 15px;
 

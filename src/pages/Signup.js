@@ -54,8 +54,8 @@ export default function SignUp({ setProfile, signUp }) {
           />
           {((errors.email && errors.email.type === 'required') ||
             (errors.email && errors.email.type === 'pattern')) && (
-            <Error>Please check your entered e-mail address</Error>
-          )}
+              <Error>Please check your entered e-mail address</Error>
+            )}
 
           <label>Password</label>
           <InputStyled
@@ -102,19 +102,6 @@ export default function SignUp({ setProfile, signUp }) {
     setTimeout(history.push('/home'), 2000)
     alert('You are now registered')
 
-    //     .then((res) => {
-    //       if (res.code === 'auth/email-already-in-use') {
-    //         return setError('email', 'inUse', 'E-mail address already in use')
-    //       }
-    //
-    //     })
-    //     .catch((error) => {
-    //       console.log(
-    //         'Sorry, there was an error with the server. Please try again later.',
-    //         error
-    //       )
-    //     })
-    // }
   }
 }
 
@@ -137,15 +124,15 @@ const FormWrapper = styled.div`
   width: 313px;
   background: RGBA(51, 54, 64, 0.32);
   position: absolute;
-  top: 150px;
+  top: 50px;
 
   h2 {
     font-size: 20px;
     font-weight: medium;
     width: 80px;
     color: white;
-    margin-bottom: 40px;
-    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
 `
 
