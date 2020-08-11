@@ -10,7 +10,7 @@ import LoginContext from './components/auth/LoginContext'
 import firebaseApp from './firebase'
 import { db } from './firebase/index'
 import useServices from './services/useServices'
-import SignUp from './pages/Signup'
+import Register from './pages/Register'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import { ToastContainer } from 'react-toastify'
@@ -18,7 +18,7 @@ import NotFound from './pages/NotFound'
 import FaveListPage from './pages/FaveListPage'
 
 function App() {
-  const { signUp, loginWithFirebase, setProfile } = useServices()
+  const { Register, loginWithFirebase, setProfile } = useServices()
   const [user, isAuthCompleted] = useAuth()
   const location = useLocation()
   const values = GetUserJournalEntries()
@@ -32,12 +32,12 @@ function App() {
       <LoginContext.Provider value={{ user, isAuthCompleted, firebaseApp }}>
         <AppWrapper>
           <Switch>
-            <Redirect exact from="/" to="/home" />
+            <Redirect exact from="/" to={ROUTES.HOME} />
 
             <Route path={ROUTES.REGISTER}>
-              <SignUp signUp={signUp} setProfile={setProfile} />
+              <Register Register={Register} setProfile={setProfile} />
             </Route>
-            <Route exact path="/login">
+            <Route exact path={ROUTES.LOGIN}>
               <Login
                 loginWithFirebase={loginWithFirebase}
                 setProfile={setProfile}
@@ -119,5 +119,4 @@ const AppWrapper = styled.div`
 const FooterStyled = styled.div`
   width: 100%;
   grid-row: 3 / 4;
- 
 `

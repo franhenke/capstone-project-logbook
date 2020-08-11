@@ -32,7 +32,7 @@ export default function UserBar() {
           |
           <RegisterIconStyled
             src={registerIcon}
-            alt="Icon for the signup"
+            alt="Icon for the Register"
             onClick={() => history.push('/register')}
           />
         </>

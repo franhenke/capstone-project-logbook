@@ -19,7 +19,7 @@ JournalForm.propTypes = {
   error: PropTypes.string,
 }
 
-export default function JournalForm() {
+export default function AddJournalForm() {
   const [values, handleChange, handleSubmit, setUrlToValues] = useForm()
   const [fileUrl, setFileUrl] = useState(null)
   const currentDate = dayjs().format('DD/MM/YYYY')
@@ -35,10 +35,9 @@ export default function JournalForm() {
       <JournalFormStyled onSubmit={handleSubmit} noValidate>
         <FirstSectionStyled>
           <DatePickerStyled htmlFor="date">
-          <img src={dateIcon} alt="calendar icon" data-cy="dateIcon" />
-            <DatePickerLabelStyled >
+            <img src={dateIcon} alt="calendar icon" data-cy="dateIcon" />
+            <DatePickerLabelStyled>
               Date
-             
               <DatePickerInputStyled
                 onChange={(event) => handleChange(event)}
                 value={values.date || ''}
@@ -91,7 +90,8 @@ export default function JournalForm() {
           id="caption"
           min="5"
           required
-          placeholder="Add a titel to your entry"
+          data-testid="caption"
+          placeholder="Add a title to your entry"
         />
         <TextAreaSection>
           <label htmlFor="Entry">Entry</label>
