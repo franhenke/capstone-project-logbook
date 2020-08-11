@@ -1,7 +1,7 @@
 import React from 'react'
 import { Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
-import Signup from './Signup'
+import Register from './Register'
 import '@testing-library/jest-dom/extend-expect'
 
 import 'mutationobserver-shim'

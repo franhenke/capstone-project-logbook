@@ -7,7 +7,7 @@ import bookmarkIcon from '../../images/bookmarkFilled.svg'
 import UserBar from '../auth/UserBar'
 import ProfilePic from './ProfilePic'
 
-const Menu = ({ open }) => {
+const Sidebar = ({ open }) => {
   return (
     <StyledMenu open={open}>
       <ProfilePic />
@@ -21,9 +21,9 @@ const Menu = ({ open }) => {
     </StyledMenu>
   )
 }
-export default Menu
+export default Sidebar
 
-Menu.propTypes = {
+Sidebar.propTypes = {
   open: PropTypes.bool,
 }
 

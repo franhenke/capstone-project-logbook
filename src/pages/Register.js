@@ -7,12 +7,12 @@ import { useForm } from 'react-hook-form'
 import Button from '../components/Button/Button'
 import bgImage from '../images/bgl.png'
 
-SignUp.propTypes = {
-  signUp: PropTypes.func.isRequired,
+Register.propTypes = {
+  Register: PropTypes.func.isRequired,
   setProfile: PropTypes.func.isRequired,
 }
 
-export default function SignUp({ setProfile, signUp }) {
+export default function Register({ setProfile, Register }) {
   const {
     register,
     handleSubmit,
@@ -54,8 +54,8 @@ export default function SignUp({ setProfile, signUp }) {
           />
           {((errors.email && errors.email.type === 'required') ||
             (errors.email && errors.email.type === 'pattern')) && (
-              <Error>Please check your entered e-mail address</Error>
-            )}
+            <Error>Please check your entered e-mail address</Error>
+          )}
 
           <label>Password</label>
           <InputStyled
@@ -98,10 +98,9 @@ export default function SignUp({ setProfile, signUp }) {
 
   function onSubmit(data) {
     setProfile(data)
-    signUp(data)
+    Register(data)
     setTimeout(history.push('/home'), 2000)
     alert('You are now registered')
-
   }
 }
 
