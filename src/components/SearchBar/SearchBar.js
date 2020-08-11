@@ -2,9 +2,7 @@ import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import searchIcon from '../../images/chevron-right.svg'
-import { Link } from 'react-router-dom'
-import * as ROUTES from '../../constants/routes'
-import bookmarkIconFilled from '../../images/bookmarkFilled.svg'
+
 
 SearchBar.propTypes = {
   searchInput: PropTypes.string,
@@ -41,7 +39,7 @@ export default function SearchBar({ searchInput, setSearchTerm }) {
         <SearchIconStyled src={searchIcon} />
 
       </SearchFormStyled>
-      <BookmarkLinkStyled to={ROUTES.FAVLIST} />
+
     </FilterSectionStyled>
 
   )
@@ -93,15 +91,3 @@ const SearchIconStyled = styled.img`
   pointer-events: none;
 `
 
-const BookmarkLinkStyled = styled(Link)`
-  background-image: url(${bookmarkIconFilled});
-  position: absolute;
-  background-repeat: no-repeat;
-
-  margin-left: px;
-  margin-top: 10px;
-  width: 25px;
-  height: 25px;
- right: 29px;
- top: 191px;
-`

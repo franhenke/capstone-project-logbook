@@ -22,6 +22,7 @@ export default function Dashboard({ values }) {
   return (
     <>
       <ProfileHeader />
+
       <EntryContainerStyled>
         <IntroStyled>Your Journalentries</IntroStyled>
         <SearchBar setSearchTerm={setSearchTerm} searchInput={searchTerm} />
@@ -44,7 +45,7 @@ const EntryContainerStyled = styled.main`
 `
 
 const ScrollableWrapper = styled.div`
-  height: 380px;
+  height: 400px;
   overflow-y: scroll;
 
   scrollbar-width: none;

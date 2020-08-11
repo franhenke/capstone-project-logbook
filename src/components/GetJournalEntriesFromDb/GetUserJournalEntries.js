@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
-import { db } from '../firebase/index'
-import LoginContext from './auth/LoginContext'
+import { db } from '../../firebase/index'
+import LoginContext from '../auth/LoginContext'
 
 export default function GetUserJournalEntries() {
   const [userJournalEntries, setuserJournalEntries] = useState([])

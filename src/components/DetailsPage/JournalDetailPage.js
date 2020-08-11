@@ -3,7 +3,6 @@ import * as ROUTES from '../../constants/routes'
 import { useParams, Link } from 'react-router-dom'
 import styled from 'styled-components'
 import book from '../../images/book-open.svg'
-import mockphoto from '../../images/mock.jpg'
 import chevron from '../../images/chevron-left.svg'
 import MarkerIcon from '../../images/map-pin.svg'
 import dayjs from 'dayjs'
@@ -16,7 +15,10 @@ export default function JournalDetailPage({ values }) {
   return (
     <>
       <DetailPageWrapper>
-        <StyledHeaderPic />
+        <ImageHeaderStyled>
+          <img src={selectedEntry.image} alt="upload" />
+
+        </ImageHeaderStyled>
         <DateStyled>{parsedDate.format('ddd, DD MMMM YYYY')}</DateStyled>
         <CaptionStyled>{selectedEntry.caption}</CaptionStyled>
         <IconStyled src={book} alt="book" />
@@ -26,7 +28,6 @@ export default function JournalDetailPage({ values }) {
           <MarkerIconStyled src={MarkerIcon} alt="icon of a pin" />
           {selectedEntry.place}
         </CityStyled>
-        <img src={selectedEntry.image} alt="upload" />
         <Link to={ROUTES.HOME}>
           <BackIconStyled src={chevron} alt="journalentry" />
         </Link>
@@ -35,12 +36,34 @@ export default function JournalDetailPage({ values }) {
   )
 }
 
+const ImageHeaderStyled = styled.div`
+display: inline-block;
+  width: 90vw;
+    height: 160px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 5px;
+
+  img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  object-position: 120% 90%;
+    
+  }
+`
+
 const DetailPageWrapper = styled.div`
   position: relative;
   margin: 10px;
   height: 100%;
   text-align: left;
   overflow: scroll;
+  scrollbar-width: none;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
   -webkit-overflow-scrolling: touch;
   grid-row: 1 / 3;
   text-align: center;
@@ -52,16 +75,6 @@ const BackIconStyled = styled.img`
   position: absolute;
   top: 20px;
   left: 10px;
-`
-
-const StyledHeaderPic = styled.div`
-  position: relative;
-  background-image: url(${mockphoto});
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 250px;
-  width: 100%;
-  margin-bottom: 20px;
 `
 
 const DateStyled = styled.p`
@@ -85,7 +98,7 @@ const IconStyled = styled.img`
 `
 const EntryStyled = styled.p`
   width: 90%;
-  font-size: 16px;
+  font-size: 14px;
   color: var(--primary);
   text-align: left;
   padding-left: 20px;

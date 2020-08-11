@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { db } from '../firebase/index'
-import LoginContext from './auth/LoginContext'
+import { db } from '../../firebase/index'
+import LoginContext from '../auth/LoginContext'
 import Truncate from 'react-truncate'
-import markerIcon from '../images/markerpin.svg'
+import markerIcon from '../../images/markerpin.svg'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { Divider } from './Divider/Divider'
+
 
 export default function GetUserFavJournalsList() {
 
@@ -31,52 +31,68 @@ export default function GetUserFavJournalsList() {
 
   return (
     <>
+      <FavePageWrapper>
+        {favJournalsList.map((values) => (
+          <div key={values.caption} data-testid="journalEntry-navigation-item">
+            <JournalEntryStyled>
+              <ImageHeaderStyled>
+                <img src={values.image} alt="uploaded file" />
 
-      {favJournalsList.map((values) => (
-        <div key={values.caption} data-testid="journalEntry-navigation-item">
-          <JournalEntryStyled>
-            <ImageHeaderStyled>
-              <img src={values.image} />
-
-            </ImageHeaderStyled>
+              </ImageHeaderStyled>
 
 
-            <ContentStyled>
-              <CaptionStyled>{values.caption}</CaptionStyled>
-              <EntryStyled>
-                <Truncate
-                  lines={3}
-                  ellipsis={
-                    <span>
-                      <LinkStyled to={`/home/favejournalentries/${values.caption}`}>
-                        ... see more
+              <ContentStyled>
+                <CaptionStyled>{values.caption}</CaptionStyled>
+                <EntryStyled>
+                  <Truncate
+                    lines={3}
+                    ellipsis={
+                      <span>
+                        <LinkStyled to={`/home/favejournalentries/${values.caption}`}>
+                          ... see more
                   </LinkStyled>
-                    </span>
-                  }
-                >
-                  {values.entry}
-                </Truncate>
-              </EntryStyled>
-              <InfoStyled>
-                <DateStyled>{values.date}</DateStyled>
+                      </span>
+                    }
+                  >
+                    {values.entry}
+                  </Truncate>
+                </EntryStyled>
+                <InfoStyled>
+                  <DateStyled>{values.date}</DateStyled>
 
-                <CityStyled>
-                  <MarkerIconStyled src={markerIcon} />
-                  {values.place}
-                </CityStyled>
-                <CategorieStyled>{values.category}</CategorieStyled>
-              </InfoStyled>
-            </ContentStyled>
+                  <CityStyled>
+                    <MarkerIconStyled src={markerIcon} />
+                    {values.place}
+                  </CityStyled>
+                  <CategorieStyled>{values.category}</CategorieStyled>
+                </InfoStyled>
+              </ContentStyled>
 
-          </JournalEntryStyled>
+            </JournalEntryStyled>
 
 
-        </div>
+          </div>
 
-      ))}
+        ))}
+      </FavePageWrapper>
     </>
   )
 }
+
+
+const FavePageWrapper = styled.div`
+  position: relative;
+  margin: 10px;
+  grid-row: 1 / 3;
+  height: 450px;
+  overflow-y: scroll;
+
+  scrollbar-width: none;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`
 
 
 const ImageHeaderStyled = styled.div`
@@ -98,8 +114,9 @@ display: inline-block;
 
 const JournalEntryStyled = styled.div`
 color: var(--primary);
-  height: 150px;
+  height: 200px;
   margin-bottom: 40px;
+ 
 `
 
 

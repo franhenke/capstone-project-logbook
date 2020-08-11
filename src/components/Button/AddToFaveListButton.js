@@ -52,9 +52,9 @@ export default function AddToFaveList({ userId, values }) {
   return (
     <AddToFaveIconStyled onClick={addToFavList} whileTap={{ scale: 0.9 }}>
       {isButtonClicked ? (
-        <img src={bookmarkIconFilled} />
+        <img src={bookmarkIconFilled} alt="" />
       ) : (
-          <img src={bookmarkIcon} />
+          <img src={bookmarkIcon} alt="" />
         )}
     </AddToFaveIconStyled>
   )

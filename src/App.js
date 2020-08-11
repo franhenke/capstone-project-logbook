@@ -11,7 +11,6 @@ import firebaseApp from './firebase'
 import { db } from './firebase/index'
 import useServices from './services/useServices'
 import SignUp from './pages/Signup'
-import GetUserFavJournalsList from './components/GetUserFavJournalsList'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import { ToastContainer } from 'react-toastify'
@@ -112,7 +111,7 @@ export default App
 const AppWrapper = styled.div`
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 25% 65% 10%;
+  grid-template-rows: 20% 73% 7%;
   justify-items: center;
   height: 100vh;
 `

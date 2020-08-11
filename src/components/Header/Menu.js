@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import * as ROUTES from '../../constants/routes'
 import { Link } from 'react-router-dom'
-import bookmarkIcon from '../../images/bookmark.svg'
+import bookmarkIcon from '../../images/bookmarkFilled.svg'
 import UserBar from '../auth/UserBar'
 import ProfilePic from './ProfilePic'
 
@@ -14,7 +14,7 @@ const Menu = ({ open }) => {
       <MenuItemsStyled>
         <LinkStyled to={ROUTES.FAVLIST}>
           <img src={bookmarkIcon} alt="Icon for the logout" />
-          Faved Entries
+          Bookmarks
         </LinkStyled>
         <UserBar />
       </MenuItemsStyled>

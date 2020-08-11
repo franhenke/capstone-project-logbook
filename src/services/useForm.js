@@ -27,7 +27,7 @@ export default function useForm() {
     setInputs('')
     setTimeout(() => {
       history.push('/home')
-    }, 2000)
+    }, 4000)
   }
 
   const handleChange = (event) => {

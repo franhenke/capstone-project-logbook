@@ -9,7 +9,7 @@ import AddJournalEntryToDbButton from '../Button/AddJournalEntryToDbButton'
 import TextareaAutosize from 'react-textarea-autosize'
 import PropTypes from 'prop-types'
 import 'react-toastify/dist/ReactToastify.css'
-import ImageUpload from '../imageUpload'
+import ImageUpload from '../../services/imageUpload'
 
 JournalForm.propTypes = {
   placeholder: PropTypes.string,
@@ -34,9 +34,9 @@ export default function JournalForm() {
       <HeadlineStyled>Create a memory</HeadlineStyled>
       <JournalFormStyled onSubmit={handleSubmit} noValidate>
         <FirstSectionStyled>
-          <DatePickerStyled>
+          <DatePickerStyled htmlFor="date">
           <img src={dateIcon} alt="calendar icon" data-cy="dateIcon" />
-            <DatePickerLabelStyled htmlFor="date">
+            <DatePickerLabelStyled >
               Date
              
               <DatePickerInputStyled
