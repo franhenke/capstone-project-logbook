@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { useForm } from 'react-hook-form'
-import Button from '../Button/Button'
-import LoginContext from './LoginContext'
+import Button from '../../Button/Button'
+import LoginContext from '../LoginContext'
 
 LoginContext.propTypes = {
   profile: PropTypes.object.isRequired,
@@ -18,13 +18,24 @@ export default function LoginForm({ loginWithFirebase, setProfile }) {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <h2>Login</h2>
       <label>Email</label>
-      <InputStyled type="email" name="email" ref={register} required />
+      <InputStyled
+        type="email"
+        name="email"
+        ref={register}
+        required
+        data-testid="email"
+      />
       {errors.email && errors.email.type === 'notFound' && (
         <Error>{errors.email.message}</Error>
       )}
 
       <label>Password</label>
-      <InputStyled type="password" name="password" ref={register} />
+      <InputStyled
+        type="password"
+        name="password"
+        ref={register}
+        data-testid="password"
+      />
       {errors.password && <Error>'Please check your input'</Error>}
       <div>
         <Button text="Sign up" type="submit" />
