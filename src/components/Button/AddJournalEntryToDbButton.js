@@ -35,7 +35,7 @@ export default function AddJournalEntryToDbButton({ userId, values }) {
     }
   }
 
-  return <AnimatedButtonStyled onClick={addToDb} />
+  return <AnimatedButtonStyled onClick={addToDb} data-testid="button" />
 }
 
 const AnimatedButtonStyled = styled(motion.button)`

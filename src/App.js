@@ -32,12 +32,12 @@ function App() {
       <LoginContext.Provider value={{ user, isAuthCompleted, firebaseApp }}>
         <AppWrapper>
           <Switch>
-            <Redirect exact from="/" to="/home" />
+            <Redirect exact from="/" to={ROUTES.HOME} />
 
             <Route path={ROUTES.REGISTER}>
               <SignUp signUp={signUp} setProfile={setProfile} />
             </Route>
-            <Route exact path="/login">
+            <Route exact path={ROUTES.LOGIN}>
               <Login
                 loginWithFirebase={loginWithFirebase}
                 setProfile={setProfile}
@@ -119,5 +119,4 @@ const AppWrapper = styled.div`
 const FooterStyled = styled.div`
   width: 100%;
   grid-row: 3 / 4;
- 
 `
