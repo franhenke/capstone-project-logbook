@@ -15,7 +15,9 @@ export default function Dashboard({ values }) {
 
   const results = searchTerm
     ? values.filter((values) =>
-      values.caption.toLowerCase().includes(searchTerm.toLowerCase())
+      values.caption.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      values.place.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      values.category.toLowerCase().includes(searchTerm.toLowerCase())
     )
     : values
 
