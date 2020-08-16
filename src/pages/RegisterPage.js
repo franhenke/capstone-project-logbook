@@ -10,8 +10,6 @@ import bgImage from '../images/bgl.png'
 
 export default function RegisterPage() {
   const { signUp, setProfile } = useServices()
-
-
   return (
     <BackgroundStyled>
       <FormWrapper>
@@ -19,8 +17,6 @@ export default function RegisterPage() {
       </FormWrapper>
     </BackgroundStyled>
   )
-
-
 }
 
 const BackgroundStyled = styled.div`
@@ -43,14 +39,5 @@ const FormWrapper = styled.div`
   background: RGBA(51, 54, 64, 0.32);
   position: absolute;
   top: 50px;
-
-  h2 {
-    font-size: 20px;
-    font-weight: medium;
-    width: 80px;
-    color: white;
-    margin-bottom: 20px;
-    margin-top: 20px;
-  }
 `
 

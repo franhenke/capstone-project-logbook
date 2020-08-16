@@ -4,21 +4,23 @@ import JournalForm from './components/JournalForm/JournalForm'
 import styled from 'styled-components'
 import TabBar from './components/TabBar/TabBar'
 import { Redirect, Switch, Route, useLocation } from 'react-router-dom'
-import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
+import { db } from './firebase/index'
 import useAuth from './components/auth/useAuth'
 import LoginContext from './components/auth/LoginContext'
-import firebaseApp from './firebase'
-import { db } from './firebase/index'
-import useServices from './services/useServices'
-import RegisterPage from './pages/RegisterPage'
-import LoginPage from './pages/LoginPage'
-import Dashboard from './pages/Dashboard'
 import { ToastContainer } from 'react-toastify'
+//Components 
+import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
+import RegisterPage from './pages/RegisterPage'
 import NotFound from './pages/NotFound'
 import FaveListPage from './pages/FaveListPage'
+import firebaseApp from './firebase'
+import LoginPage from './pages/LoginPage'
+import Dashboard from './pages/Dashboard'
+
+
+
 
 function App() {
-  const { Register, setProfile } = useServices()
   const [user, isAuthCompleted] = useAuth()
   const location = useLocation()
   const values = GetUserJournalEntries()

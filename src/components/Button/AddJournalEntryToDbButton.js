@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import sendIcon from '../../images/sendIcon2.svg'
 
-export default function AddJournalEntryToDbButton({ userId, values }) {
+export default function AddJournalEntryToDbButton({ disabled, userId, values }) {
   async function addToDb() {
     const journalFormData = {
       caption: values.caption,
@@ -35,7 +35,10 @@ export default function AddJournalEntryToDbButton({ userId, values }) {
     }
   }
 
-  return <AnimatedButtonStyled onClick={addToDb} data-testid="button" />
+  return <AnimatedButtonStyled
+    disabled={disabled}
+    onClick={addToDb}
+    data-testid="button" />
 }
 
 const AnimatedButtonStyled = styled(motion.button)`
@@ -48,4 +51,9 @@ const AnimatedButtonStyled = styled(motion.button)`
   width: 45px;
   border-radius: 50px;
   border: none;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 15%;
+  }
 `
