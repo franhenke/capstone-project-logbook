@@ -14,7 +14,11 @@ LoginContext.propTypes = {
 }
 
 export default function LoginForm({ loginWithFirebase, setProfile }) {
-  const { register, handleSubmit, errors, setError } = useForm()
+  const {
+    register,
+    handleSubmit,
+    errors,
+  } = useForm()
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

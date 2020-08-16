@@ -10,7 +10,7 @@ import LoginContext from './components/auth/LoginContext'
 import firebaseApp from './firebase'
 import { db } from './firebase/index'
 import useServices from './services/useServices'
-import Register from './pages/Register'
+import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import Dashboard from './pages/Dashboard'
 import { ToastContainer } from 'react-toastify'
@@ -35,7 +35,7 @@ function App() {
             <Redirect exact from="/" to={ROUTES.HOME} />
 
             <Route path={ROUTES.REGISTER}>
-              <Register Register={Register} setProfile={setProfile} />
+              <RegisterPage />
             </Route>
             <Route exact path={ROUTES.LOGIN}>
               <LoginPage

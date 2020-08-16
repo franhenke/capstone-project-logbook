@@ -5,7 +5,7 @@ export default function JournalEntryList({ journalEntries }) {
   return (
     <>
       {journalEntries.map((values) => (
-        <JournalEntry key={values.caption} values={values} />
+        <JournalEntry key={values.entry} values={values} />
       ))}
     </>
   )
