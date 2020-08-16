@@ -23,20 +23,20 @@ export default function UserBar() {
           Logout
         </LogoutIconStyled>
       ) : (
-        <>
-          <LoginIconStyled
-            src={loginIcon}
-            alt="Icon for the login"
-            onClick={() => history.push('/login')}
-          />{' '}
+          <>
+            <LoginIconStyled
+              src={loginIcon}
+              alt=""
+              onClick={() => history.push('/login')}
+            />{' '}
           |
-          <RegisterIconStyled
-            src={registerIcon}
-            alt="Icon for the Register"
-            onClick={() => history.push('/register')}
-          />
-        </>
-      )}
+            <RegisterIconStyled
+              src={registerIcon}
+              alt=""
+              onClick={() => history.push('/register')}
+            />
+          </>
+        )}
     </div>
   )
 }

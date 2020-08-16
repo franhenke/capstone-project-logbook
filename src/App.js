@@ -16,6 +16,7 @@ import FaveListPage from './pages/FaveListPage'
 import firebaseApp from './firebase'
 import LoginPage from './pages/LoginPage'
 import Dashboard from './pages/Dashboard'
+import LoadingScreen from './components/LoadingScreen'
 
 
 
@@ -26,7 +27,7 @@ function App() {
   const values = GetUserJournalEntries()
 
   if (!isAuthCompleted) {
-    return <div>....Loading</div>
+    return <LoadingScreen />
   }
 
   return (
@@ -35,15 +36,14 @@ function App() {
         <AppWrapper>
           <Switch>
             <Redirect exact from="/" to={ROUTES.HOME} />
-
             <Route path={ROUTES.REGISTER}>
-              <RegisterPage />
+              <RegisterPage
+              />
             </Route>
             <Route exact path={ROUTES.LOGIN}>
               <LoginPage
               />
             </Route>
-
             <Route
               exact
               path={ROUTES.HOME}
@@ -70,7 +70,6 @@ function App() {
             closeOnClick
             rtl={false}
           />
-
           <FooterStyled>
             {location.pathname !== '/' &&
               location.pathname !== '/login' &&
@@ -95,7 +94,6 @@ function App() {
           if (doc.exists) {
             setuserJournalEntries(doc.data().UserJournalEntries)
           }
-          console.log(doc.data().UserJournalEntries)
         })
         .catch(function (error) {
           console.log('Error getting document:', error)
