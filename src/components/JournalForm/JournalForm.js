@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import styled from 'styled-components'
-import useForm from '../../services/useForm'
+import 'react-toastify/dist/ReactToastify.css'
 import dayjs from 'dayjs'
-import dateIcon from '../../images/datePicker.svg'
-import { useContext } from 'react'
-import LoginContext from '../auth/LoginContext'
-import AddJournalEntryToDbButton from '../Button/AddJournalEntryToDbButton'
 import TextareaAutosize from 'react-textarea-autosize'
 import PropTypes from 'prop-types'
-import 'react-toastify/dist/ReactToastify.css'
+import useForm from '../../services/useForm'
+import LoginContext from '../../services/auth/LoginContext'
+
+import dateIcon from '../../images/datePicker.svg'
+import AddJournalEntryToDbButton from '../Button/AddJournalEntryToDbButton'
 import ImageUpload from '../../services/imageUpload'
 import validateJournalEntry from './JournalFormValidation.js'
+
 
 JournalForm.propTypes = {
   placeholder: PropTypes.string,
@@ -119,9 +120,8 @@ export default function JournalForm() {
             />
           </StyledTextAreaInputField>
         </TextAreaSection>
-
-        <ImageUpload setFileUrl={setFileUrl} />
-
+        <ImageUpload
+          setFileUrl={setFileUrl} />
         {user ? (
           <AddJournalEntryToDbButton userId={user.uid} values={values} disabled={disableButton} />
         ) : null}

@@ -36,11 +36,8 @@ export default function GetUserFavJournalsList() {
           <div key={values.caption} data-testid="journalEntry-navigation-item">
             <JournalEntryStyled>
               <ImageHeaderStyled>
-                <img src={values.image} alt="uploaded file" />
-
+                <img src={values.image} alt="" />
               </ImageHeaderStyled>
-
-
               <ContentStyled>
                 <CaptionStyled>{values.caption}</CaptionStyled>
                 <EntryStyled>
@@ -50,7 +47,7 @@ export default function GetUserFavJournalsList() {
                       <span>
                         <LinkStyled to={`/home/favejournalentries/${values.caption}`}>
                           ... see more
-                  </LinkStyled>
+                        </LinkStyled>
                       </span>
                     }
                   >
@@ -59,7 +56,6 @@ export default function GetUserFavJournalsList() {
                 </EntryStyled>
                 <InfoStyled>
                   <DateStyled>{values.date}</DateStyled>
-
                   <CityStyled>
                     <MarkerIconStyled src={markerIcon} />
                     {values.place}

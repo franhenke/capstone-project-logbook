@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { db } from '../../firebase/index'
 import firebase from 'firebase'
 import { toast } from 'react-toastify'
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import bookmarkIcon from '../../images/bookmarkEmpty.svg'
 import bookmarkIconFilled from '../../images/bookmarkFilled.svg'
-import { motion } from 'framer-motion'
+
 
 export default function AddToFaveList({ userId, values }) {
   const [isButtonClicked, setIsButtonClicked] = useState(false)

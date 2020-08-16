@@ -40,9 +40,11 @@ export default function JournalEntry({ values }) {
             {values.place}
           </CityStyled>
           <FaveIconStyled>
-            {user ? (
-              <AddToFaveListButton userId={user.uid} values={values} />
-            ) : null}
+            {user ?
+              (
+                <AddToFaveListButton userId={user.uid} values={values} />
+              )
+              : null}
           </FaveIconStyled>
         </ContentStyled>
       </JournalEntryStyled>

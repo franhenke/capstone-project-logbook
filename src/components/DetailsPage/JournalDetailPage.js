@@ -1,11 +1,12 @@
 import React from 'react'
 import * as ROUTES from '../../constants/routes'
 import { useParams, Link } from 'react-router-dom'
+import dayjs from 'dayjs'
 import styled from 'styled-components'
 import book from '../../images/book-open.svg'
 import chevron from '../../images/chevron-left.svg'
 import MarkerIcon from '../../images/map-pin.svg'
-import dayjs from 'dayjs'
+
 
 export default function JournalDetailPage({ values }) {
   const { entryId } = useParams()
@@ -16,8 +17,7 @@ export default function JournalDetailPage({ values }) {
     <>
       <DetailPageWrapper>
         <ImageHeaderStyled>
-          <img src={selectedEntry.image} alt="upload" />
-
+          <img src={selectedEntry.image} alt="" />
         </ImageHeaderStyled>
         <DateStyled>{parsedDate.format('ddd, DD MMMM YYYY')}</DateStyled>
         <CaptionStyled>{selectedEntry.caption}</CaptionStyled>

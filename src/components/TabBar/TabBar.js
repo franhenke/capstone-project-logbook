@@ -2,9 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import * as ROUTES from '../../constants/routes'
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
+
 import homeIcon from '../../images/userblue.svg'
 import bookmarkIcon from '../../images/bookmarkEmpty.svg'
-import { motion } from 'framer-motion'
+
+
+
+
 export default function TabBar() {
   return (
     <TabBarStyled>

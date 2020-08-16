@@ -19,7 +19,6 @@ export default function ImageUpload({ setFileUrl }) {
         <input
           type="file"
           onChange={onFileChange}
-        // style={{ display: 'none' }}
         />
       </ImageUploadStyled>
     </>

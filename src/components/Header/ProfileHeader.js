@@ -11,14 +11,15 @@ export default function ProfileHeader() {
   const { user } = useContext(LoginContext)
   const history = useHistory()
   const node = useRef()
-  useOnClickOutside(node, () => setOpen(false))
   const [open, setOpen] = useState(false)
+  useOnClickOutside(node, () => setOpen(false))
+  
   return (
     <>
       <HeaderStyled>
       { user ? (
-        <WelcomeMessage>Hello {user.displayName}!,
-      let's create memories! </WelcomeMessage> ) : ( history.push(ROUTES.LOGIN) )} 
+        <WelcomeMessage>Hello {user.displayName}!, let's create memories! </WelcomeMessage> ) 
+        : ( history.push(ROUTES.LOGIN) )} 
         <div ref={node}>
           <SidebarToggler open={open} setOpen={setOpen} />
           <Sidebar open={open} setOpen={setOpen} />
