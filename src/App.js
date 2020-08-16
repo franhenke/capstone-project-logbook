@@ -4,27 +4,30 @@ import JournalForm from './components/JournalForm/JournalForm'
 import styled from 'styled-components'
 import TabBar from './components/TabBar/TabBar'
 import { Redirect, Switch, Route, useLocation } from 'react-router-dom'
-import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
+import { db } from './firebase/index'
 import useAuth from './components/auth/useAuth'
 import LoginContext from './components/auth/LoginContext'
-import firebaseApp from './firebase'
-import { db } from './firebase/index'
-import useServices from './services/useServices'
-import Register from './pages/Register'
-import LoginPage from './pages/LoginPage'
-import Dashboard from './pages/Dashboard'
 import { ToastContainer } from 'react-toastify'
+//Components 
+import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
+import RegisterPage from './pages/RegisterPage'
 import NotFound from './pages/NotFound'
 import FaveListPage from './pages/FaveListPage'
+import firebaseApp from './firebase'
+import LoginPage from './pages/LoginPage'
+import Dashboard from './pages/Dashboard'
+import LoadingScreen from './components/LoadingScreen'
+
+
+
 
 function App() {
-  const { Register, loginWithFirebase, setProfile } = useServices()
   const [user, isAuthCompleted] = useAuth()
   const location = useLocation()
   const values = GetUserJournalEntries()
 
   if (!isAuthCompleted) {
-    return <div>....Loading</div>
+    return <LoadingScreen />
   }
 
   return (
@@ -33,17 +36,14 @@ function App() {
         <AppWrapper>
           <Switch>
             <Redirect exact from="/" to={ROUTES.HOME} />
-
             <Route path={ROUTES.REGISTER}>
-              <Register Register={Register} setProfile={setProfile} />
+              <RegisterPage
+              />
             </Route>
             <Route exact path={ROUTES.LOGIN}>
               <LoginPage
-                loginWithFirebase={loginWithFirebase}
-                setProfile={setProfile}
               />
             </Route>
-
             <Route
               exact
               path={ROUTES.HOME}
@@ -70,7 +70,6 @@ function App() {
             closeOnClick
             rtl={false}
           />
-
           <FooterStyled>
             {location.pathname !== '/' &&
               location.pathname !== '/login' &&
@@ -95,7 +94,6 @@ function App() {
           if (doc.exists) {
             setuserJournalEntries(doc.data().UserJournalEntries)
           }
-          console.log(doc.data().UserJournalEntries)
         })
         .catch(function (error) {
           console.log('Error getting document:', error)

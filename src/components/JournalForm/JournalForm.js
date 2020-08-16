@@ -10,6 +10,7 @@ import TextareaAutosize from 'react-textarea-autosize'
 import PropTypes from 'prop-types'
 import 'react-toastify/dist/ReactToastify.css'
 import ImageUpload from '../../services/imageUpload'
+import validateJournalEntry from './JournalFormValidation.js'
 
 JournalForm.propTypes = {
   placeholder: PropTypes.string,
@@ -20,10 +21,19 @@ JournalForm.propTypes = {
 }
 
 export default function JournalForm() {
-  const [values, handleChange, handleSubmit, setUrlToValues] = useForm()
+  const [values, inputErrors, handleChange, handleSubmit, setUrlToValues] = useForm(validateJournalEntry)
   const [fileUrl, setFileUrl] = useState(null)
   const currentDate = dayjs().format('DD/MM/YYYY')
   const { user } = useContext(LoginContext)
+
+  const disableButton =
+    !values.date ||
+    !values.category ||
+    !values.place ||
+    !values.caption ||
+    !values.entry ||
+    Object.keys(inputErrors).length !== 0
+
 
   useEffect(() => {
     setUrlToValues(fileUrl)
@@ -105,6 +115,7 @@ export default function JournalForm() {
               min="10"
               required
               placeholder="tell your story.."
+              error={inputErrors.entry}
             />
           </StyledTextAreaInputField>
         </TextAreaSection>
@@ -112,7 +123,7 @@ export default function JournalForm() {
         <ImageUpload setFileUrl={setFileUrl} />
 
         {user ? (
-          <AddJournalEntryToDbButton userId={user.uid} values={values} />
+          <AddJournalEntryToDbButton userId={user.uid} values={values} disabled={disableButton} />
         ) : null}
       </JournalFormStyled>
     </>

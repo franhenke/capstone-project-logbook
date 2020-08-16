@@ -1,10 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
-export default function useForm() {
+export default function useForm(validate) {
   const [inputs, setInputs] = useState({})
+  const [inputErrors, setInputErrors] = useState({})
+
+  useEffect(() => {
+    setInputErrors(validate(inputs))
+  }, [inputs, validate])
+
+
+  useForm.propTypes = {
+    validate: PropTypes.object,
+  }
+
+
   const Msg = () => (
     <div data-cy="toast">
       <ToastTextStyled>You've successfully created a memory</ToastTextStyled>
@@ -43,7 +56,7 @@ export default function useForm() {
       image: url,
     })
   }
-  return [inputs, handleChange, handleSubmit, setUrlToInput]
+  return [inputs, inputErrors, handleChange, handleSubmit, setUrlToInput]
 }
 
 const ToastTextStyled = styled.p`

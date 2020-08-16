@@ -1,17 +1,19 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useContext } from 'react'
 import styled from 'styled-components'
 import { useOnClickOutside } from '../../services/useOnClickOutside'
 import Sidebar from '../Sidebar/Sidebar'
 import SidebarToggler from '../Sidebar/SidebarToggler'
+import LoginContext from '../../components/auth/LoginContext'
 
 export default function ProfileHeader() {
+  const { user } = useContext(LoginContext)
   const node = useRef()
   useOnClickOutside(node, () => setOpen(false))
   const [open, setOpen] = useState(false)
   return (
     <>
       <HeaderStyled>
-        <WelcomeMessage>Hello Sarah,
+        <WelcomeMessage>Hello {user.displayName}!,
       let's create memories! </WelcomeMessage>
         <div ref={node}>
           <SidebarToggler open={open} setOpen={setOpen} />

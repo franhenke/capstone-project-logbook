@@ -1,27 +1,25 @@
 import React from 'react'
-import styled from 'styled-components'
+import RegisterForm from '../components/auth/RegisterForm/RegisterForm'
 import useServices from '../services/useServices'
+
+import styled from 'styled-components'
 import bgImage from '../images/bgl.png'
-import LoginForm from '../components/auth/LoginForm/LoginForm'
 
 
 
-export default function LoginPage() {
-  const { loginWithFirebase, setProfile } = useServices()
 
+export default function RegisterPage() {
+  const { signUp, setProfile } = useServices()
   return (
     <BackgroundStyled>
       <FormWrapper>
-        <LoginForm
-          loginWithFirebase={loginWithFirebase}
-          setProfile={setProfile} />
+        <RegisterForm signUp={signUp} setProfile={setProfile} />
       </FormWrapper>
     </BackgroundStyled>
   )
-
 }
 
-const BackgroundStyled = styled.image`
+const BackgroundStyled = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
@@ -33,6 +31,7 @@ const BackgroundStyled = styled.image`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `
+
 const FormWrapper = styled.div`
   justify-items: center;
   height: 570px;
@@ -40,15 +39,5 @@ const FormWrapper = styled.div`
   background: RGBA(51, 54, 64, 0.32);
   position: absolute;
   top: 50px;
-
-  h2 {
-    font-size: 20px;
-    font-weight: medium;
-    width: 80px;
-    color: white;
-    margin-bottom: 40px;
-    margin-top: 30px;
-  }
 `
-
 

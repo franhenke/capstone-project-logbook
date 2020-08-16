@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import SearchBar from '../components/SearchBar/SearchBar'
 import ProfileHeader from '../components/Header/ProfileHeader'
 import JournalEntryList from '../components/JournalEntry/JournalEntryList'
-import ButtonToForm from '../components/Button/ButtonToForm'
+import ButtonToJournalForm from '../components/Button/ButtonToJournalForm'
 
 Dashboard.propTypes = {
   values: PropTypes.arrayOf(PropTypes.object),
@@ -15,7 +15,9 @@ export default function Dashboard({ values }) {
 
   const results = searchTerm
     ? values.filter((values) =>
-      values.caption.toLowerCase().includes(searchTerm.toLowerCase())
+      values.caption.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      values.place.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      values.category.toLowerCase().includes(searchTerm.toLowerCase())
     )
     : values
 
@@ -33,7 +35,7 @@ export default function Dashboard({ values }) {
             )}
         </ScrollableWrapper>
       </EntryContainerStyled>
-      <ButtonToForm />
+      <ButtonToJournalForm />
     </>
   )
 }
