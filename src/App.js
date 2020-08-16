@@ -11,7 +11,7 @@ import firebaseApp from './firebase'
 import { db } from './firebase/index'
 import useServices from './services/useServices'
 import Register from './pages/Register'
-import Login from './pages/Login'
+import LoginPage from './pages/LoginPage'
 import Dashboard from './pages/Dashboard'
 import { ToastContainer } from 'react-toastify'
 import NotFound from './pages/NotFound'
@@ -38,7 +38,7 @@ function App() {
               <Register Register={Register} setProfile={setProfile} />
             </Route>
             <Route exact path={ROUTES.LOGIN}>
-              <Login
+              <LoginPage
                 loginWithFirebase={loginWithFirebase}
                 setProfile={setProfile}
               />

@@ -14,7 +14,7 @@ LoginContext.propTypes = {
   setProfile: PropTypes.func.isRequired,
 }
 
-export default function Login({ loginWithFirebase, setProfile }) {
+export default function LoginPage({ loginWithFirebase, setProfile }) {
   const { register, handleSubmit, errors, setError } = useForm()
 
   return (
@@ -23,13 +23,22 @@ export default function Login({ loginWithFirebase, setProfile }) {
         <Form onSubmit={handleSubmit(onSubmit)}>
           <h2>Login</h2>
           <label>Email</label>
-          <InputStyled type="email" name="email" ref={register} required />
+          <InputStyled
+            type="email"
+            name="email"
+            ref={register}
+            required
+            data-testid="email"
+          />
           {errors.email && errors.email.type === 'notFound' && (
             <Error>{errors.email.message}</Error>
           )}
 
           <label>Password</label>
-          <InputStyled type="password" name="password" ref={register} />
+          <InputStyled
+            type="password"
+            name="password"
+            ref={register} />
           {errors.password && <Error>'Please check your input'</Error>}
           <div>
             <Button text="Sign up" type="submit" />
