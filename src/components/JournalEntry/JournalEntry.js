@@ -1,12 +1,14 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import AddToFaveListButton from '../Button/AddToFaveListButton'
 import LoginContext from '../auth/LoginContext'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import Truncate from 'react-truncate'
+
 import markerIcon from '../../images/markerpin.svg'
 import { Divider } from '../Divider/Divider'
+import AddToFaveListButton from '../Button/AddToFaveListButton'
+
 
 export default function JournalEntry({ values }) {
   const parsedDate = dayjs(values.date)
