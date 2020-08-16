@@ -1,4 +1,6 @@
 import React, { useState, useRef, useContext } from 'react'
+import * as ROUTES from '../../constants/routes'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import { useOnClickOutside } from '../../services/useOnClickOutside'
 import Sidebar from '../Sidebar/Sidebar'
@@ -7,14 +9,16 @@ import LoginContext from '../../components/auth/LoginContext'
 
 export default function ProfileHeader() {
   const { user } = useContext(LoginContext)
+  const history = useHistory()
   const node = useRef()
   useOnClickOutside(node, () => setOpen(false))
   const [open, setOpen] = useState(false)
   return (
     <>
       <HeaderStyled>
+      { user ? (
         <WelcomeMessage>Hello {user.displayName}!,
-      let's create memories! </WelcomeMessage>
+      let's create memories! </WelcomeMessage> ) : ( history.push(ROUTES.LOGIN) )} 
         <div ref={node}>
           <SidebarToggler open={open} setOpen={setOpen} />
           <Sidebar open={open} setOpen={setOpen} />
