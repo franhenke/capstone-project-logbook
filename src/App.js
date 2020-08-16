@@ -18,7 +18,7 @@ import NotFound from './pages/NotFound'
 import FaveListPage from './pages/FaveListPage'
 
 function App() {
-  const { Register, loginWithFirebase, setProfile } = useServices()
+  const { Register, setProfile } = useServices()
   const [user, isAuthCompleted] = useAuth()
   const location = useLocation()
   const values = GetUserJournalEntries()
@@ -39,8 +39,6 @@ function App() {
             </Route>
             <Route exact path={ROUTES.LOGIN}>
               <LoginPage
-                loginWithFirebase={loginWithFirebase}
-                setProfile={setProfile}
               />
             </Route>
 

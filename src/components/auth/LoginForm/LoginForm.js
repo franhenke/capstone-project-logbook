@@ -1,9 +1,11 @@
 import React from 'react'
+import * as ROUTES from '../../../constants/routes'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { useForm } from 'react-hook-form'
 import Button from '../../Button/Button'
 import LoginContext from '../LoginContext'
+import { Link } from 'react-router-dom'
 
 LoginContext.propTypes = {
   profile: PropTypes.object.isRequired,
@@ -40,6 +42,9 @@ export default function LoginForm({ loginWithFirebase, setProfile }) {
       <div>
         <Button text="Sign up" type="submit" />
       </div>
+      <LinkStyled to={ROUTES.REGISTER}>
+        Not a user yet? <span>Sign up</span>
+      </LinkStyled>
     </Form>
   )
 
@@ -94,6 +99,20 @@ const InputStyled = styled.input`
     border-bottom-style: solid;
     border-bottom-color: var(--highlight);
     border-bottom-width: 1px;
+  }
+`
+
+const LinkStyled = styled(Link)`
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  height: 16px;
+
+  margin: 25px 0 10px;
+  text-align: center;
+
+  span {
+    font-weight: 700;
   }
 `
 
