@@ -46,21 +46,6 @@ export default function Login({ loginWithFirebase, setProfile }) {
     setProfile(data)
     loginWithFirebase(data)
 
-    // .then((res) => {
-    //   if (res.code === 'auth/user-not-found') {
-    //     return setError(
-    //       'email',
-    //       'notFound',
-    //       'The email or password you entered are incorrect. Please try again',
-    //     )
-    //   }
-    //   if (res.code === 'auth/wrong-password') {
-    //     return setError(
-    //       'password',
-    //       'The email or password you entered are incorrect. Please try again'
-    //     )
-    //   }
-    // })
   }
 }
 

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import image from '../../images/mockuser.svg'
 import PropTypes from 'prop-types'
 
-const MenuToggler = ({ open, setOpen }) => {
+const SidebarToggler = ({ open, setOpen }) => {
   return (
     <>
       <MenuToggleStyled open={open} onClick={() => setOpen(!open)} />
@@ -11,9 +11,9 @@ const MenuToggler = ({ open, setOpen }) => {
   )
 }
 
-export default MenuToggler
+export default SidebarToggler
 
-MenuToggler.propTypes = {
+SidebarToggler.propTypes = {
   open: PropTypes.bool,
   setOpen: PropTypes.func,
 }

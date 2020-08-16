@@ -22,7 +22,6 @@ export default function Dashboard({ values }) {
   return (
     <>
       <ProfileHeader />
-
       <EntryContainerStyled>
         <IntroStyled>Your Journalentries</IntroStyled>
         <SearchBar setSearchTerm={setSearchTerm} searchInput={searchTerm} />

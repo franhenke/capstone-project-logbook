@@ -19,7 +19,7 @@ JournalForm.propTypes = {
   error: PropTypes.string,
 }
 
-export default function AddJournalForm() {
+export default function JournalForm() {
   const [values, handleChange, handleSubmit, setUrlToValues] = useForm()
   const [fileUrl, setFileUrl] = useState(null)
   const currentDate = dayjs().format('DD/MM/YYYY')

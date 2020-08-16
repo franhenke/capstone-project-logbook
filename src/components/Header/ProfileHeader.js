@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
-import MenuToggler from './MenuToggler'
-import Menu from './Menu'
 import { useOnClickOutside } from '../../services/useOnClickOutside'
+import Sidebar from '../Sidebar/Sidebar'
+import SidebarToggler from '../Sidebar/SidebarToggler'
 
 export default function ProfileHeader() {
   const node = useRef()
@@ -14,8 +14,8 @@ export default function ProfileHeader() {
         <WelcomeMessage>Hello Sarah,
       let's create memories! </WelcomeMessage>
         <div ref={node}>
-          <MenuToggler open={open} setOpen={setOpen} />
-          <Menu open={open} setOpen={setOpen} />
+          <SidebarToggler open={open} setOpen={setOpen} />
+          <Sidebar open={open} setOpen={setOpen} />
         </div>
       </HeaderStyled>
 
