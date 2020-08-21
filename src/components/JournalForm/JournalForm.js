@@ -6,8 +6,6 @@ import TextareaAutosize from 'react-textarea-autosize'
 import PropTypes from 'prop-types'
 import useForm from '../../services/useForm'
 import LoginContext from '../../services/auth/LoginContext'
-
-import formBG from '../../images/formBG.svg'
 import AddJournalEntryToDbButton from '../Button/AddJournalEntryToDbButton'
 import ImageUpload from '../../services/imageUpload'
 import validateJournalEntry from './JournalFormValidation.js'
@@ -44,6 +42,7 @@ export default function JournalForm() {
     <>
       <HeadlineStyled>Create a memory</HeadlineStyled>
       <JournalFormStyled onSubmit={handleSubmit} noValidate>
+
         <FirstSectionStyled>
           <DatePickerStyled >
             <DatePickerLabelStyled htmlFor="date">
@@ -52,6 +51,7 @@ export default function JournalForm() {
             <DatePickerInputStyled
               onChange={(event) => handleChange(event)}
               value={values.date || ''}
+              setValue={values.date || ''}
               type="date"
               name="date"
               id="date"
@@ -63,8 +63,8 @@ export default function JournalForm() {
           </DatePickerStyled>
           <CategoryStyled>
             <label htmlFor="category">Category</label>
+
             <SelectStyled
-              defaultValue=""
               onChange={(event) => handleChange(event)}
               value={values.category || ''}
               name="category"
@@ -80,18 +80,18 @@ export default function JournalForm() {
             </SelectStyled>
           </CategoryStyled>
         </FirstSectionStyled>
-        <PlaceStyled>
-          <label htmlFor="place">Place</label>
-          <input
-            onChange={(event) => handleChange(event)}
-            value={values.place || ''}
-            type="text"
-            name="place"
-            id="place"
-            required
-            placeholder="Add a place or location to your entry"
-          />
-        </PlaceStyled>
+        {/* <PlaceStyled> */}
+        <label htmlFor="place">Place</label>
+        <input
+          onChange={(event) => handleChange(event)}
+          value={values.place || ''}
+          type="text"
+          name="place"
+          id="place"
+          required
+          placeholder="Add a place or location to your entry"
+        />
+        {/* </PlaceStyled> */}
         <label htmlFor="caption">Caption</label>
         <input
           onChange={(event) => handleChange(event)}
@@ -139,11 +139,10 @@ const HeadlineStyled = styled.h2`
   `
 
 const JournalFormStyled = styled.form`
-background-image: url(${formBG});
 background-size: cover;
 background-repeat: no-repeat;
 grid-row: 2/3;
-margin: 1.5em 0;
+margin: 2.5em;
 `
 
 const FirstSectionStyled = styled.section`
@@ -163,12 +162,10 @@ const DatePickerLabelStyled = styled.label`
 
 const DatePickerInputStyled = styled.input`
 
-  font-size: 17px;
+  font-size: 1rem;
   opacity: 0.5;
   color: var(--text);
   opacity: 0.5;
-
-  
   `
 
 const SelectStyled = styled.select`
@@ -177,8 +174,8 @@ const SelectStyled = styled.select`
   outline: none;
   border: none;
   font-size: 1em;
-  width: 120px;
-  margin: 0.5em;
+  width: 8em;
+  margin: 0.5em 0 2em;
 `
 
 const CategoryStyled = styled.div`
@@ -191,12 +188,8 @@ const CategoryStyled = styled.div`
   }
 `
 
-const PlaceStyled = styled.div`
-  margin-bottom: 35px;
-`
-
 const TextAreaSection = styled.section`
-  margin: 2em 0;
+  margin: 1em 0;
   height: 10em;
   overflow-y: scroll;
 
@@ -208,7 +201,7 @@ const TextAreaSection = styled.section`
 `
 
 const StyledTextAreaInputField = styled.div`
- margin-bottom: 40px;
+ margin-bottom: 2.2em;
 `
 
 const StyledTextArea = styled(TextareaAutosize)`

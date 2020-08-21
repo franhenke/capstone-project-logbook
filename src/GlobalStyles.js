@@ -41,7 +41,7 @@ export default createGlobalStyle`
     outline: none;
     border: none;
     width: 90%;
-    margin: 0.5em 0;
+    margin: 0.5em 0 2em;
 
     &:focus {
     outline: none;
