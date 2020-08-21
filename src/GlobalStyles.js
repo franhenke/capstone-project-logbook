@@ -29,7 +29,7 @@ export default createGlobalStyle`
   }
 
   h2 {
-    font-size: 1.2em;
+    font-size: 1.3em;
     font-weight: 600;
   }
 
@@ -41,7 +41,7 @@ export default createGlobalStyle`
     outline: none;
     border: none;
     width: 90%;
-    margin-top: 8px;
+    margin: 0.5em 0;
 
     &:focus {
     outline: none;

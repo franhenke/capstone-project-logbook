@@ -112,7 +112,7 @@ const AppWrapper = styled.div`
   grid-template-rows: 20% 73% 7%;
   justify-items: center;
   height: 100vh;
-`
+  `
 
 const FooterStyled = styled.div`
   width: 100%;

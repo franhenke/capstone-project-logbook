@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import useForm from '../../services/useForm'
 import LoginContext from '../../services/auth/LoginContext'
 
-import dateIcon from '../../images/datePicker.svg'
+import formBG from '../../images/formBG.svg'
 import AddJournalEntryToDbButton from '../Button/AddJournalEntryToDbButton'
 import ImageUpload from '../../services/imageUpload'
 import validateJournalEntry from './JournalFormValidation.js'
@@ -46,9 +46,9 @@ export default function JournalForm() {
       <JournalFormStyled onSubmit={handleSubmit} noValidate>
         <FirstSectionStyled>
           <DatePickerStyled >
-
             <DatePickerLabelStyled htmlFor="date">
-              Date</DatePickerLabelStyled>
+              Date
+              </DatePickerLabelStyled>
             <DatePickerInputStyled
               onChange={(event) => handleChange(event)}
               value={values.date || ''}
@@ -134,12 +134,16 @@ const HeadlineStyled = styled.h2`
   place-self: center start;
   color: var(--mint);
   padding-left: 2.5em;
+  margin-top: 2em;
+  width: 10em;
   `
 
 const JournalFormStyled = styled.form`
-
+background-image: url(${formBG});
+background-size: cover;
+background-repeat: no-repeat;
 grid-row: 2/3;
-margin-bottom: 1.5em;
+margin: 1.5em 0;
 `
 
 const FirstSectionStyled = styled.section`
@@ -172,10 +176,9 @@ const SelectStyled = styled.select`
   color: var(--text);
   outline: none;
   border: none;
-
-  height: 20px;
-  font-size: 16px;
+  font-size: 1em;
   width: 120px;
+  margin: 0.5em;
 `
 
 const CategoryStyled = styled.div`
