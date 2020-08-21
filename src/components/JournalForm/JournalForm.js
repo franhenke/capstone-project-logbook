@@ -45,21 +45,21 @@ export default function JournalForm() {
       <HeadlineStyled>Create a memory</HeadlineStyled>
       <JournalFormStyled onSubmit={handleSubmit} noValidate>
         <FirstSectionStyled>
-          <DatePickerStyled htmlFor="date">
-            <img src={dateIcon} alt="calendar icon" data-cy="dateIcon" />
-            <DatePickerLabelStyled>
-              Date
-              <DatePickerInputStyled
-                onChange={(event) => handleChange(event)}
-                value={values.date || ''}
-                type="date"
-                name="date"
-                id="date"
-                autoFocus
-                max={currentDate}
-                required
-              />
-            </DatePickerLabelStyled>
+          <DatePickerStyled >
+
+            <DatePickerLabelStyled htmlFor="date">
+              Date</DatePickerLabelStyled>
+            <DatePickerInputStyled
+              onChange={(event) => handleChange(event)}
+              value={values.date || ''}
+              type="date"
+              name="date"
+              id="date"
+              autoFocus
+              max={currentDate}
+              required
+            />
+
           </DatePickerStyled>
           <CategoryStyled>
             <label htmlFor="category">Category</label>
@@ -130,61 +130,42 @@ export default function JournalForm() {
   )
 }
 
-const HeadlineStyled = styled.p`
-  left: 37px;
-  top: 80px;
-  position: absolute;
+const HeadlineStyled = styled.h2`
+  place-self: center start;
   color: var(--mint);
-  font-size: 18px;
-  font-weight: 600;
-  text-align: left;
-`
+  padding-left: 2.5em;
+  `
 
 const JournalFormStyled = styled.form`
-  margin-top: 120px;
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  height: 480px;
-  width: 300px;
-  font-family: Roboto;
+
+grid-row: 2/3;
+margin-bottom: 1.5em;
 `
 
 const FirstSectionStyled = styled.section`
   display: grid;
-  grid-template-columns: 180px 150px;
-  grid-template-rows: 70px;
+  grid-template-columns: 1fr 0.8fr;
   justify-content: space-between;
-  margin-bottom: 35px;
-  align-items: baseline;
-`
+  margin-bottom: 2em;
+  `
 
 const DatePickerStyled = styled.div`
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-self: flex-end;
 
-  img {
-    position: absolute;
-    top: 32px;
-    left: 1px;
-    pointer-events: none;
-    height: 14px;
-  }
 `
 const DatePickerLabelStyled = styled.label`
   color: var(--background);
 `
 
 const DatePickerInputStyled = styled.input`
-  margin-left: 23px;
-  height: 23px;
+
   font-size: 17px;
   opacity: 0.5;
   color: var(--text);
   opacity: 0.5;
-`
+
+  
+  `
 
 const SelectStyled = styled.select`
   background: var(--background);
@@ -212,8 +193,8 @@ const PlaceStyled = styled.div`
 `
 
 const TextAreaSection = styled.section`
-  margin: 35px 0;
-  height: 150px;
+  margin: 2em 0;
+  height: 10em;
   overflow-y: scroll;
 
   scrollbar-width: none;
@@ -224,26 +205,11 @@ const TextAreaSection = styled.section`
 `
 
 const StyledTextAreaInputField = styled.div`
-  position: relative;
-  margin-bottom: 40px;
+ margin-bottom: 40px;
 `
 
 const StyledTextArea = styled(TextareaAutosize)`
-  outline: none;
-  border: none;
-  background: var(--background);
-  width: 90%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 14px;
-  font-weight: 300;
-  color: #808e8e;
-
-  &::placeholder {
-    color: #abb3bb;
-    font-family: 'Roboto', sans-serif;
-  }
-  &:focus {
-    outline: none;
-  }
+  Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   
 `

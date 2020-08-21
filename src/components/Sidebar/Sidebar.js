@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import * as ROUTES from '../../constants/routes'
 import { Link } from 'react-router-dom'
 import bookmarkIcon from '../../images/bookmarkFilled.svg'
-import UserBar from '../auth/UserBar'
+import UserBar from '../../services/auth/UserBar'
 import ProfilePic from './ProfilePic'
 
 const Sidebar = ({ open }) => {

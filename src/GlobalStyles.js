@@ -13,11 +13,12 @@ export default createGlobalStyle`
     --highlight: #64B2D0;
     --icon: #ACB6CE;
     --iconactive: #49567E;
+    --placeholder: #abb3bb;
   }
  * {
     box-sizing: border-box;
     margin: 0;
-  padding: 0;
+    padding: 0;
   }
 
   body {
@@ -27,12 +28,16 @@ export default createGlobalStyle`
   
   }
 
+  h2 {
+    font-size: 1.2em;
+    font-weight: 600;
+  }
+
   input, textarea {
-    font-size: 16px;
+    font-size: 1em;
     background-color: var(--background);
     color: #808E8E;
-    font-size: 14px;
-  font-weight: 300;
+    font-weight: 300;
     outline: none;
     border: none;
     width: 90%;
@@ -44,9 +49,8 @@ export default createGlobalStyle`
   }
 
   &::placeholder {
-    color: #abb3bb;
-    font-size: 13px;
-    padding: 0;
+    color: var(--placeholder);
+    font-size: 1em;
   }
   }
   `

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import LoginContext from '../auth/LoginContext'
+import LoginContext from '../../services/auth/LoginContext'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import Truncate from 'react-truncate'

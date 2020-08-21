@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import useServices from '../services/useServices'
 import bgImage from '../images/bgl.png'
-import LoginForm from '../components/auth/LoginForm/LoginForm'
+import LoginForm from '../services/auth/LoginForm/LoginForm'
 
 
 

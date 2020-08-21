@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import GetUserFavJournalsList from '../components/GetJournalEntriesFromDb/GetUserFavJournalsList'
+import GetUserFavJournalsList from '../services/GetJournalEntriesFromDb/GetUserFavJournalsList'
 import * as ROUTES from '../constants/routes'
 import chevron from '../images/chevron-leftblue.svg'
 

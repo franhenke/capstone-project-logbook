@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { useOnClickOutside } from '../../services/useOnClickOutside'
 import Sidebar from '../Sidebar/Sidebar'
 import SidebarToggler from '../Sidebar/SidebarToggler'
-import LoginContext from '../../components/auth/LoginContext'
+import LoginContext from '../../services/auth/LoginContext'
 
 export default function ProfileHeader() {
   const { user } = useContext(LoginContext)

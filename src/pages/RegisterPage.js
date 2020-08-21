@@ -1,5 +1,5 @@
 import React from 'react'
-import RegisterForm from '../components/auth/RegisterForm/RegisterForm'
+import RegisterForm from '../services/auth/RegisterForm/RegisterForm'
 import useServices from '../services/useServices'
 
 import styled from 'styled-components'
