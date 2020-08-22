@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import image from '../../images/mockuser.svg'
+import image from '../UI/images/mockuser.svg'
 import PropTypes from 'prop-types'
 
 const SidebarToggler = ({ open, setOpen }) => {

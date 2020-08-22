@@ -3,7 +3,7 @@ import { db } from '../../firebase/index'
 import firebase from 'firebase'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import sendIcon from '../../images/sendIcon2.svg'
+import sendIcon from '../../components/UI/images/sendIcon2.svg'
 
 export default function AddJournalEntryToDbButton({ disabled, userId, values }) {
   async function addToDb() {

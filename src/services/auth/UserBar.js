@@ -2,9 +2,9 @@ import React, { useContext } from 'react'
 import LoginContext from './LoginContext'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
-import logoutIcon from '../../images/log-out.svg'
-import loginIcon from '../../images/log-in.svg'
-import registerIcon from '../../images/user-plus.svg'
+import logoutIcon from '../../components/UI/images/log-out.svg'
+import loginIcon from '../../components/UI/images/log-in.svg'
+import registerIcon from '../../components/UI/images/user-plus.svg'
 
 export default function UserBar() {
   const { user, firebaseApp } = useContext(LoginContext)

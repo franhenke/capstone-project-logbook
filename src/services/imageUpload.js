@@ -26,15 +26,9 @@ export default function ImageUpload({ setFileUrl }) {
 }
 
 const ImageUploadStyled = styled.label`
-    
-  background-repeat: no-repeat;
     cursor: pointer;
-    margin-bottom: 50px;
+  
   input {
-    
-   width: 200px;
-   
-   
-
+   width: 300px;
   }
 `

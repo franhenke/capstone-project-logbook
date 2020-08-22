@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import GetUserFavJournalsList from '../services/GetJournalEntriesFromDb/GetUserFavJournalsList'
+import GetUserFavJournalsList from '../services/GetUserFavJournalsList'
 import * as ROUTES from '../constants/routes'
-import chevron from '../images/chevron-leftblue.svg'
+import chevron from '../components/UI/images/chevron-leftblue.svg'
 
 export default function FaveListPage() {
 
@@ -55,7 +55,7 @@ const BackIconStyled = styled.img`
 
 const BookmarkContainerStyled = styled.div`
 grid-row: 2/3;
-padding: 20px; 
+padding: 2em; 
 
 
 `

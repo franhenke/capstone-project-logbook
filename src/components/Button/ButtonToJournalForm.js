@@ -3,7 +3,7 @@ import * as ROUTES from '../../constants/routes'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import plusIcon from '../../images/pluswhite.svg'
+import plusIcon from '../UI/images/pluswhite.svg'
 
 export default function ButtonToJournalForm() {
   return (

@@ -2,8 +2,8 @@ import React, { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { animated, useSpring } from 'react-spring'
-import searchIcon from '../../images/searchglass.svg'
-import cross from '../../images/crossmint.svg'
+import searchIcon from '../UI/images/searchglass.svg'
+import cross from '../UI/images/crossmint.svg'
 
 
 SearchBar.propTypes = {

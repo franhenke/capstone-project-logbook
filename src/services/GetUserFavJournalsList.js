@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { db } from '../../firebase/index'
-import LoginContext from '../auth/LoginContext'
-import Truncate from 'react-truncate'
-import markerIcon from '../../images/markerpin.svg'
-import styled from 'styled-components'
+import { db } from '../firebase/index'
+import LoginContext from './auth/LoginContext'
 import { Link } from 'react-router-dom'
-import { ScrollableWrapper } from '../../components/UI/ScrollableWrapper'
+import Truncate from 'react-truncate'
+import styled from 'styled-components'
+import markerIcon from '../components/UI/images/markerpin.svg'
+import { ScrollableWrapper } from '../components/UI/ScrollableWrapper'
 
 export default function GetUserFavJournalsList() {
 

@@ -37,13 +37,13 @@ export default function JournalForm() {
 
   useEffect(() => {
     setUrlToValues(fileUrl)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fileUrl])
 
   return (
     <>
       <HeadlineStyled>Create a memory</HeadlineStyled>
       <JournalFormStyled onSubmit={handleSubmit} noValidate>
-
         <FirstSectionStyled>
           <DatePickerStyled >
             <DatePickerLabelStyled htmlFor="date">

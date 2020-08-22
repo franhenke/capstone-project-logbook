@@ -18,7 +18,7 @@ export default function ProfileHeader() {
     <>
       <HeaderStyled>
       { user ? (
-        <WelcomeMessage>Hello {user.displayName}!, let's create memories! </WelcomeMessage> ) 
+        <WelcomeMessage>Hello {user.displayName}, let's create memories! </WelcomeMessage> ) 
         : ( history.push(ROUTES.LOGIN) )} 
         <div ref={node}>
           <SidebarToggler open={open} setOpen={setOpen} />
@@ -36,10 +36,10 @@ const HeaderStyled = styled.header`
   position: relative;
 `
 
-const WelcomeMessage = styled.p`
-font-size: 14px;
+const WelcomeMessage = styled.h2`
+font-size: 1em;
 color: var(--text);
 position: absolute;
-top: 80px;
-left: 75px;
+top: 6em;
+left: 4em;
 `

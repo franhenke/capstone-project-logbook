@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import dayjs from 'dayjs'
 import Truncate from 'react-truncate'
 
-import markerIcon from '../../images/markerpin.svg'
+import markerIcon from '../UI/images/markerpin.svg'
 import { Divider } from '../UI/Divider'
 import AddToFaveListButton from '../Button/AddToFaveListButton'
 

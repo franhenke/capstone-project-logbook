@@ -25,6 +25,7 @@ export default function Dashboard({ values }) {
       <EntryContainerStyled>
         <IntroStyled>Your Journalentries</IntroStyled>
         <SearchBar setSearchTerm={setSearchTerm} searchInput={searchTerm} />
+
         {results.length === 0 ?
           (
             <div>No entries found. Please change your search.</div>
@@ -39,16 +40,12 @@ export default function Dashboard({ values }) {
 
 const EntryContainerStyled = styled.main`
   grid-row: 2 / 3;
-  padding: 0 1.5em;
+  width: 90vw;
 `
 
 
 const IntroStyled = styled.h3`
-width: 3.5em;
-  font-size: 1.2em;
-  margin-bottom: 1em;
+  font-size: 16px;
   color: #8dacab;
   font-weight: bold;
-  padding-bottom: 1em;
-  border-bottom: 1px solid var(--lowopacity);
 `

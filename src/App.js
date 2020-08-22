@@ -9,14 +9,14 @@ import useAuth from './services/auth/useAuth'
 import LoginContext from './services/auth/LoginContext'
 import { ToastContainer } from 'react-toastify'
 //Components 
-import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
+import JournalDetailPage from './pages/JournalDetailPage'
 import RegisterPage from './pages/RegisterPage'
 import NotFound from './pages/NotFound'
 import FaveListPage from './pages/FaveListPage'
 import firebaseApp from './firebase'
 import LoginPage from './pages/LoginPage'
 import Dashboard from './pages/Dashboard'
-import LoadingScreen from './components/LoadingScreen'
+import LoadingScreen from './components/UI/LoadingScreen'
 
 
 
@@ -98,6 +98,7 @@ function App() {
         .catch(function (error) {
           console.log('Error getting document:', error)
         })
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
 
     return userJournalEntries
