@@ -11,7 +11,7 @@ export default createGlobalStyle`
     --lightgrey: #C3C6C9;
     --mint: #8DACAB;
     --highlight: #64B2D0;
-    --lowopacity: RGBA(195,198,201,0.41);
+    --lowopacity: RGBA(195,198,201,0.26);
     --iconactive: #49567E;
     --placeholder: #abb3bb;
   }

@@ -48,8 +48,8 @@ const AnimatedBookmarkLinkStyled = styled(motion.div)`
   background-image: url(${bookmarkIcon});
   background-repeat: no-repeat;
   background-position: center;
-  height: 20px;
-  width: 20px;
+  height: 1.3em;
+  width: 1.3em;
   border: none;
   z-index: 200;
 `
@@ -58,8 +58,8 @@ const AnimatedHomeLinkStyled = styled(motion.div)`
   background-image: url(${homeIcon});
   background-repeat: no-repeat;
   background-position: center;
-  height: 20px;
-  width: 20px;
+  height: 1.5em;
+  width: 1.5em;
   border: none;
   z-index: 200;
 `

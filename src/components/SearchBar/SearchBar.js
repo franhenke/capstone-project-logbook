@@ -66,9 +66,9 @@ export default function SearchBar({ searchInput, setSearchTerm }) {
 
 const FilterSectionStyled = styled.div`
  display: flex;
-  justify-content: left;
+  justify-content: right;
   align-items: center;
-  padding: 10px 0;
+  padding: 1em 1em;
 `
 
 const SearchFormStyled = styled(animated.form)`
@@ -87,7 +87,7 @@ position: absolute;
 `
 
 const ToggleIcon = styled.img`
-  height: 24px;
+  height: 1.2em;
   cursor: pointer;
   z-index: 10;
 `

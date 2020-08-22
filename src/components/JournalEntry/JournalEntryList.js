@@ -1,6 +1,6 @@
 import React from 'react'
 import JournalEntry from './JournalEntry'
-import { ScrollableWrapper } from './ScrollableWrapper'
+import { ScrollableWrapper } from '../UI/ScrollableWrapper'
 
 export default function JournalEntryList({ journalEntries }) {
   return (

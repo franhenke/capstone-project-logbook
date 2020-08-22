@@ -5,7 +5,7 @@ import Truncate from 'react-truncate'
 import markerIcon from '../../images/markerpin.svg'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-
+import { ScrollableWrapper } from '../../components/UI/ScrollableWrapper'
 
 export default function GetUserFavJournalsList() {
 
@@ -31,7 +31,7 @@ export default function GetUserFavJournalsList() {
 
   return (
     <>
-      <FavePageWrapper>
+      <ScrollableWrapper>
         {favJournalsList.map((values) => (
           <div key={values.caption} data-testid="journalEntry-navigation-item">
             <JournalEntryStyled>
@@ -70,25 +70,11 @@ export default function GetUserFavJournalsList() {
           </div>
 
         ))}
-      </FavePageWrapper>
+      </ScrollableWrapper>
     </>
   )
 }
 
-
-const FavePageWrapper = styled.div`
-  position: relative;
-  margin: 10px;
-  grid-row: 1 / 3;
-  height: 450px;
-  overflow-y: scroll;
-
-  scrollbar-width: none;
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`
 
 
 const ImageHeaderStyled = styled.div`

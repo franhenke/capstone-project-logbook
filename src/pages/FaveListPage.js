@@ -10,48 +10,52 @@ export default function FaveListPage() {
   return (
     <>
 
-      <EntryContainerStyled>
+      <HeaderStyled>
         <Link to={ROUTES.HOME}>
           <BackIconStyled src={chevron} alt="journalentry" />
         </Link>
-        <BookmarkPageStyled>
-          <HeaderTextStyled>Your favorite Journalentries</HeaderTextStyled>
-          <GetUserFavJournalsList />
-        </BookmarkPageStyled>
-      </EntryContainerStyled>
+        <HeaderTextStyled>Your favorite Journalentries</HeaderTextStyled>
+      </HeaderStyled>
+      <BookmarkContainerStyled>
+        <GetUserFavJournalsList />
+      </BookmarkContainerStyled>
     </>
 
   )
 
 }
 
+
+
+const HeaderStyled = styled.header`
+position: relative;
+ grid-row: 1/2;
+ width: 100%;
+
+`
+
+
+const HeaderTextStyled = styled.h2`
+  place-self: center start;
+  color: var(--mint);
+  padding-left: 2.5em;
+  margin-top: 2em;
+  width: 10em;
+  `
+
+
 const BackIconStyled = styled.img`
-  color: black;
   height: 16px;
   position: absolute;
-  top: 20px;
-  left: 120x;
+  top: 1em;
+  left: 1em;
 `
 
 
-const EntryContainerStyled = styled.main`
 
-  width: 90vw;
-  margin-top: 50px;
-  
-`
-
-const BookmarkPageStyled = styled.div`
-grid-row: 1/3;
+const BookmarkContainerStyled = styled.div`
+grid-row: 2/3;
 padding: 20px; 
-
-`
-
-const HeaderTextStyled = styled.h3`
-  color: #8DACAB;
-  font-size: 18px;
-  margin-bottom: 30px;
-  padding-left: 10px;
 
 
 `

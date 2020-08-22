@@ -6,7 +6,7 @@ import dayjs from 'dayjs'
 import Truncate from 'react-truncate'
 
 import markerIcon from '../../images/markerpin.svg'
-import { Divider } from '../Divider/Divider'
+import { Divider } from '../UI/Divider'
 import AddToFaveListButton from '../Button/AddToFaveListButton'
 
 
@@ -57,7 +57,7 @@ export default function JournalEntry({ values }) {
 const JournalEntryStyled = styled.div`
   color: var(--primary);
   height: 100px;
-  margin-bottom: 40px;
+  margin-bottom: 2.5em;
 `
 
 const FaveIconStyled = styled.div`
