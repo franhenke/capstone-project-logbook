@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react'
+import PropTypes from 'prop-types'
+import TextareaAutosize from 'react-textarea-autosize'
 import styled from 'styled-components'
 import 'react-toastify/dist/ReactToastify.css'
 import dayjs from 'dayjs'
-import TextareaAutosize from 'react-textarea-autosize'
-import PropTypes from 'prop-types'
+
 import useForm from '../../services/useForm'
 import LoginContext from '../../services/auth/LoginContext'
+import validateJournalEntry from './JournalFormValidation.js'
 import AddJournalEntryToDbButton from '../Button/AddJournalEntryToDbButton'
 import ImageUpload from '../../services/imageUpload'
-import validateJournalEntry from './JournalFormValidation.js'
 
 
 JournalForm.propTypes = {
@@ -63,7 +64,6 @@ export default function JournalForm() {
           </DatePickerStyled>
           <CategoryStyled>
             <label htmlFor="category">Category</label>
-
             <SelectStyled
               onChange={(event) => handleChange(event)}
               value={values.category || ''}
@@ -71,16 +71,13 @@ export default function JournalForm() {
               id="category"
               required
             >
-              <option value="" hidden>
-                Category
-              </option>
+              <option value="" hidden> Category</option>
               <option value="Memory">Memory</option>
               <option value="Review">Review</option>
               <option value="Thoughts">Thoughts</option>
             </SelectStyled>
           </CategoryStyled>
         </FirstSectionStyled>
-        {/* <PlaceStyled> */}
         <label htmlFor="place">Place</label>
         <input
           onChange={(event) => handleChange(event)}
@@ -91,7 +88,6 @@ export default function JournalForm() {
           required
           placeholder="Add a place or location to your entry"
         />
-        {/* </PlaceStyled> */}
         <label htmlFor="caption">Caption</label>
         <input
           onChange={(event) => handleChange(event)}
