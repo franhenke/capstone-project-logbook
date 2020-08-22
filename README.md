@@ -35,7 +35,7 @@ An App where the only existing filter is your imagination.
 - Local Storage
 
 
-Important: This app was developed and optimized for mobile usage on iPhone 6/7/8, so please make sure to switch your browser to responsive mode.
+Important: This app was developed and optimized for mobile usage on iPhone XR, so please make sure to switch your browser to responsive mode.
 
 ## Setting up the project
 
