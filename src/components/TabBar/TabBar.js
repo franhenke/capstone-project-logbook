@@ -31,12 +31,12 @@ export default function TabBar() {
 }
 
 const TabBarStyled = styled.div`
-  grid-row: 3 / 4;
-  position: relative;
   display: flex;
+  align-items: center;
   justify-content: space-around;
-  width: 100vw;
+  height: 70%;
   background: var(--background);
+   z-index: 99;
 `
 const LinkStyled = styled(Link)`
   :active {
@@ -51,7 +51,7 @@ const AnimatedBookmarkLinkStyled = styled(motion.div)`
   height: 20px;
   width: 20px;
   border: none;
-  z-index: 99;
+  z-index: 200;
 `
 
 const AnimatedHomeLinkStyled = styled(motion.div)`
@@ -61,5 +61,5 @@ const AnimatedHomeLinkStyled = styled(motion.div)`
   height: 20px;
   width: 20px;
   border: none;
-  z-index: 99;
+  z-index: 200;
 `

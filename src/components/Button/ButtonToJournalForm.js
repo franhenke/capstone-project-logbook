@@ -21,9 +21,11 @@ const AnimatedButtonStyled = styled(motion.div)`
   bottom: 55px;
   right: 30px;
   background-color: var(--mint);
-  height: 45px;
-  width: 45px;
+  box-shadow:  5px 5px 10px #EBEFEF, 
+             -2px -2px 5px #C0CECE;
+  height: 50px;
+  width: 50px;
   border-radius: 50px;
   border: none;
-  z-index: 99;
+  z-index: 199;
 `

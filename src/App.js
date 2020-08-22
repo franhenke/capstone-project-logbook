@@ -117,4 +117,5 @@ const AppWrapper = styled.div`
 const FooterStyled = styled.div`
   width: 100%;
   grid-row: 3 / 4;
-`
+  z-index: 99;
+  `

@@ -1,7 +1,9 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import searchIcon from '../../images/chevron-right.svg'
+import { animated, useSpring } from 'react-spring'
+import searchIcon from '../../images/searchglass.svg'
+import cross from '../../images/crossmint.svg'
 
 
 SearchBar.propTypes = {
@@ -10,20 +12,42 @@ SearchBar.propTypes = {
 }
 
 export default function SearchBar({ searchInput, setSearchTerm }) {
+
+  const [isSearchBarVisible, setIsSearchBarVisible] = useState(false)
   const searchField = useRef()
+
+  const animateWidth = useSpring({
+    width: isSearchBarVisible ? '190px' : '0px',
+  })
+
 
   function handleSearch(event) {
     setSearchTerm(event.target.value)
   }
 
-  function clearSearchField() {
-    setSearchTerm('')
+  function openSearchBar() {
+    setIsSearchBarVisible(true)
     searchField.current.focus()
   }
 
+  function endSearch() {
+    setSearchTerm('')
+    setIsSearchBarVisible(false)
+    searchField.current.focus()
+  }
+
+
+
   return (
     <FilterSectionStyled>
-      <SearchFormStyled onSubmit={(event) => event.preventDefault()}>
+      {isSearchBarVisible ? (
+        <ToggleIcon src={cross} alt="cross" onClick={endSearch} />
+      ) : (
+          <ToggleIcon src={searchIcon} alt="searchIcon" onClick={openSearchBar} />
+        )}
+      <SearchFormStyled
+        style={animateWidth}
+        onSubmit={(event) => event.preventDefault()}>
         <TextFieldStyled
           ref={searchField}
           type="text"
@@ -32,11 +56,6 @@ export default function SearchBar({ searchInput, setSearchTerm }) {
           onChange={handleSearch}
           data-testid="textField"
         />
-        <ClickAreaStyled
-          onClick={clearSearchField}
-          alt="delete"
-        ></ClickAreaStyled>
-        <SearchIconStyled src={searchIcon} />
 
       </SearchFormStyled>
 
@@ -45,49 +64,30 @@ export default function SearchBar({ searchInput, setSearchTerm }) {
   )
 }
 
-const FilterSectionStyled = styled.section`
-  display: flex;
-  flex-direction: row;
-  align-content: center;
+const FilterSectionStyled = styled.div`
+ display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 10px 0;
 `
 
-const SearchFormStyled = styled.form`
+const SearchFormStyled = styled(animated.form)`
   position: relative;
-  width: 250px;
-  border: 0.5px solid #8dacab;
-  margin: 8px 0 25px;
+  height: 2em;
+  border-bottom: 1px solid var(--lowopacity);
 `
 const TextFieldStyled = styled.input`
-  height: 16px;
+position: absolute;
   border: none;
-  padding-left: 10px;
-  padding-bottom: 8px;
-  padding-right: 20%;
+  padding: 0 1em;
+  font-size: 1em;
   &:focus {
     outline: none;
   }
-
-  &::placeholder {
-    color: #abb3bb;
-    font-size: 14px;
-    vertical-align: center;
-  }
 `
-const ClickAreaStyled = styled.span`
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: block;
-  background: #8dacab;
+
+const ToggleIcon = styled.img`
   height: 24px;
-  width: 27px;
-  border: 0.5px solid #8dacab;
   cursor: pointer;
+  z-index: 10;
 `
-const SearchIconStyled = styled.img`
-  position: absolute;
-  right: 1px;
-  top: 1px;
-  pointer-events: none;
-`
-
