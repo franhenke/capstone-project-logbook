@@ -9,7 +9,7 @@ import useForm from '../../services/useForm'
 import LoginContext from '../../services/auth/LoginContext'
 import validateJournalEntry from './JournalFormValidation.js'
 import AddJournalEntryToDbButton from '../Button/AddJournalEntryToDbButton'
-import ImageUpload from '../../services/imageUpload'
+import ImageUploadToDb from '../../services/ImageUploadToDb'
 
 
 JournalForm.propTypes = {
@@ -116,7 +116,7 @@ export default function JournalForm() {
             />
           </StyledTextAreaInputField>
         </TextAreaSection>
-        <ImageUpload
+        <ImageUploadToDb
           setFileUrl={setFileUrl} />
         {user ? (
           <AddJournalEntryToDbButton userId={user.uid} values={values} disabled={disableButton} />

@@ -2,7 +2,7 @@ import React from 'react'
 import RegisterForm from '../services/auth/RegisterForm/RegisterForm'
 import useServices from '../services/useServices'
 
-import { FormWrapperTranparent } from '../components/UI/FormWrapperTranparent'
+import { FormWrapperTransparent } from '../components/UI/FormWrapperTransparent'
 import { BackgroundImage } from '../components/UI/BackgroundImage'
 import bgImage from '../components/UI/images/bgl.png'
 
@@ -11,9 +11,9 @@ export default function RegisterPage() {
 
   return (
     <BackgroundImage background={bgImage}>
-      <FormWrapperTranparent >
+      <FormWrapperTransparent >
         <RegisterForm signUp={signUp} setProfile={setProfile} />
-      </FormWrapperTranparent>
+      </FormWrapperTransparent>
     </BackgroundImage>
   )
 }

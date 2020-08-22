@@ -2,7 +2,7 @@ import React from 'react'
 import { storage } from 'firebase'
 import styled from 'styled-components'
 
-export default function ImageUpload({ setFileUrl }) {
+export default function ImageUploadToDb({ setFileUrl }) {
   const onFileChange = async (event) => {
     console.log(event.target)
     const file = event.target.files[0]

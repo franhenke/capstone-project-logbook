@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const FormWrapperTranparent = styled.div`
+export const FormWrapperTransparent = styled.div`
   place-self: center;
   height: 80%;
   width: 80%;

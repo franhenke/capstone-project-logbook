@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import GetUserFavJournalsList from '../services/GetUserFavJournalsList'
+import GetUserFavJournalsFromDb from '../services/GetUserFavJournalsFromDb'
 import * as ROUTES from '../constants/routes'
 import chevron from '../components/UI/images/chevron-leftblue.svg'
 
@@ -17,7 +17,7 @@ export default function FaveListPage() {
         <HeaderTextStyled>Your favorite Journalentries</HeaderTextStyled>
       </HeaderStyled>
       <BookmarkContainerStyled>
-        <GetUserFavJournalsList />
+        <GetUserFavJournalsFromDb />
       </BookmarkContainerStyled>
     </>
 

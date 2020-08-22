@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import markerIcon from '../components/UI/images/markerpin.svg'
 import { ScrollableWrapper } from '../components/UI/ScrollableWrapper'
 
-export default function GetUserFavJournalsList() {
+export default function GetUserFavJournalsFromDb() {
 
   const [favJournalsList, setFavJournalsList] = useState([])
   const { user } = useContext(LoginContext)
