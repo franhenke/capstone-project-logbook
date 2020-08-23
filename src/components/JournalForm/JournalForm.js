@@ -78,44 +78,47 @@ export default function JournalForm() {
             </SelectStyled>
           </CategoryStyled>
         </FirstSectionStyled>
-        <label htmlFor="place">Place</label>
-        <input
-          onChange={(event) => handleChange(event)}
-          value={values.place || ''}
-          type="text"
-          name="place"
-          id="place"
-          required
-          placeholder="Add a place or location to your entry"
-        />
-        <label htmlFor="caption">Caption</label>
-        <input
-          onChange={(event) => handleChange(event)}
-          value={values.caption || ''}
-          type="text"
-          name="caption"
-          id="caption"
-          min="5"
-          required
-          data-testid="caption"
-          placeholder="Add a title to your entry"
-        />
-        <TextAreaSection>
-          <label htmlFor="Entry">Entry</label>
-          <StyledTextAreaInputField>
-            <StyledTextArea
-              onChange={(event) => handleChange(event)}
-              value={values.entry || ''}
-              type="text"
-              name="entry"
-              id="entry"
-              min="10"
-              required
-              placeholder="tell your story.."
-              error={inputErrors.entry}
-            />
-          </StyledTextAreaInputField>
-        </TextAreaSection>
+        <SecondSection>
+          <label htmlFor="place">Place</label>
+          <input
+            onChange={(event) => handleChange(event)}
+            value={values.place || ''}
+            type="text"
+            name="place"
+            id="place"
+            min="5"
+            required
+            placeholder="Add a place or location to your entry"
+          />
+          <label htmlFor="caption">Caption</label>
+          <input
+            onChange={(event) => handleChange(event)}
+            value={values.caption || ''}
+            type="text"
+            name="caption"
+            id="caption"
+            min="5"
+            required
+            data-testid="caption"
+            placeholder="Add a title to your entry"
+          />
+          <TextAreaSection>
+            <label htmlFor="Entry">Entry</label>
+            <StyledTextAreaInputField>
+              <StyledTextArea
+                onChange={(event) => handleChange(event)}
+                value={values.entry || ''}
+                type="text"
+                name="entry"
+                id="entry"
+                min="10"
+                required
+                placeholder="tell your story.."
+                error={inputErrors.entry}
+              />
+            </StyledTextAreaInputField>
+          </TextAreaSection>
+        </SecondSection>
         <ImageUploadToDb
           setFileUrl={setFileUrl} />
         {user ? (
@@ -147,6 +150,14 @@ const FirstSectionStyled = styled.section`
   justify-content: space-between;
   margin-bottom: 2em;
   `
+
+const SecondSection = styled.section`
+width: 90%;
+display: flex;
+flex-direction: column;
+
+`
+
 
 const DatePickerStyled = styled.div`
   position: relative;

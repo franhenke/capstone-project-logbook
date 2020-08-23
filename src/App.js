@@ -19,8 +19,6 @@ import Dashboard from './pages/Dashboard'
 import LoadingScreen from './components/UI/LoadingScreen'
 
 
-
-
 function App() {
   const [user, isAuthCompleted] = useAuth()
   const location = useLocation()

@@ -48,7 +48,7 @@ export default createGlobalStyle`
     border: none;
   }
 
-  &::placeholder {
+   &::placeholder {
     color: var(--placeholder);
     font-size: 1em;
   }
