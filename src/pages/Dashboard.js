@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import SearchBar from '../components/SearchBar/SearchBar'
-import ProfileHeader from '../components/Header/ProfileHeader'
+import SearchBar from '../components/UI/SearchBar/SearchBar'
+import DashboardHeader from '../components/Header/DashboardHeader'
 import JournalEntryList from '../components/JournalEntry/JournalEntryList'
-import ButtonToJournalForm from '../components/Button/ButtonToJournalForm'
+import LinkButtonToJournalForm from '../components/Button/LinkButtonToJournalForm'
 
 Dashboard.propTypes = {
   values: PropTypes.arrayOf(PropTypes.object),
@@ -13,29 +13,27 @@ Dashboard.propTypes = {
 export default function Dashboard({ values }) {
   const [searchTerm, setSearchTerm] = useState('')
 
-  const results = searchTerm
-    ? values.filter((values) =>
+  const results = values.filter(
+    (values) =>
       values.caption.toLowerCase().includes(searchTerm.toLowerCase()) ||
       values.place.toLowerCase().includes(searchTerm.toLowerCase()) ||
       values.category.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-    : values
+  )
 
   return (
     <>
-      <ProfileHeader />
+      <DashboardHeader />
       <EntryContainerStyled>
         <IntroStyled>Your Journalentries</IntroStyled>
         <SearchBar setSearchTerm={setSearchTerm} searchInput={searchTerm} />
-        <ScrollableWrapper>
-          {results.length > 0 ? (
-            <JournalEntryList journalEntries={results} />
-          ) : (
-              <div>No entries found. Please change your search.</div>
-            )}
-        </ScrollableWrapper>
+
+        {results.length === 0 ? (
+          <div>No entries found. Please change your search.</div>
+        ) : (
+          <JournalEntryList journalEntries={results} />
+        )}
       </EntryContainerStyled>
-      <ButtonToJournalForm />
+      <LinkButtonToJournalForm />
     </>
   )
 }
@@ -45,16 +43,6 @@ const EntryContainerStyled = styled.main`
   width: 90vw;
 `
 
-const ScrollableWrapper = styled.div`
-  height: 400px;
-  overflow-y: scroll;
-
-  scrollbar-width: none;
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`
 const IntroStyled = styled.h3`
   font-size: 16px;
   color: #8dacab;

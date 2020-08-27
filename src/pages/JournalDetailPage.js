@@ -1,11 +1,11 @@
 import React from 'react'
-import * as ROUTES from '../../constants/routes'
+import * as ROUTES from '../constants/routes'
 import { useParams, Link } from 'react-router-dom'
 import dayjs from 'dayjs'
 import styled from 'styled-components'
-import book from '../../images/book-open.svg'
-import chevron from '../../images/chevron-left.svg'
-import MarkerIcon from '../../images/map-pin.svg'
+import book from '../components/UI/images/book-open.svg'
+import chevron from '../components/UI/images/chevron-left.svg'
+import MarkerIcon from '../components/UI/images/map-pin.svg'
 
 
 export default function JournalDetailPage({ values }) {

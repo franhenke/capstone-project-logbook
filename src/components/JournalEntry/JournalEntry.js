@@ -1,14 +1,13 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import LoginContext from '../auth/LoginContext'
+import LoginContext from '../../services/auth/LoginContext'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import Truncate from 'react-truncate'
 
-import markerIcon from '../../images/markerpin.svg'
-import { Divider } from '../Divider/Divider'
+import markerIcon from '../UI/images/markerpin.svg'
+import { Divider } from '../UI/Divider'
 import AddToFaveListButton from '../Button/AddToFaveListButton'
-
 
 export default function JournalEntry({ values }) {
   const parsedDate = dayjs(values.date)
@@ -42,11 +41,9 @@ export default function JournalEntry({ values }) {
             {values.place}
           </CityStyled>
           <FaveIconStyled>
-            {user ?
-              (
-                <AddToFaveListButton userId={user.uid} values={values} />
-              )
-              : null}
+            {user ? (
+              <AddToFaveListButton userId={user.uid} values={values} />
+            ) : null}
           </FaveIconStyled>
         </ContentStyled>
       </JournalEntryStyled>
@@ -57,7 +54,7 @@ export default function JournalEntry({ values }) {
 const JournalEntryStyled = styled.div`
   color: var(--primary);
   height: 100px;
-  margin-bottom: 40px;
+  margin-bottom: 2.5em;
 `
 
 const FaveIconStyled = styled.div`

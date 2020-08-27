@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import Button from '../../Button/Button'
+import Button from '../../../components/Button/Button'
 
 
 RegisterForm.propTypes = {

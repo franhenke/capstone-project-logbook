@@ -1,7 +1,7 @@
 import React from 'react'
 import { Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
-import Register from './Register'
+import RegisterForm from './RegisterForm'
 import '@testing-library/jest-dom/extend-expect'
 
 import 'mutationobserver-shim'
@@ -26,7 +26,7 @@ describe('Input tests', () => {
   beforeEach(() => {
     const { getAllByRole } = render(
       <Router history={history}>
-        <Signup />
+        <RegisterForm />
       </Router>
     )
   })

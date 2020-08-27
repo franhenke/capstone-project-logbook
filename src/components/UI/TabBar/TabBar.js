@@ -1,14 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import * as ROUTES from '../../constants/routes'
+import * as ROUTES from '../../../constants/routes'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
-import homeIcon from '../../images/userblue.svg'
-import bookmarkIcon from '../../images/bookmarkEmpty.svg'
-
-
-
+import homeIcon from '../images/userblue.svg'
+import bookmarkIcon from '../images/bookmarkEmpty.svg'
 
 export default function TabBar() {
   return (
@@ -31,12 +28,12 @@ export default function TabBar() {
 }
 
 const TabBarStyled = styled.div`
-  grid-row: 3 / 4;
-  position: relative;
   display: flex;
+  align-items: center;
   justify-content: space-around;
-  width: 100vw;
+  height: 70%;
   background: var(--background);
+  z-index: 99;
 `
 const LinkStyled = styled(Link)`
   :active {
@@ -48,18 +45,18 @@ const AnimatedBookmarkLinkStyled = styled(motion.div)`
   background-image: url(${bookmarkIcon});
   background-repeat: no-repeat;
   background-position: center;
-  height: 20px;
-  width: 20px;
+  height: 1.3em;
+  width: 1.3em;
   border: none;
-  z-index: 99;
+  z-index: 200;
 `
 
 const AnimatedHomeLinkStyled = styled(motion.div)`
   background-image: url(${homeIcon});
   background-repeat: no-repeat;
   background-position: center;
-  height: 20px;
-  width: 20px;
+  height: 1.5em;
+  width: 1.5em;
   border: none;
-  z-index: 99;
+  z-index: 200;
 `

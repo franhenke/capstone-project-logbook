@@ -3,7 +3,7 @@ import * as ROUTES from '../../../constants/routes'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { useForm } from 'react-hook-form'
-import Button from '../../Button/Button'
+import Button from '../../../components/Button/Button'
 import LoginContext from '../LoginContext'
 import { Link } from 'react-router-dom'
 

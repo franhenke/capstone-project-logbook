@@ -1,17 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react'
+import PropTypes from 'prop-types'
+import TextareaAutosize from 'react-textarea-autosize'
 import styled from 'styled-components'
 import 'react-toastify/dist/ReactToastify.css'
 import dayjs from 'dayjs'
-import TextareaAutosize from 'react-textarea-autosize'
-import PropTypes from 'prop-types'
+
 import useForm from '../../services/useForm'
 import LoginContext from '../../services/auth/LoginContext'
-
-import dateIcon from '../../images/datePicker.svg'
-import AddJournalEntryToDbButton from '../Button/AddJournalEntryToDbButton'
-import ImageUpload from '../../services/imageUpload'
 import validateJournalEntry from './JournalFormValidation.js'
-
+import JournalFormSubmitButton from '../Button/JournalFormSubmitButton'
+import ImageUploadToDb from '../../services/ImageUploadToDb'
 
 JournalForm.propTypes = {
   placeholder: PropTypes.string,
@@ -22,7 +20,13 @@ JournalForm.propTypes = {
 }
 
 export default function JournalForm() {
-  const [values, inputErrors, handleChange, handleSubmit, setUrlToValues] = useForm(validateJournalEntry)
+  const [
+    values,
+    inputErrors,
+    handleChange,
+    handleSubmit,
+    setUrlToValues,
+  ] = useForm(validateJournalEntry)
   const [fileUrl, setFileUrl] = useState(null)
   const currentDate = dayjs().format('DD/MM/YYYY')
   const { user } = useContext(LoginContext)
@@ -35,9 +39,9 @@ export default function JournalForm() {
     !values.entry ||
     Object.keys(inputErrors).length !== 0
 
-
   useEffect(() => {
     setUrlToValues(fileUrl)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fileUrl])
 
   return (
@@ -45,26 +49,23 @@ export default function JournalForm() {
       <HeadlineStyled>Create a memory</HeadlineStyled>
       <JournalFormStyled onSubmit={handleSubmit} noValidate>
         <FirstSectionStyled>
-          <DatePickerStyled htmlFor="date">
-            <img src={dateIcon} alt="calendar icon" data-cy="dateIcon" />
-            <DatePickerLabelStyled>
-              Date
-              <DatePickerInputStyled
-                onChange={(event) => handleChange(event)}
-                value={values.date || ''}
-                type="date"
-                name="date"
-                id="date"
-                autoFocus
-                max={currentDate}
-                required
-              />
-            </DatePickerLabelStyled>
+          <DatePickerStyled>
+            <DatePickerLabelStyled htmlFor="date">Date</DatePickerLabelStyled>
+            <DatePickerInputStyled
+              onChange={(event) => handleChange(event)}
+              value={values.date || ''}
+              setValue={values.date || ''}
+              type="date"
+              name="date"
+              id="date"
+              autoFocus
+              max={currentDate}
+              required
+            />
           </DatePickerStyled>
           <CategoryStyled>
             <label htmlFor="category">Category</label>
             <SelectStyled
-              defaultValue=""
               onChange={(event) => handleChange(event)}
               value={values.category || ''}
               name="category"
@@ -72,6 +73,7 @@ export default function JournalForm() {
               required
             >
               <option value="" hidden>
+                {' '}
                 Category
               </option>
               <option value="Memory">Memory</option>
@@ -80,7 +82,7 @@ export default function JournalForm() {
             </SelectStyled>
           </CategoryStyled>
         </FirstSectionStyled>
-        <PlaceStyled>
+        <SecondSection>
           <label htmlFor="place">Place</label>
           <input
             onChange={(event) => handleChange(event)}
@@ -88,99 +90,89 @@ export default function JournalForm() {
             type="text"
             name="place"
             id="place"
+            min="5"
             required
             placeholder="Add a place or location to your entry"
           />
-        </PlaceStyled>
-        <label htmlFor="caption">Caption</label>
-        <input
-          onChange={(event) => handleChange(event)}
-          value={values.caption || ''}
-          type="text"
-          name="caption"
-          id="caption"
-          min="5"
-          required
-          data-testid="caption"
-          placeholder="Add a title to your entry"
-        />
-        <TextAreaSection>
-          <label htmlFor="Entry">Entry</label>
-          <StyledTextAreaInputField>
-            <StyledTextArea
-              onChange={(event) => handleChange(event)}
-              value={values.entry || ''}
-              type="text"
-              name="entry"
-              id="entry"
-              min="10"
-              required
-              placeholder="tell your story.."
-              error={inputErrors.entry}
-            />
-          </StyledTextAreaInputField>
-        </TextAreaSection>
-        <ImageUpload
-          setFileUrl={setFileUrl} />
+          <label htmlFor="caption">Caption</label>
+          <input
+            onChange={(event) => handleChange(event)}
+            value={values.caption || ''}
+            type="text"
+            name="caption"
+            id="caption"
+            min="5"
+            required
+            data-testid="caption"
+            placeholder="Add a title to your entry"
+          />
+          <TextAreaSection>
+            <label htmlFor="Entry">Entry</label>
+            <StyledTextAreaInputField>
+              <StyledTextArea
+                onChange={(event) => handleChange(event)}
+                value={values.entry || ''}
+                type="text"
+                name="entry"
+                id="entry"
+                min="10"
+                required
+                placeholder="tell your story.."
+                error={inputErrors.entry}
+              />
+            </StyledTextAreaInputField>
+          </TextAreaSection>
+        </SecondSection>
+        <ImageUploadToDb setFileUrl={setFileUrl} />
         {user ? (
-          <AddJournalEntryToDbButton userId={user.uid} values={values} disabled={disableButton} />
+          <JournalFormSubmitButton
+            userId={user.uid}
+            values={values}
+            disabled={disableButton}
+          />
         ) : null}
       </JournalFormStyled>
     </>
   )
 }
 
-const HeadlineStyled = styled.p`
-  left: 37px;
-  top: 80px;
-  position: absolute;
+const HeadlineStyled = styled.h2`
+  place-self: center start;
   color: var(--mint);
-  font-size: 18px;
-  font-weight: 600;
-  text-align: left;
+  padding-left: 2.5em;
+  margin-top: 2em;
+  width: 10em;
 `
 
 const JournalFormStyled = styled.form`
-  margin-top: 120px;
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  height: 480px;
-  width: 300px;
-  font-family: Roboto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  grid-row: 2/3;
+  margin: 2.5em;
 `
 
 const FirstSectionStyled = styled.section`
   display: grid;
-  grid-template-columns: 180px 150px;
-  grid-template-rows: 70px;
+  grid-template-columns: 1fr 0.8fr;
   justify-content: space-between;
-  margin-bottom: 35px;
-  align-items: baseline;
+  margin-bottom: 2em;
+`
+
+const SecondSection = styled.section`
+  width: 90%;
+  display: flex;
+  flex-direction: column;
 `
 
 const DatePickerStyled = styled.div`
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-self: flex-end;
-
-  img {
-    position: absolute;
-    top: 32px;
-    left: 1px;
-    pointer-events: none;
-    height: 14px;
-  }
 `
 const DatePickerLabelStyled = styled.label`
   color: var(--background);
 `
 
 const DatePickerInputStyled = styled.input`
-  margin-left: 23px;
-  height: 23px;
-  font-size: 17px;
+  font-size: 1rem;
   opacity: 0.5;
   color: var(--text);
   opacity: 0.5;
@@ -191,10 +183,9 @@ const SelectStyled = styled.select`
   color: var(--text);
   outline: none;
   border: none;
-
-  height: 20px;
-  font-size: 16px;
-  width: 120px;
+  font-size: 1em;
+  width: 8em;
+  margin: 0.5em 0 2em;
 `
 
 const CategoryStyled = styled.div`
@@ -207,13 +198,9 @@ const CategoryStyled = styled.div`
   }
 `
 
-const PlaceStyled = styled.div`
-  margin-bottom: 35px;
-`
-
 const TextAreaSection = styled.section`
-  margin: 35px 0;
-  height: 150px;
+  margin: 1em 0;
+  height: 10em;
   overflow-y: scroll;
 
   scrollbar-width: none;
@@ -224,26 +211,10 @@ const TextAreaSection = styled.section`
 `
 
 const StyledTextAreaInputField = styled.div`
-  position: relative;
-  margin-bottom: 40px;
+  margin-bottom: 2.2em;
 `
 
 const StyledTextArea = styled(TextareaAutosize)`
-  outline: none;
-  border: none;
-  background: var(--background);
-  width: 90%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 14px;
-  font-weight: 300;
-  color: #808e8e;
-
-  &::placeholder {
-    color: #abb3bb;
-    font-family: 'Roboto', sans-serif;
-  }
-  &:focus {
-    outline: none;
-  }
 `

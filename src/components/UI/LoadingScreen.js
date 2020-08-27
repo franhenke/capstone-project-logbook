@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import loading from '../images/loading.svg'
+import loading from '../UI/images/loading.svg'
 
 export default function LoadingScreen() {
   return (

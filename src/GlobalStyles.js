@@ -11,13 +11,14 @@ export default createGlobalStyle`
     --lightgrey: #C3C6C9;
     --mint: #8DACAB;
     --highlight: #64B2D0;
-    --icon: #ACB6CE;
+    --lowopacity: RGBA(195,198,201,0.26);
     --iconactive: #49567E;
+    --placeholder: #abb3bb;
   }
  * {
     box-sizing: border-box;
     margin: 0;
-  padding: 0;
+    padding: 0;
   }
 
   body {
@@ -27,26 +28,29 @@ export default createGlobalStyle`
   
   }
 
+  h2 {
+    font-size: 1.3em;
+    font-weight: 600;
+  }
+
   input, textarea {
-    font-size: 16px;
+    font-size: 1em;
     background-color: var(--background);
     color: #808E8E;
-    font-size: 14px;
-  font-weight: 300;
+    font-weight: 300;
     outline: none;
     border: none;
     width: 90%;
-    margin-top: 8px;
+    margin: 0.5em 0 2em;
 
     &:focus {
     outline: none;
     border: none;
   }
 
-  &::placeholder {
-    color: #abb3bb;
-    font-size: 13px;
-    padding: 0;
+   &::placeholder {
+    color: var(--placeholder);
+    font-size: 1em;
   }
   }
   `

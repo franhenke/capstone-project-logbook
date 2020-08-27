@@ -1,9 +1,9 @@
 import React from 'react'
-import Register from './Register'
+import RegisterForm from './RegisterForm'
 
 export default {
-  title: 'Register Form',
-  component: Register,
+  title: 'User Authentication / Register Form',
+  component: RegisterForm,
 }
 
-export const RegisterForm = () => <Register />
+export const RegisterFormNoInput = () => <RegisterForm />

@@ -4,8 +4,8 @@ import firebase from 'firebase'
 import { toast } from 'react-toastify'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import bookmarkIcon from '../../images/bookmarkEmpty.svg'
-import bookmarkIconFilled from '../../images/bookmarkFilled.svg'
+import bookmarkIcon from '../UI/images/bookmarkEmpty.svg'
+import bookmarkIconFilled from '../UI/images/bookmarkFilled.svg'
 
 
 export default function AddToFaveList({ userId, values }) {

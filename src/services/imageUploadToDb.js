@@ -2,7 +2,7 @@ import React from 'react'
 import { storage } from 'firebase'
 import styled from 'styled-components'
 
-export default function ImageUpload({ setFileUrl }) {
+export default function ImageUploadToDb({ setFileUrl }) {
   const onFileChange = async (event) => {
     console.log(event.target)
     const file = event.target.files[0]
@@ -26,15 +26,9 @@ export default function ImageUpload({ setFileUrl }) {
 }
 
 const ImageUploadStyled = styled.label`
-    
-  background-repeat: no-repeat;
     cursor: pointer;
-    margin-bottom: 50px;
+  
   input {
-    
-   width: 200px;
-   
-   
-
+   width: 300px;
   }
 `

@@ -5,20 +5,18 @@ import styled from 'styled-components'
 import TabBar from './components/TabBar/TabBar'
 import { Redirect, Switch, Route, useLocation } from 'react-router-dom'
 import { db } from './firebase/index'
-import useAuth from './components/auth/useAuth'
-import LoginContext from './components/auth/LoginContext'
+import useAuth from './services/auth/useAuth'
+import LoginContext from './services/auth/LoginContext'
 import { ToastContainer } from 'react-toastify'
 //Components 
-import JournalDetailPage from './components/DetailsPage/JournalDetailPage'
+import JournalDetailPage from './pages/JournalDetailPage'
 import RegisterPage from './pages/RegisterPage'
 import NotFound from './pages/NotFound'
 import FaveListPage from './pages/FaveListPage'
 import firebaseApp from './firebase'
 import LoginPage from './pages/LoginPage'
 import Dashboard from './pages/Dashboard'
-import LoadingScreen from './components/LoadingScreen'
-
-
+import LoadingScreen from './components/UI/LoadingScreen'
 
 
 function App() {
@@ -98,6 +96,7 @@ function App() {
         .catch(function (error) {
           console.log('Error getting document:', error)
         })
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
 
     return userJournalEntries
@@ -112,9 +111,10 @@ const AppWrapper = styled.div`
   grid-template-rows: 20% 73% 7%;
   justify-items: center;
   height: 100vh;
-`
+  `
 
 const FooterStyled = styled.div`
   width: 100%;
   grid-row: 3 / 4;
-`
+  z-index: 99;
+  `

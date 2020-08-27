@@ -1,9 +1,9 @@
 import React from 'react'
-import Login from './Login'
+import LoginForm from './LoginForm'
 
 export default {
-  title: 'Login Form',
-  component: Login,
+  title: 'User Authentication / Login Form',
+  component: LoginForm,
 }
 
-export const LoginForm = () => <Login />
+export const LoginFormNoInput = () => <LoginForm />

@@ -61,5 +61,5 @@ export default function useForm(validate) {
 
 const ToastTextStyled = styled.p`
   text-align: center;
-  font-size: 12px;
+  font-size: 0.9em;
 `
