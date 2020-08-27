@@ -9,7 +9,6 @@ import markerIcon from '../UI/images/markerpin.svg'
 import { Divider } from '../UI/Divider'
 import AddToFaveListButton from '../Button/AddToFaveListButton'
 
-
 export default function JournalEntry({ values }) {
   const parsedDate = dayjs(values.date)
   const { user } = useContext(LoginContext)
@@ -42,11 +41,9 @@ export default function JournalEntry({ values }) {
             {values.place}
           </CityStyled>
           <FaveIconStyled>
-            {user ?
-              (
-                <AddToFaveListButton userId={user.uid} values={values} />
-              )
-              : null}
+            {user ? (
+              <AddToFaveListButton userId={user.uid} values={values} />
+            ) : null}
           </FaveIconStyled>
         </ContentStyled>
       </JournalEntryStyled>

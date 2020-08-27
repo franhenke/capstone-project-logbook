@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import plusIcon from '../UI/images/pluswhite.svg'
 
-export default function ButtonToJournalForm() {
+export default function LinkButtonToJournalForm() {
   return (
     <Link to={ROUTES.JOURNALFORM}>
       <AnimatedButtonStyled whileTap={{ scale: 0.9 }} />
@@ -21,8 +21,7 @@ const AnimatedButtonStyled = styled(motion.div)`
   bottom: 55px;
   right: 30px;
   background-color: var(--mint);
-  box-shadow:  5px 5px 10px #EBEFEF, 
-             -2px -2px 5px #C0CECE;
+  box-shadow: 5px 5px 10px #ebefef, -2px -2px 5px #c0cece;
   height: 50px;
   width: 50px;
   border-radius: 50px;

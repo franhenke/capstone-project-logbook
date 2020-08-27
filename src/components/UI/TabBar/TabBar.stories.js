@@ -6,7 +6,7 @@ import { addDecorator } from '@storybook/react'
 addDecorator(StoryRouter())
 
 export default {
-  title: 'TabBar',
+  title: 'UI Components / TabBar',
   component: TabBar,
 }
 export const TabBarPreview = () => {

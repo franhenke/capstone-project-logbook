@@ -8,9 +8,8 @@ import dayjs from 'dayjs'
 import useForm from '../../services/useForm'
 import LoginContext from '../../services/auth/LoginContext'
 import validateJournalEntry from './JournalFormValidation.js'
-import AddJournalEntryToDbButton from '../Button/AddJournalEntryToDbButton'
+import JournalFormSubmitButton from '../Button/JournalFormSubmitButton'
 import ImageUploadToDb from '../../services/ImageUploadToDb'
-
 
 JournalForm.propTypes = {
   placeholder: PropTypes.string,
@@ -21,7 +20,13 @@ JournalForm.propTypes = {
 }
 
 export default function JournalForm() {
-  const [values, inputErrors, handleChange, handleSubmit, setUrlToValues] = useForm(validateJournalEntry)
+  const [
+    values,
+    inputErrors,
+    handleChange,
+    handleSubmit,
+    setUrlToValues,
+  ] = useForm(validateJournalEntry)
   const [fileUrl, setFileUrl] = useState(null)
   const currentDate = dayjs().format('DD/MM/YYYY')
   const { user } = useContext(LoginContext)
@@ -34,7 +39,6 @@ export default function JournalForm() {
     !values.entry ||
     Object.keys(inputErrors).length !== 0
 
-
   useEffect(() => {
     setUrlToValues(fileUrl)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -45,10 +49,8 @@ export default function JournalForm() {
       <HeadlineStyled>Create a memory</HeadlineStyled>
       <JournalFormStyled onSubmit={handleSubmit} noValidate>
         <FirstSectionStyled>
-          <DatePickerStyled >
-            <DatePickerLabelStyled htmlFor="date">
-              Date
-              </DatePickerLabelStyled>
+          <DatePickerStyled>
+            <DatePickerLabelStyled htmlFor="date">Date</DatePickerLabelStyled>
             <DatePickerInputStyled
               onChange={(event) => handleChange(event)}
               value={values.date || ''}
@@ -60,7 +62,6 @@ export default function JournalForm() {
               max={currentDate}
               required
             />
-
           </DatePickerStyled>
           <CategoryStyled>
             <label htmlFor="category">Category</label>
@@ -71,7 +72,10 @@ export default function JournalForm() {
               id="category"
               required
             >
-              <option value="" hidden> Category</option>
+              <option value="" hidden>
+                {' '}
+                Category
+              </option>
               <option value="Memory">Memory</option>
               <option value="Review">Review</option>
               <option value="Thoughts">Thoughts</option>
@@ -119,10 +123,13 @@ export default function JournalForm() {
             </StyledTextAreaInputField>
           </TextAreaSection>
         </SecondSection>
-        <ImageUploadToDb
-          setFileUrl={setFileUrl} />
+        <ImageUploadToDb setFileUrl={setFileUrl} />
         {user ? (
-          <AddJournalEntryToDbButton userId={user.uid} values={values} disabled={disableButton} />
+          <JournalFormSubmitButton
+            userId={user.uid}
+            values={values}
+            disabled={disableButton}
+          />
         ) : null}
       </JournalFormStyled>
     </>
@@ -135,13 +142,13 @@ const HeadlineStyled = styled.h2`
   padding-left: 2.5em;
   margin-top: 2em;
   width: 10em;
-  `
+`
 
 const JournalFormStyled = styled.form`
-background-size: cover;
-background-repeat: no-repeat;
-grid-row: 2/3;
-margin: 2.5em;
+  background-size: cover;
+  background-repeat: no-repeat;
+  grid-row: 2/3;
+  margin: 2.5em;
 `
 
 const FirstSectionStyled = styled.section`
@@ -149,31 +156,27 @@ const FirstSectionStyled = styled.section`
   grid-template-columns: 1fr 0.8fr;
   justify-content: space-between;
   margin-bottom: 2em;
-  `
-
-const SecondSection = styled.section`
-width: 90%;
-display: flex;
-flex-direction: column;
-
 `
 
+const SecondSection = styled.section`
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+`
 
 const DatePickerStyled = styled.div`
   position: relative;
-
 `
 const DatePickerLabelStyled = styled.label`
   color: var(--background);
 `
 
 const DatePickerInputStyled = styled.input`
-
   font-size: 1rem;
   opacity: 0.5;
   color: var(--text);
   opacity: 0.5;
-  `
+`
 
 const SelectStyled = styled.select`
   background: var(--background);
@@ -208,11 +211,10 @@ const TextAreaSection = styled.section`
 `
 
 const StyledTextAreaInputField = styled.div`
- margin-bottom: 2.2em;
+  margin-bottom: 2.2em;
 `
 
 const StyledTextArea = styled(TextareaAutosize)`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-  Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-   
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `

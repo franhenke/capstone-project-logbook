@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import sendIcon from '../../components/UI/images/sendIcon2.svg'
 
-export default function AddJournalEntryToDbButton({ disabled, userId, values }) {
+export default function JournalFormSubmitButton({ disabled, userId, values }) {
   async function addToDb() {
     const journalFormData = {
       caption: values.caption,
@@ -35,10 +35,13 @@ export default function AddJournalEntryToDbButton({ disabled, userId, values }) 
     }
   }
 
-  return <AnimatedButtonStyled
-    disabled={disabled}
-    onClick={addToDb}
-    data-testid="button" />
+  return (
+    <AnimatedButtonStyled
+      disabled={disabled}
+      onClick={addToDb}
+      data-testid="button"
+    />
+  )
 }
 
 const AnimatedButtonStyled = styled(motion.button)`

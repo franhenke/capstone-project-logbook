@@ -6,26 +6,24 @@ import { useOnClickOutside } from '../../services/useOnClickOutside'
 import Sidebar from '../Sidebar/Sidebar'
 import SidebarToggler from '../Sidebar/SidebarToggler'
 import LoginContext from '../../services/auth/LoginContext'
+import WelcomeMessage from '../WelcomeMessage'
 
-export default function ProfileHeader() {
+export default function DashboardHeader() {
   const { user } = useContext(LoginContext)
   const history = useHistory()
   const node = useRef()
   const [open, setOpen] = useState(false)
   useOnClickOutside(node, () => setOpen(false))
-  
+
   return (
     <>
       <HeaderStyled>
-      { user ? (
-        <WelcomeMessage>Hello {user.displayName}, let's create memories! </WelcomeMessage> ) 
-        : ( history.push(ROUTES.LOGIN) )} 
+        {user ? <WelcomeMessage /> : history.push(ROUTES.LOGIN)}
         <div ref={node}>
           <SidebarToggler open={open} setOpen={setOpen} />
           <Sidebar open={open} setOpen={setOpen} />
         </div>
       </HeaderStyled>
-
     </>
   )
 }
@@ -34,12 +32,4 @@ const HeaderStyled = styled.header`
   grid-row: 1 / 2;
   width: 100vw;
   position: relative;
-`
-
-const WelcomeMessage = styled.h2`
-font-size: 1em;
-color: var(--text);
-position: absolute;
-top: 6em;
-left: 4em;
 `

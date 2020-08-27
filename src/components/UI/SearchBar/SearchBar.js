@@ -2,9 +2,8 @@ import React, { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { animated, useSpring } from 'react-spring'
-import searchIcon from '../UI/images/searchglass.svg'
-import cross from '../UI/images/crossmint.svg'
-
+import searchIcon from '../images/searchglass.svg'
+import cross from '../images/crossmint.svg'
 
 SearchBar.propTypes = {
   searchInput: PropTypes.string,
@@ -12,14 +11,12 @@ SearchBar.propTypes = {
 }
 
 export default function SearchBar({ searchInput, setSearchTerm }) {
-
   const [isSearchBarVisible, setIsSearchBarVisible] = useState(false)
   const searchField = useRef()
 
   const animateWidth = useSpring({
     width: isSearchBarVisible ? '190px' : '0px',
   })
-
 
   function handleSearch(event) {
     setSearchTerm(event.target.value)
@@ -36,18 +33,17 @@ export default function SearchBar({ searchInput, setSearchTerm }) {
     searchField.current.focus()
   }
 
-
-
   return (
     <FilterSectionStyled>
       {isSearchBarVisible ? (
         <ToggleIcon src={cross} alt="cross" onClick={endSearch} />
       ) : (
-          <ToggleIcon src={searchIcon} alt="searchIcon" onClick={openSearchBar} />
-        )}
+        <ToggleIcon src={searchIcon} alt="searchIcon" onClick={openSearchBar} />
+      )}
       <SearchFormStyled
         style={animateWidth}
-        onSubmit={(event) => event.preventDefault()}>
+        onSubmit={(event) => event.preventDefault()}
+      >
         <TextFieldStyled
           ref={searchField}
           type="text"
@@ -56,16 +52,13 @@ export default function SearchBar({ searchInput, setSearchTerm }) {
           onChange={handleSearch}
           data-testid="textField"
         />
-
       </SearchFormStyled>
-
     </FilterSectionStyled>
-
   )
 }
 
 const FilterSectionStyled = styled.div`
- display: flex;
+  display: flex;
   justify-content: right;
   align-items: center;
   padding: 1em 1em;
@@ -77,7 +70,7 @@ const SearchFormStyled = styled(animated.form)`
   border-bottom: 1px solid var(--lowopacity);
 `
 const TextFieldStyled = styled.input`
-position: absolute;
+  position: absolute;
   border: none;
   padding: 0 1em;
   font-size: 1em;

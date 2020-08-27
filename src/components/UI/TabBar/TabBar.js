@@ -1,14 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import * as ROUTES from '../../constants/routes'
+import * as ROUTES from '../../../constants/routes'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
-import homeIcon from '../UI/images/userblue.svg'
-import bookmarkIcon from '../UI/images/bookmarkEmpty.svg'
-
-
-
+import homeIcon from '../images/userblue.svg'
+import bookmarkIcon from '../images/bookmarkEmpty.svg'
 
 export default function TabBar() {
   return (
@@ -36,7 +33,7 @@ const TabBarStyled = styled.div`
   justify-content: space-around;
   height: 70%;
   background: var(--background);
-   z-index: 99;
+  z-index: 99;
 `
 const LinkStyled = styled(Link)`
   :active {
