@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import * as ROUTES from './constants/routes'
 import JournalForm from './components/JournalForm/JournalForm'
 import styled from 'styled-components'
-import TabBar from './components/TabBar/TabBar'
+import TabBar from './components/UI/TabBar/TabBar'
 import { Redirect, Switch, Route, useLocation } from 'react-router-dom'
 import { db } from './firebase/index'
 import useAuth from './services/auth/useAuth'
 import LoginContext from './services/auth/LoginContext'
 import { ToastContainer } from 'react-toastify'
-//Components 
+//Components
 import JournalDetailPage from './pages/JournalDetailPage'
 import RegisterPage from './pages/RegisterPage'
 import NotFound from './pages/NotFound'
@@ -17,7 +17,6 @@ import firebaseApp from './firebase'
 import LoginPage from './pages/LoginPage'
 import Dashboard from './pages/Dashboard'
 import LoadingScreen from './components/UI/LoadingScreen'
-
 
 function App() {
   const [user, isAuthCompleted] = useAuth()
@@ -35,12 +34,10 @@ function App() {
           <Switch>
             <Redirect exact from="/" to={ROUTES.HOME} />
             <Route path={ROUTES.REGISTER}>
-              <RegisterPage
-              />
+              <RegisterPage />
             </Route>
             <Route exact path={ROUTES.LOGIN}>
-              <LoginPage
-              />
+              <LoginPage />
             </Route>
             <Route
               exact
@@ -111,10 +108,10 @@ const AppWrapper = styled.div`
   grid-template-rows: 20% 73% 7%;
   justify-items: center;
   height: 100vh;
-  `
+`
 
 const FooterStyled = styled.div`
   width: 100%;
   grid-row: 3 / 4;
   z-index: 99;
-  `
+`

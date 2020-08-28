@@ -34,7 +34,7 @@ const MenuToggleStyled = styled.div`
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 10;
+  z-index: 200;
 
   &:focus {
     outline: none;

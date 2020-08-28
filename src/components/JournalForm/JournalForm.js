@@ -9,7 +9,7 @@ import useForm from '../../services/useForm'
 import LoginContext from '../../services/auth/LoginContext'
 import validateJournalEntry from './JournalFormValidation.js'
 import JournalFormSubmitButton from '../Button/JournalFormSubmitButton'
-import ImageUploadToDb from '../../services/ImageUploadToDb'
+import ImageUploadToDb from '../../services/imageUploadToDb'
 
 JournalForm.propTypes = {
   placeholder: PropTypes.string,

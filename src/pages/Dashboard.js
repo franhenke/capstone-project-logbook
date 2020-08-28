@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import SearchBar from '../components/UI/SearchBar/SearchBar'
-import DashboardHeader from '../components/Header/DashboardHeader'
+import DashboardHeader from '../components/DashboardHeader/DashboardHeader'
 import JournalEntryList from '../components/JournalEntry/JournalEntryList'
 import LinkButtonToJournalForm from '../components/Button/LinkButtonToJournalForm'
 
@@ -43,8 +43,8 @@ const EntryContainerStyled = styled.main`
   width: 90vw;
 `
 
-const IntroStyled = styled.h3`
-  font-size: 16px;
+const IntroStyled = styled.h2`
+  width: 100px;
   color: #8dacab;
   font-weight: bold;
 `

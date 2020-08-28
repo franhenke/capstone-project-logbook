@@ -48,7 +48,7 @@ const AnimatedBookmarkLinkStyled = styled(motion.div)`
   height: 1.3em;
   width: 1.3em;
   border: none;
-  z-index: 200;
+  z-index: 150;
 `
 
 const AnimatedHomeLinkStyled = styled(motion.div)`
@@ -58,5 +58,5 @@ const AnimatedHomeLinkStyled = styled(motion.div)`
   height: 1.5em;
   width: 1.5em;
   border: none;
-  z-index: 200;
+  z-index: 150;
 `

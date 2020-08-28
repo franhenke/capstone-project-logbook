@@ -6,7 +6,7 @@ import { useOnClickOutside } from '../../services/useOnClickOutside'
 import Sidebar from '../Sidebar/Sidebar'
 import SidebarToggler from '../Sidebar/SidebarToggler'
 import LoginContext from '../../services/auth/LoginContext'
-import WelcomeMessage from '../WelcomeMessage'
+import WelcomeMessage from '../UI/WelcomeMessage'
 
 export default function DashboardHeader() {
   const { user } = useContext(LoginContext)

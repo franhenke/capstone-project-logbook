@@ -39,7 +39,7 @@ export const StyledMenu = styled.nav`
   left: 0;
   transition: transform 0.3s ease-in-out;
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
-  z-index: 99;
+  z-index: 250;
 `
 
 const MenuItemsStyled = styled.div`
