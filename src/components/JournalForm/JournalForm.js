@@ -50,7 +50,7 @@ export default function JournalForm() {
       <JournalFormStyled onSubmit={handleSubmit} noValidate>
         <FirstSectionStyled>
           <DatePickerStyled>
-            <DatePickerLabelStyled htmlFor="date">Date</DatePickerLabelStyled>
+            <label htmlFor="date">Date</label>
             <DatePickerInputStyled
               onChange={(event) => handleChange(event)}
               value={values.date || ''}
@@ -58,9 +58,9 @@ export default function JournalForm() {
               type="date"
               name="date"
               id="date"
-              autoFocus
               max={currentDate}
               required
+              autofocus
             />
           </DatePickerStyled>
           <CategoryStyled>
@@ -72,10 +72,6 @@ export default function JournalForm() {
               id="category"
               required
             >
-              <option value="" hidden>
-                {' '}
-                Category
-              </option>
               <option value="Memory">Memory</option>
               <option value="Review">Review</option>
               <option value="Thoughts">Thoughts</option>
@@ -106,8 +102,8 @@ export default function JournalForm() {
             data-testid="caption"
             placeholder="Add a title to your entry"
           />
+          <label htmlFor="Entry">Entry</label>
           <TextAreaSection>
-            <label htmlFor="Entry">Entry</label>
             <StyledTextAreaInputField>
               <StyledTextArea
                 onChange={(event) => handleChange(event)}
@@ -148,14 +144,46 @@ const JournalFormStyled = styled.form`
   background-size: cover;
   background-repeat: no-repeat;
   grid-row: 2/3;
-  margin: 2.5em;
+  width: 80%;
+  margin: 2.5em 0;
 `
 
 const FirstSectionStyled = styled.section`
   display: grid;
-  grid-template-columns: 1fr 0.8fr;
+  grid-template-columns: 1fr 1fr;
   justify-content: space-between;
   margin-bottom: 2em;
+`
+
+const DatePickerStyled = styled.div`
+  /* width: 10em; */
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+`
+
+const DatePickerInputStyled = styled.input`
+  font-size: 1rem;
+  opacity: 0.5;
+  opacity: 0.5;
+  margin: 0;
+`
+
+const SelectStyled = styled.select`
+  background: var(--background);
+  color: var(--placeholder);
+  outline: none;
+  border: none;
+  font-size: 1em;
+  width: 6.5em;
+`
+
+const CategoryStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  option {
+    color: var(--placeholder);
+  }
 `
 
 const SecondSection = styled.section`
@@ -164,43 +192,8 @@ const SecondSection = styled.section`
   flex-direction: column;
 `
 
-const DatePickerStyled = styled.div`
-  position: relative;
-`
-const DatePickerLabelStyled = styled.label`
-  color: var(--background);
-`
-
-const DatePickerInputStyled = styled.input`
-  font-size: 1rem;
-  opacity: 0.5;
-  color: var(--text);
-  opacity: 0.5;
-`
-
-const SelectStyled = styled.select`
-  background: var(--background);
-  color: var(--text);
-  outline: none;
-  border: none;
-  font-size: 1em;
-  width: 8em;
-  margin: 0.5em 0 2em;
-`
-
-const CategoryStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-self: flex-end;
-
-  label {
-    opacity: 0;
-  }
-`
-
 const TextAreaSection = styled.section`
-  margin: 1em 0;
-  height: 10em;
+  height: 11em;
   overflow-y: scroll;
 
   scrollbar-width: none;

@@ -25,23 +25,26 @@ export default createGlobalStyle`
     font-family: 'Roboto', sans-serif;
 	  background-color: var(--background);
     color: var(--text);
-  
-  }
+ }
 
   h2 {
     font-size: 1.3em;
     font-weight: 600;
   }
 
+  label {
+    margin-bottom: 0.5em;
+  }
+
   input, textarea {
     font-size: 1em;
     background-color: var(--background);
-    color: #808E8E;
+    color: var(--text);
     font-weight: 300;
     outline: none;
     border: none;
     width: 90%;
-    margin: 0.5em 0 2em;
+    margin-bottom: 2em;
 
     &:focus {
     outline: none;

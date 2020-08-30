@@ -33,7 +33,7 @@ export default function Dashboard({ values }) {
           <JournalEntryList journalEntries={results} />
         )}
       </EntryContainerStyled>
-      <LinkButtonToJournalForm />
+      {/* <LinkButtonToJournalForm /> */}
     </>
   )
 }

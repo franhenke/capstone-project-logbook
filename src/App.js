@@ -105,7 +105,7 @@ export default App
 const AppWrapper = styled.div`
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 20% 73% 7%;
+  grid-template-rows: 15% 78% 7%;
   justify-items: center;
   height: 100vh;
 `
