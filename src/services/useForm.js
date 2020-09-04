@@ -12,11 +12,9 @@ export default function useForm(validate) {
     setInputErrors(validate(inputs))
   }, [inputs, validate])
 
-
   useForm.propTypes = {
     validate: PropTypes.object,
   }
-
 
   const Msg = () => (
     <div data-cy="toast">
@@ -40,7 +38,7 @@ export default function useForm(validate) {
     setInputs('')
     setTimeout(() => {
       history.push('/home')
-    }, 4000)
+    }, 5000)
   }
 
   const handleChange = (event) => {

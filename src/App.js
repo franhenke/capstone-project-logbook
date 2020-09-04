@@ -51,7 +51,6 @@ function App() {
               path={'/journalentry/:entryId'}
               component={() => <JournalDetailPage values={values} />}
             />
-
             <Route exact path={ROUTES.FAVLIST}>
               <FaveListPage />
             </Route>

@@ -21,14 +21,6 @@ export default function WelcomeMessage() {
     return () => clearTimeout(time)
   }, [])
 
-  // useEffect(() => {
-  //   let time = setInterval(() => {
-  //     setHour(new Date().getHours())
-  //   }, 0)
-
-  //   return () => clearInterval(time)
-  // }, [])
-
   return <WelcomeMessageStyled>{greeting}</WelcomeMessageStyled>
 }
 
