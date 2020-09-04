@@ -17,12 +17,17 @@ export default function WelcomeMessage() {
   }
 
   useEffect(() => {
-    let time = setInterval(() => {
-      setHour(new Date().getHours())
-    }, 0)
-
-    return () => clearInterval(time)
+    const time = setTimeout(setHour(new Date().getHours()), 1000)
+    return () => clearTimeout(time)
   }, [])
+
+  // useEffect(() => {
+  //   let time = setInterval(() => {
+  //     setHour(new Date().getHours())
+  //   }, 0)
+
+  //   return () => clearInterval(time)
+  // }, [])
 
   return <WelcomeMessageStyled>{greeting}</WelcomeMessageStyled>
 }

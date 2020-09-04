@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import SearchBar from '../components/UI/SearchBar/SearchBar'
 import DashboardHeader from '../components/DashboardHeader/DashboardHeader'
 import JournalEntryList from '../components/JournalEntry/JournalEntryList'
-import LinkButtonToJournalForm from '../components/Button/LinkButtonToJournalForm'
 
 Dashboard.propTypes = {
   values: PropTypes.arrayOf(PropTypes.object),
