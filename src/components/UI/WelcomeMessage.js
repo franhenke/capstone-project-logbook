@@ -19,7 +19,7 @@ export default function WelcomeMessage() {
   useEffect(() => {
     const time = setTimeout(setHour(new Date().getHours()), 1000)
     return () => clearTimeout(time)
-  }, [])
+  }, [hour])
 
   return <WelcomeMessageStyled>{greeting}</WelcomeMessageStyled>
 }
