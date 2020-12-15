@@ -60,6 +60,7 @@ export default function JournalForm() {
               id="date"
               max={currentDate}
               required
+              error={inputErrors.date}
               autofocus
             />
           </DatePickerStyled>
@@ -71,6 +72,7 @@ export default function JournalForm() {
               name="category"
               id="category"
               required
+              error={inputErrors.category}
             >
               <option value="Memory">Memory</option>
               <option value="Review">Review</option>
@@ -101,6 +103,7 @@ export default function JournalForm() {
             required
             data-testid="caption"
             placeholder="Add a title to your entry"
+            error={inputErrors.caption}
           />
           <label htmlFor="Entry">Entry</label>
           <TextAreaSection>
